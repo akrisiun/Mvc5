@@ -13,6 +13,10 @@
     <DefineConstants>$(DefineConstants);ASPNETWEBPAGES</DefineConstants>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <OutputPath>..\..\lib\</OutputPath>
+    <DocumentationFile />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -241,10 +245,6 @@
     <ProjectReference Include="..\System.Web.Razor\System.Web.Razor.csproj">
       <Project>{8F18041B-9410-4C36-A9C5-067813DF5F31}</Project>
       <Name>System.Web.Razor</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\System.Web.WebPages.Deployment\System.Web.WebPages.Deployment.csproj">
-      <Project>{22BABB60-8F02-4027-AFFC-ACF069954536}</Project>
-      <Name>System.Web.WebPages.Deployment</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

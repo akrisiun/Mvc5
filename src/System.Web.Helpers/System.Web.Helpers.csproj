@@ -90,8 +90,5 @@
       <CustomToolNamespace>System.Web.Helpers</CustomToolNamespace>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <CodeAnalysisDictionary Include="..\CodeAnalysisDictionary.xml" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

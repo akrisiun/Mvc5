@@ -20,7 +20,7 @@ namespace Microsoft.Web.WebPages.OAuth
             WebPageRazorHost.AddGlobalImport("Microsoft.Web.WebPages.OAuth");
 
             // Disable the "calls home" feature of DNOA
-            DotNetOpenAuth.Reporting.Enabled = false;
+            //DotNetOpenAuth.Reporting.Enabled = false;
         }
     }
 }

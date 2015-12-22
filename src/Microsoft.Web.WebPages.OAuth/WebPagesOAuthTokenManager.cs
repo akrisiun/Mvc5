@@ -2,21 +2,22 @@
 
 using System;
 using System.Web.Security;
-using DotNetOpenAuth.AspNet.Clients;
 using Microsoft.Internal.Web.Utils;
 using Microsoft.Web.WebPages.OAuth.Resources;
-using WebMatrix.WebData;
+//using DotNetOpenAuth.AspNet.Clients;
+//using WebMatrix.WebData;
 
 namespace Microsoft.Web.WebPages.OAuth
 {
     /// <summary>
     /// WebPages implementation for the <see cref="IOAuthTokenManager"/> interface which store tokens into SimpleMembership database
     /// </summary>
-    internal class WebPagesOAuthTokenManager : IOAuthTokenManager
+    internal class WebPagesOAuthTokenManager // : IOAuthTokenManager
     {
-        private static ExtendedMembershipProvider VerifyProvider()
+        private static object // ExtendedMembershipProvider 
+            VerifyProvider()
         {
-            var provider = Membership.Provider as ExtendedMembershipProvider;
+            var provider = Membership.Provider; // as ExtendedMembershipProvider;
             if (provider == null)
             {
                 throw new InvalidOperationException(OAuthResources.Security_NoExtendedMembershipProvider);
@@ -33,12 +34,12 @@ namespace Microsoft.Web.WebPages.OAuth
         /// </returns>
         public string GetTokenSecret(string token)
         {
-            if (String.IsNullOrEmpty(token))
-            {
+            //if (String.IsNullOrEmpty(token))
+            //{
                 throw new ArgumentException(CommonResources.Argument_Cannot_Be_Null_Or_Empty, "token");
-            }
+            //}
 
-            return VerifyProvider().GetOAuthTokenSecret(token);
+            //return VerifyProvider().GetOAuthTokenSecret(token);
         }
 
         /// <summary>
@@ -64,7 +65,7 @@ namespace Microsoft.Web.WebPages.OAuth
                 throw new ArgumentException(CommonResources.Argument_Cannot_Be_Null_Or_Empty, "accessTokenSecret");
             }
 
-            VerifyProvider().ReplaceOAuthRequestTokenWithAccessToken(requestToken, accessToken, accessTokenSecret);
+            //VerifyProvider().ReplaceOAuthRequestTokenWithAccessToken(requestToken, accessToken, accessTokenSecret);
         }
 
         /// <summary>
@@ -79,7 +80,7 @@ namespace Microsoft.Web.WebPages.OAuth
                 throw new ArgumentException(CommonResources.Argument_Cannot_Be_Null_Or_Empty, "requestToken");
             }
 
-            VerifyProvider().StoreOAuthRequestToken(requestToken, requestTokenSecret);
+            //VerifyProvider().StoreOAuthRequestToken(requestToken, requestTokenSecret);
         }
     }
 }

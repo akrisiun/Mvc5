@@ -16,3 +16,5 @@ _[Ss]cripts
 *.psess
 *.orig
 *.sln.ide
+lib/CodeContracts/
+lib/*.lastcodeanalysissucceeded

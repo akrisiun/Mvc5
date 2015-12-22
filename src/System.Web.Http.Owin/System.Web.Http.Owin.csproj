@@ -96,10 +96,6 @@
       <Project>{668e9021-ce84-49d9-98fb-df125a9fcdb0}</Project>
       <Name>System.Net.Http.Formatting</Name>
     </ProjectReference>
-    <ProjectReference Include="..\System.Web.Http\System.Web.Http.csproj">
-      <Project>{ddc1ce0c-486e-4e35-bb3b-eab61f8f9440}</Project>
-      <Name>System.Web.Http</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="..\CodeAnalysisDictionary.xml" />
