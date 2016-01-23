@@ -21,3 +21,4 @@ lib/*.lastcodeanalysissucceeded
 lib/System.*.pdb
 lib/Microsoft.*.pdb
 lib/Web*.pdb
+lib/ConfigurationModel.pdb
