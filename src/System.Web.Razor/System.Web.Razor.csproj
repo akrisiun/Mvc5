@@ -17,6 +17,9 @@
     <OutputPath>..\..\lib\</OutputPath>
     <DocumentationFile />
   </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>xmAspNet.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
@@ -199,7 +202,7 @@
     <Compile Include="Parser\VBCodeParser.Statements.cs" />
   </ItemGroup>
   <ItemGroup>
-    <CodeAnalysisDictionary Include="..\CodeAnalysisDictionary.xml" />
+    <None Include="xmAspNet.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

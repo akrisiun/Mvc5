@@ -28,6 +28,12 @@
     <OutputPath>..\..\lib\</OutputPath>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>xmAspNet.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <!-- Set AddAdditionalExplicitAssemblyReferences to false, otherwise if targetting .NET4.0, 
   Microsoft.NETFramework.props will force a dependency on the assembly System.Core. This
   is a problem to compile the Mono mscorlib.dll 
@@ -54,5 +60,8 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="xmAspNet.snk" />
   </ItemGroup>
 </Project>

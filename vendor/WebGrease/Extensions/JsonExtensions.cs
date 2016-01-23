@@ -24,6 +24,9 @@ namespace WebGrease.Extensions
             () =>
                 {
                     var contractResolver = new DefaultContractResolver();
+
+                    // TODO: DefaultContractResolver.DefaultMembersSearchFlags' is obsolete: 'DefaultMembersSearchFlags is obsolete. 
+                    // To modify the members serialized inherit from DefaultContractResolver and override the GetSerializableMembers method instead
                     contractResolver.DefaultMembersSearchFlags |= BindingFlags.NonPublic;
                     return new JsonSerializerSettings { ContractResolver = contractResolver };
                 });

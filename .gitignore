@@ -18,3 +18,5 @@ _[Ss]cripts
 *.sln.ide
 lib/CodeContracts/
 lib/*.lastcodeanalysissucceeded
+lib/System.*.pdb
+lib/Microsoft.*.pdb

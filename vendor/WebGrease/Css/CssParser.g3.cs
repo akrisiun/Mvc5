@@ -117,7 +117,7 @@ namespace WebGrease.Css
             //    });
             //}
 
-            return null;
+            //return null;
         }
 
         /// <summary>Logs the Css diagnostics.</summary>

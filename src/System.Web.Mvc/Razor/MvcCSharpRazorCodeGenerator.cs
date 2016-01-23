@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.CodeDom;
+using System.Runtime.Remoting.Contexts;
 using System.Web.Razor;
 using System.Web.Razor.Generator;
 
