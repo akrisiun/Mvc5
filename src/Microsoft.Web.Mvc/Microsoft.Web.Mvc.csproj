@@ -8,8 +8,7 @@
     <RootNamespace>Microsoft.Web.Mvc</RootNamespace>
     <AssemblyName>Microsoft.Web.Mvc</AssemblyName>
     <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
-    <RunCodeAnalysis>$(CodeAnalysis)</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>..\Strict.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
     <DefineConstants>$(DefineConstants);ASPNETMVC</DefineConstants>
     <NoWarn>1591</NoWarn>
     <!-- Force signing off -->
@@ -206,9 +205,6 @@
       <LastGenOutput>MvcResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <CodeAnalysisDictionary Include="..\CodeAnalysisDictionary.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FuturesFiles\DefaultTemplates\DisplayTemplates\Boolean.ascx">

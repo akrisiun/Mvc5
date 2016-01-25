@@ -6,9 +6,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>System.Web.Helpers</RootNamespace>
     <AssemblyName>System.Web.Helpers</AssemblyName>
-    <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
-    <RunCodeAnalysis>$(CodeAnalysis)</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>..\WebHelpers.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
     <DefineConstants>$(DefineConstants);ASPNETWEBPAGES</DefineConstants>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>

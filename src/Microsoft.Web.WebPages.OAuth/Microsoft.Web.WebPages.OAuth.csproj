@@ -8,13 +8,14 @@
     <RootNamespace>Microsoft.Web.WebPages.OAuth</RootNamespace>
     <AssemblyName>Microsoft.Web.WebPages.OAuth</AssemblyName>
     <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
-    <RunCodeAnalysis>$(CodeAnalysis)</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>..\Strict.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
     <DefineConstants>$(DefineConstants);ASPNETWEBPAGES</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DocumentationFile />
     <OutputPath>..\..\lib\</OutputPath>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
+    <DefineConstants>TRACE;DEBUG;ASPNETWEBPAGES</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DotNetOpenAuth.AspNet, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">

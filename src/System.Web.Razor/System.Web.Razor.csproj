@@ -6,9 +6,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>System.Web.Razor</RootNamespace>
     <AssemblyName>System.Web.Razor</AssemblyName>
-    <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
-    <RunCodeAnalysis>$(CodeAnalysis)</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>..\Strict.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
     <DefineConstants>$(DefineConstants);ASPNETWEBPAGES</DefineConstants>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>

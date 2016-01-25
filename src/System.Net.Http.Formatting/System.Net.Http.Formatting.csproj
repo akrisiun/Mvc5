@@ -7,9 +7,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>System.Net.Http</RootNamespace>
     <AssemblyName>System.Net.Http.Formatting</AssemblyName>
-    <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
-    <RunCodeAnalysis>$(CodeAnalysis)</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>..\Strict.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
     <DefineConstants>$(DefineConstants);ASPNETMVC</DefineConstants>
     <TargetFrameworkProfile Condition="'$(TargetFrameworkVersion)' != 'v4.5'">Client</TargetFrameworkProfile>
     <NoWarn>1591</NoWarn>
