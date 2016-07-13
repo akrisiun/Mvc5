@@ -29,7 +29,8 @@ namespace System.Web.WebPages
             }
         }
 
-        internal DisplayModeProvider DisplayModeProvider
+        // internal 
+        public DisplayModeProvider DisplayModeProvider
         {
             get { return _displayModeProvider ?? DisplayModeProvider.Instance; }
 

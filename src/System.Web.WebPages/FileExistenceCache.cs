@@ -17,7 +17,9 @@ namespace System.Web.WebPages
     /// expensive on subsequent calls, but it still needs to do MapPath which can 
     /// take quite some time.
     /// </summary>
-    internal class FileExistenceCache
+    
+    // internal 
+    public class FileExistenceCache
     {
         private const int TicksPerMillisecond = 10000;
         private readonly Func<VirtualPathProvider> _virtualPathProviderFunc;

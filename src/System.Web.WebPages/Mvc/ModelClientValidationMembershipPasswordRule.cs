@@ -2,7 +2,8 @@
 
 namespace System.Web.Mvc
 {
-    internal class ModelClientValidationMembershipPasswordRule : ModelClientValidationRule
+    // internal 
+    public class ModelClientValidationMembershipPasswordRule : ModelClientValidationRule
     {
         public ModelClientValidationMembershipPasswordRule(string errorMessage, int minRequiredPasswordLength, int minRequiredNonAlphanumericCharacters, string passwordStrengthRegularExpression)
         {

@@ -4,7 +4,8 @@ using System.Web;
 
 namespace Microsoft.Internal.Web.Utils
 {
-    internal sealed class VirtualPathUtilityWrapper : IVirtualPathUtility
+    // internal 
+    public sealed class VirtualPathUtilityWrapper : IVirtualPathUtility
     {
         public string Combine(string basePath, string relativePath)
         {

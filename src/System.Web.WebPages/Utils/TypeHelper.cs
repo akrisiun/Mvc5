@@ -7,7 +7,8 @@ using System.Web.Routing;
 
 namespace System.Web.WebPages
 {
-    internal static class TypeHelper
+    // internal 
+    public static class TypeHelper
     {
         /// <summary>
         /// Given an object of anonymous type, add each property as a key and associated with its value to a dictionary.

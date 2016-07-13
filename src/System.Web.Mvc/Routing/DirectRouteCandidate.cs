@@ -217,7 +217,7 @@ namespace System.Web.Mvc.Routing
             }
 
             int minimum = candidates.Min(c => c.Order);
-            return candidates.Where(c => c.Order == minimum).AsList();
+            return CollectionExtensions.AsList(candidates.Where(c => c.Order == minimum));
         }
 
         private static List<DirectRouteCandidate> FilterByPrecedence(List<DirectRouteCandidate> candidates)

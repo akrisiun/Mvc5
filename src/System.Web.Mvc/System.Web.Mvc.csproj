@@ -11,17 +11,23 @@
     <DefineConstants>$(DefineConstants);ASPNETMVC</DefineConstants>
     <NoWarn>1591</NoWarn>
     <BaseAddress>1609891840</BaseAddress>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Prekes\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <OutputPath>..\..\lib\</OutputPath>
     <DocumentationFile />
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>xmAspNet.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
@@ -34,10 +40,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\System.Web.Razor.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -602,18 +604,14 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <CodeAnalysisDictionary Include="..\CodeAnalysisDictionary.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="JavaScript\jquery.unobtrusive-ajax.js" />
     <None Include="JavaScript\jquery.validate.unobtrusive.js" />
     <None Include="packages.config" />
-    <None Include="xmAspNet.snk" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\vendor\Microsoft.Web.Infrastructure\Microsoft.Web.Infrastructure.csproj">
-      <Project>{50dc9191-2d18-4edb-a929-4ecab7981a1c}</Project>
-      <Name>Microsoft.Web.Infrastructure</Name>
+    <ProjectReference Include="..\System.Web.Razor\System.Web.Razor.csproj">
+      <Project>{8f18041b-9410-4c36-a9c5-067813df5f31}</Project>
+      <Name>System.Web.Razor</Name>
     </ProjectReference>
     <ProjectReference Include="..\System.Web.WebPages.Razor\System.Web.WebPages.Razor.csproj">
       <Project>{0939b11a-fe4e-4ba1-8ad6-d97741ee314f}</Project>

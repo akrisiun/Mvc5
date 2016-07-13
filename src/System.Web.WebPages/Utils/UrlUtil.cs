@@ -8,7 +8,8 @@ using System.Web.Routing;
 
 namespace System.Web.WebPages
 {
-    internal static class UrlUtil
+    // internal 
+    public static class UrlUtil
     {
         private static UrlRewriterHelper _urlRewriterHelper = new UrlRewriterHelper();
 

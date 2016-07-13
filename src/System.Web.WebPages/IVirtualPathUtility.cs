@@ -2,7 +2,8 @@
 
 namespace Microsoft.Internal.Web.Utils
 {
-    internal interface IVirtualPathUtility
+    // internal 
+    public interface IVirtualPathUtility
     {
         string Combine(string basePath, string relativePath);
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(CustomBeforeWebStackTargets)" Condition="Exists('$(CustomBeforeWebStackTargets)')" Label="Pre-targets Build Extensibility Point"/>
+  <Import Project="$(CustomBeforeWebStackTargets)" Condition="Exists('$(CustomBeforeWebStackTargets)')" 
+          Label="Pre-targets Build Extensibility Point"/>
 
   <PropertyGroup>
     <!-- Define some basic reference paths -->
@@ -32,8 +33,10 @@
     <!-- Target 4.5 by default -->
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
 
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>$(WebStackRootPath)\tools\xmAspNet.snk</AssemblyOriginatorKeyFile>
+    <!-- 
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>$(WebStackRootPath)\tools\xmAspNet.snk</AssemblyOriginatorKeyFile>
+    -->        
   </PropertyGroup>
 
   <!-- Per-configuration properties -->
