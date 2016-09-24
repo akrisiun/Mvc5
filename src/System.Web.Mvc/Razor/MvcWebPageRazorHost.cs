@@ -61,10 +61,10 @@ namespace System.Web.Mvc.Razor
             {
                 return new MvcCSharpRazorCodeParser();
             }
-            else if (incomingCodeParser is VBCodeParser)
-            {
-                return new MvcVBRazorCodeParser();
-            }
+            //else if (incomingCodeParser is VBCodeParser)
+            //{
+            //    return new MvcVBRazorCodeParser();
+            //}
             else
             {
                 return base.DecorateCodeParser(incomingCodeParser);

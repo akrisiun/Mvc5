@@ -1,0 +1,101 @@
+{
+  "version": "5.5.0.0",
+  "name": "System.Web.Mvc",
+  "description": "System.Web.Mvc project",
+  "language": "en-US",
+  "authors": [ "Andrius K" ],
+  "packOptions": {
+    "repository": {
+      "type": "git",
+      "url": "https://bitbucket.org/AndriusK/snxweblib.git"
+    }
+  },
+  "buildOptions": {
+    "define": [ "DEBUG", "ASPNETMVC" ],
+    "warningsAsErrors": false,
+    "keyFile": "../Key.snk",
+    "compile": [
+      "**/*.cs",
+      "../CommonResources.Designer.cs",
+      "../Common/HashCodeCombiner.cs",
+      "../Common/AttributeList.cs",
+      "../Common/DictionaryExtensions.cs",
+      "../Common/ListWrapperCollection.cs",
+      "../Common/PrefixContainer.cs",
+      "../Common/TaskHelpers.cs",
+      "../Common/TaskHelpersExtensions.cs",
+      "../Common/ReflectionHelpers.cs",
+      "../Common/Routing/*.cs",
+      "../Common/Routing/Constraints/*.cs",
+      "../GlobalSuppressions.cs"
+    ],
+    "embeded": [
+      "**/*.resx",
+      "Properties/MvcResources.resx",
+      "../CommonResources.resx"
+    ]
+  },
+  "libraries": {
+    "System.Web.Razor/3.3.0.0": {
+      "type": "project",
+      "path": "../System.Web.Razor/project.json"
+    },
+    "System.Web.WebPages/3.3.0.0": {
+      "type": "project",
+      "path": "../System.Web.WebPages/project.json"
+    },
+    "System.Web.WebPages.Razor/3.3.0.0": {
+      "type": "project",
+      "path": "../System.Web.WebPages.Razor/project.json"
+    }
+  },
+  "dependencies": {
+    "Microsoft.Web.Infrastructure": "1.0.0.0",
+    "Newtonsoft.Json": "9.0.1",
+    "System.Web.Razor": "3.3.0.0",
+    "System.Web.WebPages": "3.3.0.0",
+    "System.Web.WebPages.Razor": "3.3.0.0"
+  },
+  "frameworks": {
+    "net451": {
+      "dependencies": {
+      },
+      "frameworkAssemblies": {
+        "System.Data": "",
+        "System.Numerics": "",
+        "System.Runtime.Serialization": "",
+        "System.Xml": "",
+        "System.Xml.Linq": "",
+        "System.Data.Linq": "",
+        "System.Drawing": "",
+        "System.Management": "",
+        "Microsoft.CSharp": "",
+        "System.Configuration": "",
+        "System.Runtime.Caching": "",
+        "System.Web": "",
+        "System.Web.Routing": ""
+      }
+    },
+    // "netstandard1.5": {},
+    "net46": {
+      "frameworkAssemblies": {
+        "System.Data": "",
+        "System.Numerics": "",
+        "System.Runtime.Serialization": "",
+        "System.Xml": "",
+        "System.Xml.Linq": "",
+        "System.Data.Linq": "",
+        "System.Drawing": "",
+        "System.Management": "",
+        "Microsoft.CSharp": "",
+        "System.Configuration": "",
+        "System.Runtime.Caching": "",
+        "System.Web": "",
+        "System.Web.Routing": ""
+      }
+    }
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

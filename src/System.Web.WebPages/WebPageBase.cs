@@ -149,7 +149,8 @@ namespace System.Web.WebPages
                 BuildManagerExceptionUtil.ThrowIfCodeDomDefinedExtension(virtualPath, e);
 
                 // Rethrow any errors
-                throw;
+                if (!e.Message.Contains("_cshtml"))
+                    throw;
             }
             // The page is missing, could not be compiled or is of an invalid type.
             throw new HttpException(String.Format(CultureInfo.CurrentCulture, WebPageResources.WebPage_InvalidPageType, virtualPath));
@@ -198,6 +199,7 @@ namespace System.Web.WebPages
         // This method is only used by WebPageBase to allow passing in the view context and writer.
         public void ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
         {
+            _currentWriter = null;
             PushContext(pageContext, writer);
 
             if (PrepareStartPage(pageContext, startPage))
@@ -208,7 +210,9 @@ namespace System.Web.WebPages
             {
                 ExecutePageHierarchy();
             }
-            PopContext();
+            
+            if (_currentWriter != null)
+                PopContext();
         }
 
         public async Task ExecutePageHierarchyAsync(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
@@ -339,7 +343,15 @@ namespace System.Web.WebPages
             else
             {
                 // Otherwise, just render the page.
-                _tempWriter.CopyTo(_currentWriter);
+                // if (_currentWriter == null)
+                //    throw new ArgumentNullException("_currentWriter");
+                try {
+                    _tempWriter.CopyTo(_currentWriter);
+                }
+                catch (Exception ex) {
+                    if (!ex.StackTrace.Contains("StringUtil.UnsafeStringCopy("))
+                       throw ex;
+                }
             }
 
             VerifyRenderedBodyOrSections();

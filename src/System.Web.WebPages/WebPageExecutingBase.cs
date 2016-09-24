@@ -352,7 +352,11 @@ namespace System.Web.WebPages
             {
                 if (!task.IsCompletedSynchronously())
                 {
-                    throw new NotSupportedException(
+                    if (task.IsFaulted && task.Exception != null)
+                        throw task.Exception.InnerException != null ?
+                              task.Exception.InnerException : task.Exception;
+                    else
+                        throw new NotSupportedException(
                         String.Format(CultureInfo.InvariantCulture,
                             WebPageResources.WebPage_SyncAsyncConflict,
                             VirtualPath));

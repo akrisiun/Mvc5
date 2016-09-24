@@ -7,7 +7,7 @@ using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.Web.Mvc.Properties;
-using System.Web.Script.Serialization;
+//using System.Web.Script.Serialization;
 
 namespace System.Web.Mvc
 {
@@ -55,8 +55,9 @@ namespace System.Web.Mvc
                 return null;
             }
 
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            object jsonData = serializer.DeserializeObject(bodyText);
+            // JavaScriptSerializer serializer = new JavaScriptSerializer();
+            object jsonData = global::Newtonsoft.Json.JsonConvert.DeserializeObject(bodyText);
+            //object jsonData = serializer.DeserializeObject(bodyText);
             return jsonData;
         }
 

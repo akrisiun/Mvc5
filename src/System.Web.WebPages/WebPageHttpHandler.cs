@@ -188,7 +188,8 @@ namespace System.Web.WebPages
 
         internal static bool ShouldGenerateSourceHeader(HttpContextBase context)
         {
-            return context.Request.IsLocal;
+            // return context.Request.IsLocal;
+            return context.Request.RawUrl.Contains("localhost");
         }
     }
 }

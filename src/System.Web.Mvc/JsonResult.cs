@@ -2,7 +2,7 @@
 
 using System.Text;
 using System.Web.Mvc.Properties;
-using System.Web.Script.Serialization;
+//using System.Web.Script.Serialization;
 
 namespace System.Web.Mvc
 {
@@ -59,16 +59,18 @@ namespace System.Web.Mvc
             }
             if (Data != null)
             {
-                JavaScriptSerializer serializer = new JavaScriptSerializer();
-                if (MaxJsonLength.HasValue)
-                {
-                    serializer.MaxJsonLength = MaxJsonLength.Value;
-                }
-                if (RecursionLimit.HasValue)
-                {
-                    serializer.RecursionLimit = RecursionLimit.Value;
-                }
-                response.Write(serializer.Serialize(Data));
+                //if (MaxJsonLength.HasValue)
+                //{
+                //    serializer.MaxJsonLength = MaxJsonLength.Value;
+                //}
+                //if (RecursionLimit.HasValue)
+                //{
+                //    serializer.RecursionLimit = RecursionLimit.Value;
+                //}
+                
+                //JavaScriptSerializer serializer = new JavaScriptSerializer();
+                response.Write(
+                    global::Newtonsoft.Json.JsonConvert.SerializeObject(Data));
             }
         }
     }

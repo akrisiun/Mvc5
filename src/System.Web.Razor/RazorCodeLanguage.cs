@@ -13,8 +13,8 @@ namespace System.Web.Razor
     {
         private static IDictionary<string, RazorCodeLanguage> _services = new Dictionary<string, RazorCodeLanguage>(StringComparer.OrdinalIgnoreCase)
         {
-            { "cshtml", new CSharpRazorCodeLanguage() },
-            { "vbhtml", new VBRazorCodeLanguage() }
+            { "cshtml", new CSharpRazorCodeLanguage() }
+            //{ "vbhtml", new VBRazorCodeLanguage() }
         };
 
         /// <summary>

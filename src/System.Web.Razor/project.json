@@ -1,0 +1,63 @@
+{
+  "version": "3.3.0.0",
+  "title": "System.Web.WebPages.csproj",
+  "description": "System.Web.WebPages project",
+  "language": "en-US",
+  "authors": [ "Andrius K" ],
+  "packOptions": {
+    "repository": {
+      "type": "git",
+      "url": "https://bitbucket.org/AndriusK/snxweblib.git"
+    }
+  },
+  "buildOptions": {
+    "define": [ "DEBUG", "ASPNETWEBPAGES" ],
+    "warningsAsErrors": false,
+    "keyFile": "../Key.snk",
+    "compile": [
+      "**/*.cs",
+      "../CommonResources.Designer.cs",
+      "../Common/HashCodeCombiner.cs",
+      "../GlobalSuppressions.cs"
+    ],
+    "embeded": [
+      "**/*.resx",
+      "../CommonResources.resx"
+    ]
+  },
+  "frameworks": {
+    "net451": {
+      "dependencies": {
+        "Microsoft.Web.Infrastructure": "1.0.0.0"
+      },
+      "frameworkAssemblies": {
+        "System.Data": "",
+        "System.Numerics": "",
+        "System.Runtime.Serialization": "",
+        "System.Xml": "",
+        "System.Xml.Linq": "",
+        "System.Data.Linq": "",
+        "System.Drawing": "",
+        "System.Management": "",
+        "Microsoft.CSharp": "",
+        "System.Configuration": ""
+      }
+    },
+    "net46": {
+      "dependencies": {
+        "Microsoft.Web.Infrastructure": "1.0.0.0",
+        "System.Runtime": "4.0.20-*"
+      },
+      "frameworkAssemblies": {
+      }
+    }
+    // ,"netstandard1.3": {
+    //   "compilationOptions": {
+    //     "define": [ "NETSTANDARD" ]
+    //   },
+    // }
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
 using System.Linq;
 
 namespace System.Web.WebPages
@@ -31,7 +32,20 @@ namespace System.Web.WebPages
             {
                 throw new ArgumentNullException("httpContext");
             }
-            return GetStack(httpContext).Pop();
+
+            ITemplateFile template = null;
+            try
+            {
+                var stack = GetStack(httpContext);
+                template = stack.Pop();
+            }
+            catch (Exception ex)
+            {
+                if (Debugger.IsAttached)
+                    Debugger.Break();
+                httpContext.Trace.Write("ITemplateFile Pop", ex.Message, ex);
+            }
+            return template;
         }
 
         public static void Push(HttpContextBase httpContext, ITemplateFile templateFile)

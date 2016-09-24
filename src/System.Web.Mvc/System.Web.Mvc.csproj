@@ -11,7 +11,7 @@
     <DefineConstants>$(DefineConstants);ASPNETMVC</DefineConstants>
     <NoWarn>1591</NoWarn>
     <BaseAddress>1609891840</BaseAddress>
-    <RestorePackages>true</RestorePackages>
+    <RestorePackages>false</RestorePackages>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
@@ -21,26 +21,28 @@
   <PropertyGroup>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\Key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\Lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Web.Abstractions" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +177,7 @@
     <Compile Include="ITempDataProviderFactory.cs" />
     <Compile Include="JQueryFormValueProvider.cs" />
     <Compile Include="JQueryFormValueProviderFactory.cs" />
+    <Compile Include="Key.cs" />
     <Compile Include="Routing\DefaultDirectRouteProvider.cs" />
     <Compile Include="Routing\IDirectRouteProvider.cs" />
     <Compile Include="SelectListGroup.cs" />
@@ -606,7 +609,7 @@
   <ItemGroup>
     <None Include="JavaScript\jquery.unobtrusive-ajax.js" />
     <None Include="JavaScript\jquery.validate.unobtrusive.js" />
-    <None Include="packages.config" />
+    <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\System.Web.Razor\System.Web.Razor.csproj">
@@ -629,11 +632,6 @@
     </ItemGroup>
     <Copy SourceFiles="@(ScriptFiles)" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
   </Target>
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-  </Target>
+  <!--<Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+  </Target>-->
 </Project>

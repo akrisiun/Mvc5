@@ -22,3 +22,4 @@ lib/System.*.pdb
 lib/Microsoft.*.pdb
 lib/Web*.pdb
 lib/ConfigurationModel.pdb
+.nuget/NuGet.exe

@@ -212,7 +212,7 @@ namespace System.Web.Mvc.Html
         {
             return
                 metadata.ShowForDisplay
-                && metadata.ModelType != typeof(EntityState)
+                // && metadata.ModelType != typeof(EntityState)    // System.Data.Entity
                 && !metadata.IsComplexType
                 && !templateInfo.Visited(metadata);
         }

@@ -174,7 +174,8 @@ namespace System.Web.WebPages
                     itemWriter.CopyToInternal(target);
                     continue;
                 }
-                target.Write((string)item);
+                if (item != null && item is string && (item as string).Length > 0)
+                    target.Write(item as string);
             }
         }
 
