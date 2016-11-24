@@ -23,3 +23,5 @@ lib/Microsoft.*.pdb
 lib/Web*.pdb
 lib/ConfigurationModel.pdb
 .nuget/NuGet.exe
+*.lock.json
+.vs*/

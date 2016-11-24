@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using Microsoft.Internal.Web.Utils;
+using System.Web.Razor.Common;
 
 namespace System.Web.Razor
 {

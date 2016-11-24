@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Text;
 using System.Web.Razor.Parser.SyntaxTree;
 using Microsoft.Internal.Web.Utils;
+using System.Web.Razor.Common;
 
 namespace System.Web.Razor.Text
 {

@@ -3,6 +3,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using Microsoft.Internal.Web.Utils;
+using System.Web.Razor.Common;
 
 namespace System.Web.Razor.Generator
 {

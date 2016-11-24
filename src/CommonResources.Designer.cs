@@ -19,6 +19,9 @@ namespace System.Diagnostics.CodeAnalysis
 }
 #endif
 
+namespace System.Web.Razor.Common
+{}
+
 namespace Microsoft.Internal.Web.Utils
 {
     using System;
