@@ -43,6 +43,9 @@
   },
   "frameworks": {
     "net451": {
+      "dependencies": {
+        "System.Runtime": "4.0.10"
+      },
       "frameworkAssemblies": {
         "System.Web": "",
         "System.Numerics": "",
@@ -54,6 +57,9 @@
       }
     },
     "net46": {
+      "dependencies": {
+        "System.Runtime": "4.0.20-*"
+      },
       "frameworkAssemblies": {
         "System.Web": "",
         "System.Numerics": "",
@@ -67,5 +73,6 @@
     // "netstandard1.1": {}
   },
   "runtimes": {
+    "win": {}
   }
 }

@@ -26,6 +26,12 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\..\lib\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages">
+      <HintPath>..\..\lib\System.Web.WebPages.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\CommonAssemblyInfo.cs">
@@ -62,14 +68,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\System.Web.WebPages\System.Web.WebPages.csproj">
+    <!--<ProjectReference Include="..\System.Web.WebPages\System.Web.WebPages.csproj">
       <Project>{76EFA9C5-8D7E-4FDF-B710-E20F8B6B00D2}</Project>
       <Name>System.Web.WebPages</Name>
     </ProjectReference>
     <ProjectReference Include="..\System.Web.Razor\System.Web.Razor.csproj">
       <Project>{8F18041B-9410-4C36-A9C5-067813DF5F31}</Project>
       <Name>System.Web.Razor</Name>
-    </ProjectReference>
+    </ProjectReference>-->
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\CommonResources.resx">
@@ -83,7 +89,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="../Key.snk" />
+    <None Include="..\Key.snk" />
     <None Include="project.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
