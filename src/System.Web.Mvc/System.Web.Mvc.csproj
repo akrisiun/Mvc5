@@ -45,6 +45,10 @@
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web.WebPages.Razor, Version=3.3.0.0, Culture=neutral, PublicKeyToken=b213442182ae2f7a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -617,10 +621,6 @@
     <ProjectReference Include="..\System.Web.Razor\System.Web.Razor.csproj">
       <Project>{8f18041b-9410-4c36-a9c5-067813df5f31}</Project>
       <Name>System.Web.Razor</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\System.Web.WebPages.Razor\System.Web.WebPages.Razor.csproj">
-      <Project>{0939b11a-fe4e-4ba1-8ad6-d97741ee314f}</Project>
-      <Name>System.Web.WebPages.Razor</Name>
     </ProjectReference>
     <ProjectReference Include="..\System.Web.WebPages\System.Web.WebPages.csproj">
       <Project>{76efa9c5-8d7e-4fdf-b710-e20f8b6b00d2}</Project>
