@@ -16,6 +16,7 @@ using System.Web.Razor.Parser.SyntaxTree;
 namespace System.Web.WebPages.Razor
 {
     [BuildProviderAppliesTo(BuildProviderAppliesTo.Web | BuildProviderAppliesTo.Code)]
+    [CLSCompliant(false)]
     public class RazorBuildProvider : BuildProvider
     {
         private static bool? _isFullTrust;
@@ -23,6 +24,8 @@ namespace System.Web.WebPages.Razor
         private WebPageRazorHost _host = null;
         private IList _virtualPathDependencies;
         private IAssemblyBuilder _assemblyBuilder;
+
+        [CLSCompliant(false)]
         public static event EventHandler<CodeGenerationCompleteEventArgs> CodeGenerationCompleted;
 
         internal event EventHandler<CodeGenerationCompleteEventArgs> CodeGenerationCompletedInternal
@@ -42,6 +45,7 @@ namespace System.Web.WebPages.Razor
             remove { _codeGenerationStartedInternal -= value; }
         }
 
+        [CLSCompliant(false)]
         public static event EventHandler<CompilingPathEventArgs> CompilingPath;
 
         /// <summary>
@@ -172,6 +176,7 @@ namespace System.Web.WebPages.Razor
             return OpenReader();
         }
 
+        [CLSCompliant(false)]
         protected internal virtual WebPageRazorHost CreateHost()
         {
             // Get the host from config
@@ -186,6 +191,7 @@ namespace System.Web.WebPages.Razor
         }
 
         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "This method performs significant work and a property would not be appropriate")]
+        [CLSCompliant(false)]
         protected internal virtual WebPageRazorHost GetHostFromConfig()
         {
             return WebRazorHostFactory.CreateHostFromConfig(VirtualPath);

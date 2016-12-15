@@ -5,6 +5,7 @@ using System.Web.WebPages.Razor;
 
 namespace System.Web.Mvc
 {
+    [CLSCompliant(false)]
     public class MvcWebRazorHostFactory : WebRazorHostFactory
     {
         public override WebPageRazorHost CreateHost(string virtualPath, string physicalPath)

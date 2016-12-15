@@ -14,6 +14,8 @@ using Microsoft.Internal.Web.Utils;
 
 namespace System.Web.WebPages.Razor
 {
+
+    [CLSCompliant(false)]
     public class WebRazorHostFactory
     {
         private static ConcurrentDictionary<string, Func<WebRazorHostFactory>> _factories =
@@ -21,6 +23,7 @@ namespace System.Web.WebPages.Razor
 
         internal static Func<string, Type> TypeFactory = DefaultTypeFactory;
 
+        [CLSCompliant(false)]
         public static WebPageRazorHost CreateDefaultHost(string virtualPath)
         {
             return CreateDefaultHost(virtualPath, null);

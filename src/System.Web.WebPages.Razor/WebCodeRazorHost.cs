@@ -10,6 +10,7 @@ using System.Web.Razor.Parser;
 
 namespace System.Web.WebPages.Razor
 {
+    [CLSCompliant(false)]
     public class WebCodeRazorHost : WebPageRazorHost
     {
         private const string AppCodeDir = "App_Code";

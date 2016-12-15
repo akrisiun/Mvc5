@@ -2,6 +2,7 @@
 
 namespace System.Web.WebPages.Razor
 {
+    [CLSCompliant(false)]
     public class CompilingPathEventArgs : EventArgs
     {
         public CompilingPathEventArgs(string virtualPath, WebPageRazorHost host)
@@ -11,6 +12,8 @@ namespace System.Web.WebPages.Razor
         }
 
         public string VirtualPath { get; private set; }
+
+        [CLSCompliant(false)]
         public WebPageRazorHost Host { get; set; }
     }
 }

@@ -9,6 +9,7 @@ using System.Web.WebPages.Razor;
 namespace System.Web.Mvc.Razor
 {
     [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "WebPage", Justification = "The class name is derived from the name of the base type")]
+    [CLSCompliant(false)]
     public class MvcWebPageRazorHost : WebPageRazorHost
     {
         [SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Justification = "The NamespaceImports property should not be virtual. This is a temporary fix.")]
@@ -40,6 +41,7 @@ namespace System.Web.Mvc.Razor
             GetRidOfNamespace("System.Web.WebPages.Html");
         }
 
+        [CLSCompliant(false)]
         public override RazorCodeGenerator DecorateCodeGenerator(RazorCodeGenerator incomingCodeGenerator)
         {
             if (incomingCodeGenerator is CSharpRazorCodeGenerator)

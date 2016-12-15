@@ -18,6 +18,7 @@ using Microsoft.Internal.Web.Utils;
 
 namespace System.Web.WebPages.Razor
 {
+    [CLSCompliant(false)]
     public class WebPageRazorHost : RazorEngineHost
     {
         // DevDiv Bug 941404 - Add a prefix and folder name to class names
@@ -106,6 +107,7 @@ namespace System.Web.WebPages.Razor
             EnableInstrumentation = new InstrumentationService().IsAvailable;
         }
 
+        [CLSCompliant(false)]
         public override RazorCodeLanguage CodeLanguage
         {
             get
@@ -235,6 +237,7 @@ namespace System.Web.WebPages.Razor
             }
         }
 
+        [CLSCompliant(false)]
         public override ParserBase CreateMarkupParser()
         {
             return new HtmlMarkupParser();
@@ -269,6 +272,7 @@ namespace System.Web.WebPages.Razor
         }
 
         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Method involves significant processing and should not be a property")]
+        [CLSCompliant(false)]
         protected virtual RazorCodeLanguage GetCodeLanguage()
         {
             RazorCodeLanguage language = DetermineCodeLanguage(VirtualPath);

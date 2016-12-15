@@ -8,6 +8,7 @@ using System.Web.Razor.Text;
 
 namespace System.Web.Mvc.Razor
 {
+    [CLSCompliant(false)]
     public class MvcCSharpRazorCodeParser : CSharpCodeParser
     {
         private const string ModelKeyword = "model";
