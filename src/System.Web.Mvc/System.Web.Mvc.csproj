@@ -615,7 +615,6 @@
   <ItemGroup>
     <None Include="JavaScript\jquery.unobtrusive-ajax.js" />
     <None Include="JavaScript\jquery.validate.unobtrusive.js" />
-    <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\System.Web.Razor\System.Web.Razor.csproj">
