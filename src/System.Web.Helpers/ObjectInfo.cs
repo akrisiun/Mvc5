@@ -17,13 +17,13 @@ namespace System.Web.Helpers
             {
                 throw new ArgumentOutOfRangeException(
                     "depth",
-                    String.Format(CultureInfo.InvariantCulture, CommonResources.Argument_Must_Be_GreaterThanOrEqualTo, 0));
+                    String.Format(CultureInfo.InvariantCulture, CommonResourcesMvc.Argument_Must_Be_GreaterThanOrEqualTo, 0));
             }
             if (enumerationLength <= 0)
             {
                 throw new ArgumentOutOfRangeException(
                     "enumerationLength",
-                    String.Format(CultureInfo.InvariantCulture, CommonResources.Argument_Must_Be_GreaterThan, 0));
+                    String.Format(CultureInfo.InvariantCulture, CommonResourcesMvc.Argument_Must_Be_GreaterThan, 0));
             }
 
             HtmlObjectPrinter printer = new HtmlObjectPrinter(depth, enumerationLength);

@@ -95,6 +95,7 @@
     <Compile Include="BrowserOverrideStores.cs" />
     <Compile Include="BrowserOverride.cs" />
     <Compile Include="BuildManagerWrapper.cs" />
+    <Compile Include="Common\CommonResourcesMvc.cs" />
     <Compile Include="CookieBrowserOverrideStore.cs" />
     <Compile Include="DisplayInfo.cs" />
     <Compile Include="DisplayModeProvider.cs" />

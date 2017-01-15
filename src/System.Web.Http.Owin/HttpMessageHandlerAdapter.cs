@@ -535,7 +535,7 @@ namespace System.Web.Http.Owin
             IDictionary<string, string[]> responseHeaders = owinResponse.Headers;
             foreach (KeyValuePair<string, IEnumerable<string>> header in response.Headers)
             {
-                responseHeaders[header.Key] = header.Value.AsArray();
+                responseHeaders[header.Key] = CollectionExtensions.AsArray(header.Value);
             }
 
             HttpContent responseContent = response.Content;
@@ -549,7 +549,7 @@ namespace System.Web.Http.Owin
                 // Copy content headers
                 foreach (KeyValuePair<string, IEnumerable<string>> contentHeader in responseContent.Headers)
                 {
-                    responseHeaders[contentHeader.Key] = contentHeader.Value.AsArray();
+                    responseHeaders[contentHeader.Key] = CollectionExtensions.AsArray(contentHeader.Value);
                 }
 
                 // Copy body

@@ -107,7 +107,7 @@ namespace System.Web.Helpers
             if (rowsPerPage < 1)
             {
                 throw new ArgumentOutOfRangeException("rowsPerPage", String.Format(CultureInfo.CurrentCulture,
-                                                                                   CommonResources.Argument_Must_Be_GreaterThanOrEqualTo, 1));
+                                                                                   CommonResourcesMvc.Argument_Must_Be_GreaterThanOrEqualTo, 1));
             }
 
             _context = context;
@@ -238,7 +238,7 @@ namespace System.Web.Helpers
                     if (value < 0)
                     {
                         throw new ArgumentOutOfRangeException("value", String.Format(CultureInfo.CurrentCulture,
-                                                                                     CommonResources.Argument_Must_Be_GreaterThanOrEqualTo, 0));
+                                                                                     CommonResourcesMvc.Argument_Must_Be_GreaterThanOrEqualTo, 0));
                     }
                     else
                     {
@@ -252,7 +252,7 @@ namespace System.Web.Helpers
                     if ((value < 0) || (value >= PageCount))
                     {
                         throw new ArgumentOutOfRangeException("value", String.Format(CultureInfo.CurrentCulture,
-                                                                                     CommonResources.Argument_Must_Be_Between, 0, (PageCount - 1)));
+                                                                                     CommonResourcesMvc.Argument_Must_Be_Between, 0, (PageCount - 1)));
                     }
                     else if (value != _pageIndex)
                     {
@@ -603,7 +603,7 @@ namespace System.Web.Helpers
             if ((pageIndex < 0) || (pageIndex >= PageCount))
             {
                 throw new ArgumentOutOfRangeException("pageIndex", String.Format(CultureInfo.CurrentCulture,
-                                                                                 CommonResources.Argument_Must_Be_Between, 0, (PageCount - 1)));
+                                                                                 CommonResourcesMvc.Argument_Must_Be_Between, 0, (PageCount - 1)));
             }
 
             NameValueCollection queryString = new NameValueCollection(1);
@@ -620,7 +620,7 @@ namespace System.Web.Helpers
             }
             if (String.IsNullOrEmpty(column))
             {
-                throw new ArgumentException(CommonResources.Argument_Cannot_Be_Null_Or_Empty, "column");
+                throw new ArgumentException(CommonResourcesMvc.Argument_Cannot_Be_Null_Or_Empty, "column");
             }
 
             var sort = SortColumn;
@@ -705,7 +705,7 @@ namespace System.Web.Helpers
             if (numericLinksCount < 0)
             {
                 throw new ArgumentOutOfRangeException("numericLinksCount",
-                                                      String.Format(CultureInfo.CurrentCulture, CommonResources.Argument_Must_Be_GreaterThanOrEqualTo, 0));
+                                                      String.Format(CultureInfo.CurrentCulture, CommonResourcesMvc.Argument_Must_Be_GreaterThanOrEqualTo, 0));
             }
 
             return WebGridRenderer.Pager(this, HttpContext, mode: mode, firstText: firstText, previousText: previousText, nextText: nextText, lastText: lastText,

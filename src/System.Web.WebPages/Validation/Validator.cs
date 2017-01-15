@@ -60,7 +60,7 @@ namespace System.Web.WebPages
         {
             if (String.IsNullOrEmpty(pattern))
             {
-                throw new ArgumentException(CommonResources.Argument_Cannot_Be_Null_Or_Empty, "pattern");
+                throw new ArgumentException(CommonResourcesMvc.Argument_Cannot_Be_Null_Or_Empty, "pattern");
             }
 
             errorMessage = DefaultIfEmpty(errorMessage, WebPageResources.ValidationDefault_Regex);
@@ -73,7 +73,7 @@ namespace System.Web.WebPages
         {
             if (String.IsNullOrEmpty(otherFieldName))
             {
-                throw new ArgumentException(CommonResources.Argument_Cannot_Be_Null_Or_Empty, "otherFieldName");
+                throw new ArgumentException(CommonResourcesMvc.Argument_Cannot_Be_Null_Or_Empty, "otherFieldName");
             }
 
             errorMessage = DefaultIfEmpty(errorMessage, WebPageResources.ValidationDefault_EqualsTo);

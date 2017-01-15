@@ -30,9 +30,6 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="..\Common\CollectionExtensions.cs">
-      <Link>Common\CollectionExtensions.cs</Link>
-    </Compile>
     <Compile Include="..\Common\Error.cs">
       <Link>Common\Error.cs</Link>
     </Compile>
@@ -50,6 +47,7 @@
     </Compile>
     <Compile Include="ByteRangeStreamContent.cs" />
     <Compile Include="CloneableExtensions.cs" />
+    <Compile Include="Common\CollectionExtensionsHttp.cs" />
     <Compile Include="Formatting\BaseJsonMediaTypeFormatter.cs" />
     <Compile Include="Formatting\BsonMediaTypeFormatter.cs" />
     <Compile Include="Formatting\MediaTypeHeaderValueRange.cs" />
@@ -57,6 +55,7 @@
     <Compile Include="MultipartFormDataRemoteStreamProvider.cs" />
     <Compile Include="MultipartFormDataStreamProviderHelper.cs" />
     <Compile Include="MultipartRemoteFileData.cs" />
+    <Compile Include="Properties\CommonWebApiResourcesHttp.cs" />
     <Compile Include="RemoteStreamInfo.cs" />
     <Compile Include="UnsupportedMediaTypeException.cs" />
     <Compile Include="Internal\ByteRangeStream.cs" />

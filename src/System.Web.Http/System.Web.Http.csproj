@@ -42,9 +42,6 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="..\Common\CollectionExtensions.cs">
-      <Link>Common\CollectionExtensions.cs</Link>
-    </Compile>
     <Compile Include="..\Common\DictionaryExtensions.cs">
       <Link>Common\DictionaryExtensions.cs</Link>
     </Compile>
@@ -120,6 +117,7 @@
     <Compile Include="Batch\HttpBatchHandler.cs" />
     <Compile Include="Batch\DefaultHttpBatchHandler.cs" />
     <Compile Include="Batch\BatchHttpRequestMessageExtensions.cs" />
+    <Compile Include="Common\CollectionExtensionsHttp.cs" />
     <Compile Include="Controllers\ActionFilterResult.cs" />
     <Compile Include="Controllers\AuthenticationFilterResult.cs" />
     <Compile Include="Controllers\AuthorizationFilterResult.cs" />

@@ -13,13 +13,13 @@ namespace System.Web.Helpers
             if (minutesToCache <= 0)
             {
                 throw new ArgumentOutOfRangeException("minutesToCache",
-                                                      String.Format(CultureInfo.CurrentCulture, CommonResources.Argument_Must_Be_GreaterThan, 0));
+                                                      String.Format(CultureInfo.CurrentCulture, CommonResourcesMvc.Argument_Must_Be_GreaterThan, 0));
             }
             else if (slidingExpiration && (minutesToCache > 365 * 24 * 60))
             {
                 // For sliding expiration policies, MemoryCache has a time limit of 365 days. 
                 throw new ArgumentOutOfRangeException("minutesToCache",
-                                                      String.Format(CultureInfo.CurrentCulture, CommonResources.Argument_Must_Be_LessThanOrEqualTo, 365 * 24 * 60));
+                                                      String.Format(CultureInfo.CurrentCulture, CommonResourcesMvc.Argument_Must_Be_LessThanOrEqualTo, 365 * 24 * 60));
             }
 
             CacheItemPolicy policy = new CacheItemPolicy();

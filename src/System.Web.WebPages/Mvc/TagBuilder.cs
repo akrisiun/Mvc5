@@ -183,6 +183,11 @@ namespace System.Web.Mvc
             return new HtmlString(ToString(renderMode));
         }
 
+        public HtmlString ToHtmlStringMvc(TagRenderMode renderMode)
+        {
+            return new HtmlString(ToString(renderMode));
+        }
+
         public override string ToString()
         {
             return ToString(TagRenderMode.Normal);
