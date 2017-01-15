@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),Runtime.sln))\tools\WebStack.settings.targets" />
   <PropertyGroup>
     <ProjectGuid>{43C1B979-D593-4A32-BB3A-4316F1C66D66}</ProjectGuid>
@@ -9,9 +9,14 @@
     <AssemblyName>System.Web.Cors</AssemblyName>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <DefineConstants>$(DefineConstants);ASPNETMVC</DefineConstants>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <OutputPath>..\..\lib\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
