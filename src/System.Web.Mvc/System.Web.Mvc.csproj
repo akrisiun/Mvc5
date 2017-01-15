@@ -44,7 +44,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Web.WebPages.Razor, Version=3.3.0.0, Culture=neutral, PublicKeyToken=b213442182ae2f7a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\System.Web.WebPages.Razor.dll</HintPath>
