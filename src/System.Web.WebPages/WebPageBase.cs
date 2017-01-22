@@ -210,7 +210,7 @@ namespace System.Web.WebPages
             {
                 ExecutePageHierarchy();
             }
-            
+
             if (_currentWriter != null)
                 PopContext();
         }
@@ -345,12 +345,19 @@ namespace System.Web.WebPages
                 // Otherwise, just render the page.
                 // if (_currentWriter == null)
                 //    throw new ArgumentNullException("_currentWriter");
-                try {
+                try
+                {
                     _tempWriter.CopyTo(_currentWriter);
                 }
-                catch (Exception ex) {
-                    if (!ex.StackTrace.Contains("StringUtil.UnsafeStringCopy("))
-                       throw ex;
+                catch (Exception ex)
+                {
+                    if (ex.Message.Contains("Object reference not set to an instance of an object."))
+                    {
+                        if (HttpContext.Current != null)
+                            _tempWriter.CopyTo(HttpContext.Current.Response.Output);
+                    }
+                    else if (!ex.StackTrace.Contains("StringUtil.UnsafeStringCopy("))
+                        throw ex;
                 }
             }
 
@@ -460,8 +467,18 @@ namespace System.Web.WebPages
             return new HelperResult(writer =>
             {
                 WebPageContext pageContext;
-                var subPage = PrepareRenderPage(path, isLayoutPage, data, out pageContext);
-                subPage.ExecutePageHierarchy(pageContext, writer);
+                WebPageBase subPage;
+                try
+                {
+                    subPage = PrepareRenderPage(path, isLayoutPage, data, out pageContext);
+                    if (subPage != null)
+                        subPage.ExecutePageHierarchy(pageContext, writer);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(
+                        String.Format("Error {0} with {1}", ex.Message, path), ex);
+                }
             });
         }
 

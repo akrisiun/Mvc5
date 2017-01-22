@@ -6,6 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace System.Web.Mvc
 {
@@ -27,6 +28,9 @@ namespace System.Web.Mvc
                 catch (ReflectionTypeLoadException ex)
                 {
                     typesInAsm = ex.Types;
+                    var errors = ex.LoaderExceptions;
+                    if (errors.Length > 0 && Debugger.IsAttached)
+                        Debugger.Log(0, "MVC55: TypeCacheUtil.FilterTypesInAssemblies", errors[0].Message);
                 }
                 typesSoFar = typesSoFar.Concat(typesInAsm);
             }

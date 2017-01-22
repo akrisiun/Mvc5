@@ -353,13 +353,31 @@ namespace System.Web.WebPages
                 if (!task.IsCompletedSynchronously())
                 {
                     if (task.IsFaulted && task.Exception != null)
-                        throw task.Exception.InnerException != null ?
+                    {
+                        Exception error = task.Exception.InnerException != null ?
                               task.Exception.InnerException : task.Exception;
-                    else
+
+                        string trace = "";
+                        try
+                        {
+                            trace = error.StackTrace;
+                        }
+                        catch {; }
+
+                        error = new Exception(
+                            string.Format("PageError {0} in {1} \n{2}", error.Message
+                                , this.ToString()
+                                , trace
+                                ), error);
+                        throw error;
+                    }
+                    else if (task.Status != TaskStatus.RanToCompletion)
+                    {
                         throw new NotSupportedException(
                         String.Format(CultureInfo.InvariantCulture,
-                            WebPageResources.WebPage_SyncAsyncConflict,
+                            WebPageResources.WebPage_SyncAsyncConflict,     // Cannot render asynchronous page &quot;{0}&quot; synchronously..
                             VirtualPath));
+                    }
                 }
                 task.GetAwaiter().GetResult();
             }

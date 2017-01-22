@@ -32,7 +32,7 @@ namespace System.Web.WebPages
             _startWasCalled = true;
 
             WebPageHttpHandler.RegisterExtension("cshtml");
-            WebPageHttpHandler.RegisterExtension("vbhtml");
+            // WebPageHttpHandler.RegisterExtension("vbhtml");
 
             // Turn off the string resource behavior which would not work in our simple base page
             PageParser.EnableLongStringsAsResources = false;
