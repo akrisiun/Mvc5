@@ -7,7 +7,8 @@ using System.Threading;
 namespace System.Web.Mvc
 {
     [SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable", Justification = "Instances of this type are meant to be singletons.")]
-    internal abstract class ReaderWriterCache<TKey, TValue>
+    // internal 
+    public abstract class ReaderWriterCache<TKey, TValue>
     {
         private readonly Dictionary<TKey, TValue> _cache;
         private readonly ReaderWriterLockSlim _readerWriterLock = new ReaderWriterLockSlim();

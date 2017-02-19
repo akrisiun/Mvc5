@@ -27,7 +27,8 @@ namespace System.Web.Mvc
 
         public abstract ControllerDescriptor ControllerDescriptor { get; }
 
-        internal ActionMethodDispatcherCache DispatcherCache
+        //internal 
+        public ActionMethodDispatcherCache DispatcherCache
         {
             get
             {
@@ -60,7 +61,9 @@ namespace System.Web.Mvc
 
         public abstract object Execute(ControllerContext controllerContext, IDictionary<string, object> parameters);
 
-        internal static object ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary<string, object> parameters, MethodInfo methodInfo)
+        // internal 
+        public static object ExtractParameterFromDictionary(ParameterInfo parameterInfo, 
+            IDictionary<string, object> parameters, MethodInfo methodInfo)
         {
             object value;
 

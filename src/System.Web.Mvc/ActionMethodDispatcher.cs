@@ -8,7 +8,8 @@ namespace System.Web.Mvc
 {
     // The methods in this class don't perform error checking; that is the responsibility of the
     // caller.
-    internal sealed class ActionMethodDispatcher
+    // internal 
+    public sealed class ActionMethodDispatcher
     {
         private ActionExecutor _executor;
 
