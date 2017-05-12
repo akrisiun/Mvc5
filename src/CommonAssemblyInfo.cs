@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 #elif ASPNETMVC
 #if !BUILD_GENERATED_VERSION
 [assembly: AssemblyVersion("5.5.0.0")] // ASPNETMVC
-[assembly: AssemblyFileVersion("5.5.0.0")] // ASPNETMVC
+[assembly: AssemblyFileVersion("5.5.1.0")] // ASPNETMVC
 #endif
 [assembly: AssemblyProduct("Microsoft ASP.NET MVC")]
 #elif ASPNETWEBPAGES

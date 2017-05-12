@@ -448,7 +448,12 @@ namespace System.Web.Mvc
         {
             if (!ControllerContext.IsChildAction)
             {
-                TempData.Save(ControllerContext, TempDataProvider);
+                try
+                {
+                    TempData.Save(ControllerContext, TempDataProvider);
+                    // ignore runtime warning : essionStateTempDataProvider class requires session
+                }
+                catch (Exception ex) { if (Diagnostics.Debugger.IsAttached || this.HttpContext.Request.IsLocal) throw ex; }
             }
         }
 
