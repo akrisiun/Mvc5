@@ -254,7 +254,9 @@ namespace System.Web.WebPages
             }
             finally
             {
-                TemplateStack.Pop(Context);
+                var context = Context;
+                if (context.Items.Count > 0)
+                    TemplateStack.Pop(context);
             }
         }
 
