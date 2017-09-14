@@ -24,9 +24,11 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\..\..\referencesource\mscorlib\mscorlib.csproj">
+      <Project>{93849ae6-0df9-432f-abbc-5aeb14b1ac81}</Project>
+      <Name>mscorlib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\referencesource\System\System.csproj" />
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
