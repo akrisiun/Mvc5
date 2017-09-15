@@ -28,7 +28,6 @@
       <Project>{93849ae6-0df9-432f-abbc-5aeb14b1ac81}</Project>
       <Name>mscorlib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\referencesource\System\System.csproj" />
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
@@ -183,6 +182,14 @@
     <Compile Include="Text\TextChangeType.cs" />
     <Compile Include="Parser\SyntaxTree\Span.cs" />
     <Compile Include="Generator\VBRazorCodeGenerator.cs" />
+    <ProjectReference Include="..\..\..\referencesource\System.Core\System.Core.csproj">
+      <Project>{e0afe388-2af0-4cd3-ad68-ed9b1c99c676}</Project>
+      <Name>System.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\referencesource\System\System.csproj">
+      <Project>{93a27df1-c89b-4dff-b318-b4c60edf2bae}</Project>
+      <Name>System</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\CommonResources.resx">

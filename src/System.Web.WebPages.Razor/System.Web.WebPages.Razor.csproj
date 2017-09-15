@@ -23,9 +23,6 @@
     <AssemblyOriginatorKeyFile>..\Key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Razor">
       <HintPath>..\..\lib\System.Web.Razor.dll</HintPath>
     </Reference>
@@ -76,6 +73,26 @@
       <Project>{8F18041B-9410-4C36-A9C5-067813DF5F31}</Project>
       <Name>System.Web.Razor</Name>
     </ProjectReference>-->
+    <ProjectReference Include="..\..\..\referencesource\mscorlib\mscorlib.csproj">
+      <Project>{93849ae6-0df9-432f-abbc-5aeb14b1ac81}</Project>
+      <Name>mscorlib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\referencesource\System.Configuration\System.Configuration.csproj">
+      <Project>{213a7199-8edf-42ca-acd4-454d5ac5056f}</Project>
+      <Name>System.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\referencesource\System.Core\System.Core.csproj">
+      <Project>{e0afe388-2af0-4cd3-ad68-ed9b1c99c676}</Project>
+      <Name>System.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\referencesource\System.Web\System.Web.csproj">
+      <Project>{c73890af-cc6a-4ceb-9a58-ebd06271ac55}</Project>
+      <Name>System.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\referencesource\System\System.csproj">
+      <Project>{93a27df1-c89b-4dff-b318-b4c60edf2bae}</Project>
+      <Name>System</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\CommonResources.resx">

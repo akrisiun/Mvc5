@@ -13,7 +13,7 @@
     <BaseAddress>1609891840</BaseAddress>
     <RestorePackages>false</RestorePackages>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
@@ -29,21 +29,10 @@
     <AssemblyOriginatorKeyFile>..\Key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\Lib\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.configuration" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Caching" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.WebPages.Razor, Version=3.3.0.0, Culture=neutral, PublicKeyToken=b213442182ae2f7a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\System.Web.WebPages.Razor.dll</HintPath>
@@ -470,12 +459,8 @@
     <Compile Include="ValueProviderDictionary.cs" />
     <Compile Include="ViewContext.cs" />
     <Compile Include="ViewMasterPageControlBuilder.cs" />
-    <Compile Include="ViewTemplateUserControl.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewTemplateUserControlOfTModel.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
+    <Compile Include="ViewTemplateUserControl.cs" />
+    <Compile Include="ViewTemplateUserControlOfTModel.cs" />
     <Compile Include="ViewType.cs" />
     <Compile Include="ViewTypeControlBuilder.cs" />
     <Compile Include="ViewUserControlControlBuilder.cs" />
@@ -579,26 +564,14 @@
     <Compile Include="ViewEngineCollection.cs" />
     <Compile Include="ViewEngineResult.cs" />
     <Compile Include="ViewEngines.cs" />
-    <Compile Include="ViewMasterPage.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewMasterPageOfTModel.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewPage.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewPageOfTModel.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
+    <Compile Include="ViewMasterPage.cs" />
+    <Compile Include="ViewMasterPageOfTModel.cs" />
+    <Compile Include="ViewPage.cs" />
+    <Compile Include="ViewPageOfTModel.cs" />
     <Compile Include="ViewResult.cs" />
     <Compile Include="ViewResultBase.cs" />
-    <Compile Include="ViewUserControl.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewUserControlOfTModel.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
+    <Compile Include="ViewUserControl.cs" />
+    <Compile Include="ViewUserControlOfTModel.cs" />
     <Compile Include="VirtualPathProviderViewEngine.cs" />
     <Compile Include="WebFormView.cs" />
     <Compile Include="WebFormViewEngine.cs" />
@@ -616,6 +589,30 @@
     <None Include="JavaScript\jquery.validate.unobtrusive.js" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\Vendor\Newtonsoft.Json\Src\Newtonsoft.Json\Newtonsoft.Json.csproj">
+      <Project>{eeea67f9-9089-481d-a4dc-0966dec9fd7d}</Project>
+      <Name>Newtonsoft.Json</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\referencesource\mscorlib\mscorlib.csproj">
+      <Project>{93849ae6-0df9-432f-abbc-5aeb14b1ac81}</Project>
+      <Name>mscorlib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\referencesource\System.Configuration\System.Configuration.csproj">
+      <Project>{213a7199-8edf-42ca-acd4-454d5ac5056f}</Project>
+      <Name>System.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\referencesource\System.Core\System.Core.csproj">
+      <Project>{e0afe388-2af0-4cd3-ad68-ed9b1c99c676}</Project>
+      <Name>System.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\referencesource\System.Web\System.Web.csproj">
+      <Project>{c73890af-cc6a-4ceb-9a58-ebd06271ac55}</Project>
+      <Name>System.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\referencesource\System\System.csproj">
+      <Project>{93a27df1-c89b-4dff-b318-b4c60edf2bae}</Project>
+      <Name>System</Name>
+    </ProjectReference>
     <ProjectReference Include="..\System.Web.Razor\System.Web.Razor.csproj">
       <Project>{8f18041b-9410-4c36-a9c5-067813df5f31}</Project>
       <Name>System.Web.Razor</Name>

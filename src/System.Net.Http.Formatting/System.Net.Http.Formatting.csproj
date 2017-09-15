@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),Runtime.sln))\tools\WebStack.settings.targets" />
   <PropertyGroup>
     <ProjectGuid>{668E9021-CE84-49D9-98FB-DF125A9FCDB0}</ProjectGuid>
@@ -11,18 +11,14 @@
     <DefineConstants>$(DefineConstants);ASPNETMVC</DefineConstants>
     <TargetFrameworkProfile Condition="'$(TargetFrameworkVersion)' != 'v4.5'">Client</TargetFrameworkProfile>
     <NoWarn>1591</NoWarn>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-
-    <ProjectReference Include="..\..\..\referencesource\mscorlib\mscorlib.csproj" />
-    <ProjectReference Include="..\..\..\referencesource\System\System.csproj" />
-    <ProjectReference Include="..\..\..\referencesource\System.Configuration\System.Configuration.csproj" />
-    <ProjectReference Include="..\..\..\referencesource\System.Core\System.Core.csproj" />
-
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Runtime.Serialization" />
@@ -173,6 +169,28 @@
       <Link>CodeAnalysisDictionary.xml</Link>
     </CodeAnalysisDictionary>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\referencesource\mscorlib\mscorlib.csproj">
+      <Project>{93849ae6-0df9-432f-abbc-5aeb14b1ac81}</Project>
+      <Name>mscorlib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\referencesource\System.Configuration\System.Configuration.csproj">
+      <Project>{213a7199-8edf-42ca-acd4-454d5ac5056f}</Project>
+      <Name>System.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\referencesource\System.Core\System.Core.csproj">
+      <Project>{e0afe388-2af0-4cd3-ad68-ed9b1c99c676}</Project>
+      <Name>System.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\referencesource\System.Web\System.Web.csproj">
+      <Project>{c73890af-cc6a-4ceb-9a58-ebd06271ac55}</Project>
+      <Name>System.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\referencesource\System\System.csproj">
+      <Project>{93a27df1-c89b-4dff-b318-b4c60edf2bae}</Project>
+      <Name>System</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

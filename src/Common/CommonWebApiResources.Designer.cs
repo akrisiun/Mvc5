@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace System.Web.Http.Owin.Properties {
+namespace System.Net.Http.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace System.Web.Http.Owin.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("System.Web.Http.Owin.Properties.CommonWebApiResources", typeof(CommonWebApiResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("System.Net.Http.Properties.CommonWebApiResources", typeof(CommonWebApiResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
