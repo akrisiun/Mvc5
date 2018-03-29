@@ -21,6 +21,7 @@ namespace System.Web.Http.Description
             SupportedRequestBodyFormatters = new Collection<MediaTypeFormatter>();
             SupportedResponseFormatters = new Collection<MediaTypeFormatter>();
             ParameterDescriptions = new Collection<ApiParameterDescription>();
+            ResponseDescription = new ResponseDescription();
         }
 
         /// <summary>
