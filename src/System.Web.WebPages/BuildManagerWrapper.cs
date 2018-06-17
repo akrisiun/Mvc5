@@ -182,7 +182,11 @@ namespace System.Web.WebPages
 
         public T CreateInstanceOfType<T>(string virtualPath) where T : class
         {
-            if (_isPrecompiled)
+            var pre = _isPrecompiled;
+            if (typeof(T).Name == "WebPage")
+                pre = true;
+
+            if (pre)
             {
                 var buildManagerResult = (BuildManagerResult)HttpRuntime.Cache.Get(GetKeyFromVirtualPath(virtualPath));
                 // The cache could have evicted our results. In this case, we'll simply fall through to CreateInstanceFromVirtualPath
@@ -193,7 +197,8 @@ namespace System.Web.WebPages
                 }
             }
 
-            return (T)BuildManager.CreateInstanceFromVirtualPath(virtualPath, typeof(T));
+            var obj = BuildManager.CreateInstanceFromVirtualPath(virtualPath, typeof(T));
+            return (T)obj;
         }
 
         /// <summary>

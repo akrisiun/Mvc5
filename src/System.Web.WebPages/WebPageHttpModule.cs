@@ -1,8 +1,28 @@
 ﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
+using System.Diagnostics;
+
 namespace System.Web.WebPages
 {
-    internal class WebPageHttpModule : IHttpModule
+    public class WebPagesModule : WebPageHttpModule
+    {
+        public static bool IsDebug { get; set; }
+
+        public void InitFinished(HttpApplication application)
+        {
+            WebPageHttpModule.AppStartExecuteCompleted = true;
+        }
+        public override void Init(HttpApplication application)
+        {
+            if (IsDebug && Debugger.IsAttached)
+                Debugger.Break();
+
+            base.Init(application);
+        }
+    }
+
+    // internal 
+    public class WebPageHttpModule : IHttpModule
     {
 #pragma warning disable 649 
         internal static EventHandler Initialize;
@@ -20,7 +40,7 @@ namespace System.Web.WebPages
         {
         }
 
-        public void Init(HttpApplication application)
+        public virtual void Init(HttpApplication application)
         {
             if (application.Context.Items[_hasBeenRegisteredKey] != null)
             {
@@ -85,6 +105,17 @@ namespace System.Web.WebPages
             }
         }
 
+        public virtual void DoApplicationPostResolveRequestCache(HttpApplication app)
+        {
+            OnApplicationPostResolveRequestCache(app ?? HttpContext.Current.ApplicationInstance, EventArgs.Empty);
+        }
+
+        public virtual void DoBeginRequest(HttpApplication app)
+        {
+            AppStartExecuteCompleted = true;
+            OnBeginRequest(app ?? HttpContext.Current.ApplicationInstance, EventArgs.Empty);
+        }
+
         internal static void OnApplicationPostResolveRequestCache(object sender, EventArgs e)
         {
             HttpContextBase context = new HttpContextWrapper(((HttpApplication)sender).Context);
@@ -97,7 +128,9 @@ namespace System.Web.WebPages
             {
                 // Throw it as a HttpException so as to
                 // display the original stack trace information.
-                throw new HttpException(null, ApplicationStartPage.Exception);
+
+                ApplicationStartPageEx = ApplicationStartPage.Exception;
+                // throw new HttpException(null, ApplicationStartPage.Exception);
             }
             if (BeginRequest != null)
             {
@@ -105,8 +138,16 @@ namespace System.Web.WebPages
             }
         }
 
+        public static Exception ApplicationStartPageEx { get; private set; }
+
         internal static void OnEndRequest(object sender, EventArgs e)
         {
+            if (ApplicationStartPageEx != null && ((int?)HttpContext.Current?.Response.StatusCode == 200))
+            {
+                HttpContext.Current?.Response.Write($"Startup error {ApplicationStartPageEx}");
+                ApplicationStartPageEx = null;
+            }
+
             if (EndRequest != null)
             {
                 EndRequest(sender, e);

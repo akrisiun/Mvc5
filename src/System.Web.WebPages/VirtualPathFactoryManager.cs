@@ -66,6 +66,14 @@ namespace System.Web.WebPages
 
         public object CreateInstance(string virtualPath)
         {
+            if (virtualPath.EndsWith(".cshtml"))
+            {
+                // if (Instance != null)
+                //    return WebPageBase.CreateInstanceFromVirtualPath(virtualPath);
+
+                return CreateInstanceOfType<WebPageBase>(virtualPath);
+            }
+
             return CreateInstanceOfType<object>(virtualPath);
         }
 

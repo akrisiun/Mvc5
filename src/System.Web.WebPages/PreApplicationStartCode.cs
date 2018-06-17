@@ -17,6 +17,7 @@ namespace System.Web.WebPages
         // membership-related class).
 
         private static bool _startWasCalled;
+        private static bool _startRegistered;
 
         public static void Start()
         {
@@ -31,13 +32,23 @@ namespace System.Web.WebPages
             }
             _startWasCalled = true;
 
-            WebPageHttpHandler.RegisterExtension("cshtml");
-            // WebPageHttpHandler.RegisterExtension("vbhtml");
+            if (!_startRegistered)
+            {
+                WebPageHttpHandler.RegisterExtension("cshtml");
+                // WebPageHttpHandler.RegisterExtension("vbhtml");
 
-            // Turn off the string resource behavior which would not work in our simple base page
-            PageParser.EnableLongStringsAsResources = false;
+                // Turn off the string resource behavior which would not work in our simple base page
+                PageParser.EnableLongStringsAsResources = false;
+                _startRegistered = true;
+            }
 
-            DynamicModuleUtility.RegisterModule(typeof(WebPageHttpModule));
+            try
+            {
+                DynamicModuleUtility.RegisterModule(typeof(WebPageHttpModule));
+            }
+            catch
+            { // _startWasCalled = false; 
+            }
 
             ScopeStorage.CurrentProvider = new AspNetRequestScopeStorageProvider();
         }
