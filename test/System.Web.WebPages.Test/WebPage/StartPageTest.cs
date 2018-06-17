@@ -456,10 +456,10 @@ namespace System.Web.WebPages.Test
         public void GetDirectoryTest()
         {
             var initPage = new Mock<StartPage>().Object;
-            Assert.Equal("/website1/", initPage.GetDirectory("/website1/default.cshtml"));
-            Assert.Equal("~/", initPage.GetDirectory("~/default.cshtml"));
-            Assert.Equal("/", initPage.GetDirectory("/website1/"));
-            Assert.Null(initPage.GetDirectory("/"));
+            Assert.Equal("/website1/", initPage.DirectorySet("/website1/default.cshtml"));
+            Assert.Equal("~/", initPage.DirectorySet("~/default.cshtml"));
+            Assert.Equal("/", initPage.DirectorySet("/website1/"));
+            Assert.Null(initPage.DirectorySet("/"));
         }
 
         [Fact]

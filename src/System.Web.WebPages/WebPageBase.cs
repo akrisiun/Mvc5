@@ -418,7 +418,7 @@ namespace System.Web.WebPages
             }
         }
 
-        public HelperResult RenderBody()
+        public virtual HelperResult RenderBody()
         {
             EnsurePageCanBeRequestedDirectly("RenderBody");
 

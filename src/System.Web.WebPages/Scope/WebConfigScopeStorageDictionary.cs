@@ -3,13 +3,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Linq;
 using System.Web.Configuration;
 using System.Web.WebPages.Resources;
 
 namespace System.Web.WebPages.Scope
 {
-    internal class WebConfigScopeDictionary : IDictionary<object, object>
+    // internal 
+    public class WebConfigScopeDictionary : IDictionary<object, object>
     {
         private readonly Lazy<Dictionary<object, object>> _items;
 

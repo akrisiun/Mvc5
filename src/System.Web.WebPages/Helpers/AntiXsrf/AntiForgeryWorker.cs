@@ -8,14 +8,16 @@ using System.Web.WebPages.Resources;
 
 namespace System.Web.Helpers.AntiXsrf
 {
-    internal sealed class AntiForgeryWorker
+    // internal
+    public sealed class AntiForgeryWorker
     {
         private readonly IAntiForgeryConfig _config;
         private readonly IAntiForgeryTokenSerializer _serializer;
         private readonly ITokenStore _tokenStore;
         private readonly ITokenValidator _validator;
 
-        internal AntiForgeryWorker(IAntiForgeryTokenSerializer serializer, IAntiForgeryConfig config, ITokenStore tokenStore, ITokenValidator validator)
+        // internal
+        public AntiForgeryWorker(IAntiForgeryTokenSerializer serializer, IAntiForgeryConfig config, ITokenStore tokenStore, ITokenValidator validator)
         {
             _serializer = serializer;
             _config = config;

@@ -4,6 +4,7 @@
 using System.Collections;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Hosting;
 using System.Web.Routing;
 using System.Web.WebPages;
@@ -1054,6 +1055,11 @@ namespace System.Web.Mvc.Test
 
             void IView.Render(ViewContext viewContext, TextWriter writer)
             {
+            }
+
+            public Task RenderAsync(ViewContext viewContext, TextWriter writer)
+            {
+                throw new NotImplementedException();
             }
         }
 

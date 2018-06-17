@@ -162,7 +162,7 @@ namespace System.Web.WebPages
                     }
                 }
 
-                pageDirectory = currentPage.GetDirectory(pageDirectory);
+                pageDirectory = currentPage.DirectorySet(pageDirectory);
             }
 
             // At this point 'currentPage' is the root-most StartPage (if there were

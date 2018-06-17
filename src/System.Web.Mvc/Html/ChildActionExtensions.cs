@@ -332,7 +332,8 @@ namespace System.Web.Mvc.Html
             {
             }
 
-            protected internal override void AddVersionHeader(HttpContextBase httpContext)
+            protected // internal 
+                override void AddVersionHeader(HttpContextBase httpContext)
             {
                 // No version header for child actions
             }

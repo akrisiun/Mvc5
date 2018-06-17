@@ -531,7 +531,7 @@ namespace System.Web.Http.WebHost
             HttpRequestMessage request, HttpResponseMessage errorResponse, CancellationToken cancellationToken,
             IExceptionLogger exceptionLogger)
         {
-            HttpRequestMessage ignoreUnused = request;
+            // HttpRequestMessage ignoreUnused = request;
 
             try
             {

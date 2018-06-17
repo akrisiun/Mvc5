@@ -9,8 +9,21 @@ using System.Web.WebPages.Scope;
 
 namespace System.Web.WebPages
 {
+    public interface IWebPage
+    {
+        HttpContextBase Context { get; }
+        HtmlHelper Html { get; }
+        dynamic Model { get; }
+        ModelStateDictionary ModelState { get; }
+
+        void ExecutePageHierarchy();
+        Task ExecutePageHierarchyAsync();
+
+        HelperResult RenderPage(string path, params object[] data);
+    }
+
     [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "This is a core class which needs to have references to many other classes")]
-    public abstract class WebPage : WebPageBase
+    public abstract class WebPage : WebPageBase, IWebPage
     {
         private static readonly List<IWebPageRequestExecutor> _executors = new List<IWebPageRequestExecutor>();
 

@@ -22,11 +22,14 @@ namespace System.Web.WebPages.Instrumentation
         public bool IsAvailable
         {
             get { return _localIsAvailable; }
-            internal set { _localIsAvailable = value; }
+            //  internal 
+                set { _localIsAvailable = value; }
         }
 
-        internal Func<HttpContextBase, PageInstrumentationServiceAdapter> ExtractInstrumentationService { get; set; }
-        internal Func<string, TextWriter, int, int, bool, PageExecutionContextAdapter> CreateContext { get; set; }
+        // internal 
+        public Func<HttpContextBase, PageInstrumentationServiceAdapter> ExtractInstrumentationService { get; set; }
+        // internal 
+        public Func<string, TextWriter, int, int, bool, PageExecutionContextAdapter> CreateContext { get; set; }
 
         public void BeginContext(HttpContextBase context, string virtualPath, TextWriter writer, int startPosition, int length, bool isLiteral)
         {

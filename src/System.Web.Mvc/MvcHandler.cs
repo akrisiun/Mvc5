@@ -67,7 +67,8 @@ namespace System.Web.Mvc
 
         public RequestContext RequestContext { get; private set; }
 
-        protected internal virtual void AddVersionHeader(HttpContextBase httpContext)
+        protected // internal 
+            virtual void AddVersionHeader(HttpContextBase httpContext)
         {
             if (!DisableMvcResponseHeader)
             {

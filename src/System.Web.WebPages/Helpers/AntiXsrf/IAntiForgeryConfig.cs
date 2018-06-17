@@ -3,7 +3,8 @@
 namespace System.Web.Helpers.AntiXsrf
 {
     // Provides configuration information about the anti-forgery system.
-    internal interface IAntiForgeryConfig
+    // internal 
+    public interface IAntiForgeryConfig
     {
         // Provides additional data to go into the tokens.
         IAntiForgeryAdditionalDataProvider AdditionalDataProvider { get; }

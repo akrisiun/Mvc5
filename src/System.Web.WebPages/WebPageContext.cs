@@ -49,6 +49,7 @@ namespace System.Web.WebPages
         }
 
         internal HttpContextBase HttpContext { get; set; }
+        public HttpContextBase HttpContextSet { get => HttpContext; set { HttpContext = value; } }
 
         public object Model { get; internal set; }
 

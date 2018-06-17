@@ -1,4 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
+// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
@@ -108,6 +108,8 @@ namespace System.Web.WebPages.Test
             Assert.Equal(culture, thread.CurrentUICulture);
         }
 
+        static Thread GetThread() => Thread.CurrentThread;
+
         [Fact]
         [ReplaceCulture(Culture = "es-PR", UICulture = "es-PR")]
         public void SetAutoCultureWithInvalidLanguageDoesNothing()
@@ -115,7 +117,10 @@ namespace System.Web.WebPages.Test
             // Arrange
             // "sans-culture" is an invalid culture name everywhere -- even on Windows 10.
             var context = GetContextForSetCulture(new[] { "sans-culture", "bb-BB", "cc-CC" });
-            Thread thread = Thread.CurrentThread;
+
+            // Thread thread = Thread.CurrentThread;
+            Thread thread = GetThread();
+
             CultureInfo culture = thread.CurrentCulture;
 
             // Act
@@ -132,7 +137,10 @@ namespace System.Web.WebPages.Test
             // Arrange
             // "sans-culture" is an invalid culture name everywhere -- even on Windows 10.
             var context = GetContextForSetCulture(new[] { "sans-culture", "bb-BB", "cc-CC" });
-            Thread thread = Thread.CurrentThread;
+
+            // Thread thread = Thread.CurrentThread;
+            Thread thread = GetThread();
+
             CultureInfo culture = thread.CurrentUICulture;
 
             // Act

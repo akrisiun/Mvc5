@@ -5,7 +5,8 @@ using System.Security.Principal;
 namespace System.Web.Helpers.AntiXsrf
 {
     // Provides an abstraction around something that can validate anti-XSRF tokens
-    internal interface ITokenValidator
+    // internal 
+    public interface ITokenValidator
     {
         // Generates a new random cookie token.
         AntiForgeryToken GenerateCookieToken();

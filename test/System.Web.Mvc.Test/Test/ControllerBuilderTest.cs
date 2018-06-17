@@ -267,9 +267,11 @@ namespace System.Web.Mvc.Test
             {
             }
 
-            protected internal override void AddVersionHeader(HttpContextBase httpContext)
+            protected // internal 
+                override void AddVersionHeader(HttpContextBase httpContext)
             {
                 // Don't try to set the version header for the unit tests
+                // base.AddVersionHeader
             }
         }
     }

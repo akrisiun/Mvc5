@@ -8,17 +8,20 @@ using System.Reflection;
 
 namespace System.Web.WebPages.Instrumentation
 {
-    internal partial class PageInstrumentationServiceAdapter
+    // internal 
+    public partial class PageInstrumentationServiceAdapter
     {
         private static readonly Type _targetType = typeof(HttpContext).Assembly.GetType("System.Web.Instrumentation.PageInstrumentationService");
         private IReadOnlyList<PageExecutionListenerAdapter> _listenerAdapters;
 
-        internal PageInstrumentationServiceAdapter()
+        // internal 
+        public PageInstrumentationServiceAdapter()
         {
             Adaptee = _CallSite_ctor_2.Site();
         }
 
-        internal PageInstrumentationServiceAdapter(object existing)
+        // internal
+            public PageInstrumentationServiceAdapter(object existing)
         {
             Adaptee = existing;
         }

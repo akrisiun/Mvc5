@@ -154,7 +154,10 @@ namespace System.Web.WebPages
             }
         }
 
-        internal virtual string GetDirectory(string virtualPath)
+        public string DirectorySet(string virtualPath) => GetDirectory(virtualPath);
+
+        // internal 
+        protected virtual string GetDirectory(string virtualPath)
         {
             return VirtualPathUtility.GetDirectory(virtualPath);
         }

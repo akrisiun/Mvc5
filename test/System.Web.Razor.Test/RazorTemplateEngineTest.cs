@@ -120,7 +120,8 @@ namespace System.Web.Razor.Test
             mockEngine.Verify(e => e.ParseTemplateCoreGet(It.Is<SeekableTextReader>(l => l.ReadToEnd() == "foo"),
                                                        source.Token));
         }
-
+        
+        /* ignore : VB
         [Fact]
         public void GenerateCodeCopiesTextReaderContentToSeekableTextReaderAndPassesToGenerateCodeCore()
         {
@@ -139,6 +140,7 @@ namespace System.Web.Razor.Test
             mockEngine.Verify(e => e.GenerateCodeCoreGet(It.Is<SeekableTextReader>(l => l.ReadToEnd() == "foo"),
                                                       className, ns, src, source.Token));
         }
+        */
 
         [Fact]
         public void ParseTemplateOutputsResultsOfParsingProvidedTemplateSource()

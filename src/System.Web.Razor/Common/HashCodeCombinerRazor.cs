@@ -5,16 +5,15 @@ using System.Collections;
 
 namespace Microsoft.Internal.Web.Utils
 {
-    internal class HashCodeCombinerMvc
+    public class HashCodeCombiner
     {
         private long _combinedHash64 = 0x1505L;
 
-        public int CombinedHash
-        {
+        public int CombinedHash {
             get { return _combinedHash64.GetHashCode(); }
         }
 
-        public HashCodeCombinerMvc Add(IEnumerable e)
+        public HashCodeCombiner Add(IEnumerable e)
         {
             if (e == null)
             {
@@ -33,22 +32,22 @@ namespace Microsoft.Internal.Web.Utils
             return this;
         }
 
-        public HashCodeCombinerMvc Add(int i)
+        public HashCodeCombiner Add(int i)
         {
             _combinedHash64 = ((_combinedHash64 << 5) + _combinedHash64) ^ i;
             return this;
         }
 
-        public HashCodeCombinerMvc Add(object o)
+        public HashCodeCombiner Add(object o)
         {
             int hashCode = (o != null) ? o.GetHashCode() : 0;
             Add(hashCode);
             return this;
         }
 
-        public static HashCodeCombinerMvc Start()
+        public static HashCodeCombiner Start()
         {
-            return new HashCodeCombinerMvc();
+            return new HashCodeCombiner();
         }
     }
 }

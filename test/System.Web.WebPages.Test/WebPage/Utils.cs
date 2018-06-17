@@ -26,7 +26,7 @@ namespace System.Web.WebPages.Test
             request = request ?? CreateTestRequest(filename, url).Object;
             var httpContext = CreateTestContext(request);
 
-            var pageContext = new WebPageContext { HttpContext = httpContext.Object };
+            var pageContext = new WebPageContext { HttpContextSet = httpContext.Object };
             page.ExecutePageHierarchy(pageContext, writer, startPage);
             return writer.ToString();
         }
@@ -195,8 +195,10 @@ namespace System.Web.WebPages.Test
     {
         public Action<WebPage> ExecuteAction { get; set; }
 
-        internal override string GetDirectory(string virtualPath)
+        // internal 
+        protected override string GetDirectory(string virtualPath)
         {
+            // base.GetDirectory()
             return MockPageHelper.GetDirectory(virtualPath);
         }
 
@@ -210,7 +212,8 @@ namespace System.Web.WebPages.Test
     {
         public Action<StartPage> ExecuteAction { get; set; }
 
-        internal override string GetDirectory(string virtualPath)
+        // internal 
+        protected override string GetDirectory(string virtualPath)
         {
             return MockPageHelper.GetDirectory(virtualPath);
         }

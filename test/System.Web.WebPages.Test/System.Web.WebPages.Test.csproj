@@ -13,6 +13,12 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>xmAspNet.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
@@ -162,11 +168,11 @@
       <Name>System.Web.Razor</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\System.Web.WebPages\System.Web.WebPages.csproj">
-      <Project>{76EFA9C5-8D7E-4FDF-B710-E20F8B6B00D2}</Project>
+      <Project>{76efa9c5-8d7e-4fdf-b710-e20f8b6b00d2}</Project>
       <Name>System.Web.WebPages</Name>
     </ProjectReference>
     <ProjectReference Include="..\Microsoft.TestCommon\Microsoft.TestCommon.csproj">
-      <Project>{FCCC4CB7-BAF7-4A57-9F89-E5766FE536C0}</Project>
+      <Project>{fccc4cb7-baf7-4a57-9f89-e5766fe536c0}</Project>
       <Name>Microsoft.TestCommon</Name>
     </ProjectReference>
   </ItemGroup>
@@ -175,6 +181,7 @@
     <None Include="packages.config" />
     <None Include="TestFiles\Deployed\Bar" />
     <None Include="TestFiles\Deployed\Bar.foohtml" />
+    <None Include="xmAspNet.snk" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestFiles\Deployed\Bar.cshtml" />

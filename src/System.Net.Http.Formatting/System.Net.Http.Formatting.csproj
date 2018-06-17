@@ -7,9 +7,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>System.Net.Http</RootNamespace>
     <AssemblyName>System.Net.Http.Formatting</AssemblyName>
-    <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
-    <RunCodeAnalysis>$(CodeAnalysis)</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>..\Strict.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
     <DefineConstants>$(DefineConstants);ASPNETMVC</DefineConstants>
     <TargetFrameworkProfile Condition="'$(TargetFrameworkVersion)' != 'v4.5'">Client</TargetFrameworkProfile>
     <NoWarn>1591</NoWarn>
@@ -33,9 +31,6 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="..\Common\CollectionExtensions.cs">
-      <Link>Common\CollectionExtensions.cs</Link>
-    </Compile>
     <Compile Include="..\Common\Error.cs">
       <Link>Common\Error.cs</Link>
     </Compile>
@@ -53,6 +48,7 @@
     </Compile>
     <Compile Include="ByteRangeStreamContent.cs" />
     <Compile Include="CloneableExtensions.cs" />
+    <Compile Include="Common\CollectionExtensionsHttp.cs" />
     <Compile Include="Formatting\BaseJsonMediaTypeFormatter.cs" />
     <Compile Include="Formatting\BsonMediaTypeFormatter.cs" />
     <Compile Include="Formatting\MediaTypeHeaderValueRange.cs" />

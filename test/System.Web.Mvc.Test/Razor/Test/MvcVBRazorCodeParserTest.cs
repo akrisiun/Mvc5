@@ -15,6 +15,8 @@ namespace System.Web.Mvc.Razor.Test
 {
     public class MvcVBRazorCodeParserTest
     {
+        /* no VB, just C# or F#
+         * 
         [Fact]
         public void Constructor_AddsModelKeyword()
         {
@@ -300,5 +302,6 @@ namespace System.Web.Mvc.Razor.Test
             }
             return results.Document.Flatten().ToList();
         }
+        */
     }
 }

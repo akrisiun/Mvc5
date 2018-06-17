@@ -2,7 +2,8 @@
 
 namespace System.Web.WebPages
 {
-    internal class DisposableAction : IDisposable
+    // internal
+    public class DisposableAction : IDisposable
     {
         private Action _action;
         private bool _hasDisposed;

@@ -4,10 +4,13 @@ namespace System.Web.Helpers.AntiXsrf
 {
     // Represents the security token for the Anti-XSRF system.
     // The token is a random 128-bit value that correlates the session with the request body.
-    internal sealed class AntiForgeryToken
+    // internal 
+    public sealed class AntiForgeryToken
     {
-        internal const int SecurityTokenBitLength = 128;
-        internal const int ClaimUidBitLength = 256;
+        // internal
+        public const int SecurityTokenBitLength = 128;
+        // internal
+        public const int ClaimUidBitLength = 256;
 
         private string _additionalData;
         private BinaryBlob _securityToken;

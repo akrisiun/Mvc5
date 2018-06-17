@@ -4,6 +4,10 @@
   <PropertyGroup>
     <RootNamespace>System.Web.WebPages.Razor</RootNamespace>
     <AssemblyName>System.Web.WebPages.Razor</AssemblyName>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <DefineConstants>$(DefineConstants);ASPNETWEBPAGES</DefineConstants>
+    <NoWarn>1591</NoWarn>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <PackageId>Beta.Web.WebPages.Razor</PackageId>
     <Version>5.5.1</Version>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
