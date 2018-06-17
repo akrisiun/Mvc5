@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import
-      Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"
-      Condition="'$(MicrosoftCommonPropsHasBeenImported)' != 'true' AND Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
-  <Import Project="$(CustomBeforeWebStackTargets)" Condition="Exists('$(CustomBeforeWebStackTargets)')" Label="Pre-targets Build Extensibility Point"/>
+  <Import Project="$(CustomBeforeWebStackTargets)" Condition="Exists('$(CustomBeforeWebStackTargets)')" 
+          Label="Pre-targets Build Extensibility Point"/>
 
   <PropertyGroup>
     <!-- Define some basic reference paths -->
@@ -13,11 +11,11 @@
     <!-- Use CustomAfterMicrosoftCommonTargets property (defined in Microsoft.Common.targets) to
              inject post-Common targets files without requiring the inclusion -->
     <CustomAfterMicrosoftCommonTargets>$(WebStackToolsPath)WebStack.targets</CustomAfterMicrosoftCommonTargets>
-
+    
     <!-- Force rebuild if this file changes -->
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
-
+  
   <!-- Project Defaults -->
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -32,17 +30,13 @@
     <Language Condition=" '$(Language)' == '' ">ENU</Language>
     <LocalizedPath Condition=" '$(LocalizedPath)' == '' "></LocalizedPath>
 
-    <!-- StyleCop support -->
-    <StyleCopTreatErrorsAsWarnings Condition=" '$(StyleCopTreatErrorsAsWarnings)' == '' ">false</StyleCopTreatErrorsAsWarnings>
-    <StyleCopEnabled Condition=" '$(StyleCopEnabled)' == '' ">false</StyleCopEnabled>
+    <!-- Target 4.5 by default -->
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
 
-    <!-- Disable C# 6.0 features in Visual Studio. -->
-    <LangVersion Condition=" '$(MSBuildProjectExtension)' == '.csproj' ">5</LangVersion>
-
-    <!-- Everything is delay signed by default -->
-    <SignAssembly>true</SignAssembly>
-    <DelaySign>true</DelaySign>
-    <AssemblyOriginatorKeyFile>$(WebStackRootPath)\tools\35MSSharedLib1024.snk</AssemblyOriginatorKeyFile>
+    <!-- 
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>$(WebStackRootPath)\tools\xmAspNet.snk</AssemblyOriginatorKeyFile>
+    -->        
   </PropertyGroup>
 
   <!-- Per-configuration properties -->

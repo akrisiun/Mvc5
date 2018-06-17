@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -125,6 +124,17 @@ namespace System.Web.Mvc
 
         void IController.Execute(RequestContext requestContext)
         {
+#if DEBUG
+            try
+            {
+                if (System.Diagnostics.Debugger.IsAttached
+                    && requestContext.HttpContext != null
+                    && requestContext.HttpContext.Request.RawUrl.IndexOf("debug=1", StringComparison.InvariantCultureIgnoreCase) >= 0)
+                    System.Diagnostics.Debugger.Break();
+            }
+            catch (Exception ex) { System.Diagnostics.Debugger.Log(0, "IController.Execute", ex.Message); }
+#endif
+
             Execute(requestContext);
         }
 

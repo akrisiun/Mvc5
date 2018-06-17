@@ -1,9 +1,9 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
+using System.Threading.Tasks;
 using System.Web.Mvc.Properties;
 using System.Web.WebPages;
 
@@ -122,6 +122,24 @@ namespace System.Web.Mvc
             ViewContext.Writer = Output;
 
             base.ExecutePageHierarchy();
+
+            // Overwrite LayoutPage so that returning a view with a custom master page works.
+            if (!String.IsNullOrEmpty(OverridenLayoutPath))
+            {
+                Layout = OverridenLayoutPath;
+            }
+
+            // Restore the old View Context Writer
+            ViewContext.Writer = oldWriter;
+        }
+
+        public async override Task ExecutePageHierarchyAsync()
+        {
+            // Change the Writer so that things like Html.BeginForm work correctly
+            TextWriter oldWriter = ViewContext.Writer;
+            ViewContext.Writer = Output;
+
+            await base.ExecutePageHierarchyAsync().ConfigureAwait(false);
 
             // Overwrite LayoutPage so that returning a view with a custom master page works.
             if (!String.IsNullOrEmpty(OverridenLayoutPath))

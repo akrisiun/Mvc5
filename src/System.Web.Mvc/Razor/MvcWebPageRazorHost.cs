@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -10,6 +9,7 @@ using System.Web.WebPages.Razor;
 namespace System.Web.Mvc.Razor
 {
     [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "WebPage", Justification = "The class name is derived from the name of the base type")]
+    [CLSCompliant(false)]
     public class MvcWebPageRazorHost : WebPageRazorHost
     {
         [SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Justification = "The NamespaceImports property should not be virtual. This is a temporary fix.")]
@@ -20,10 +20,28 @@ namespace System.Web.Mvc.Razor
 
             DefaultPageBaseClass = typeof(WebViewPage).FullName;
 
+            NamespaceImports.Add("System.Threading.Tasks");
+            var context = GeneratedClassContext;
+            if (!String.IsNullOrEmpty(context.ExecuteMethodName))
+            {
+                GeneratedClassContext = new GeneratedClassContext(context.ExecuteMethodName + "Async",
+                                                                  context.WriteMethodName,
+                                                                  context.WriteLiteralMethodName,
+                                                                  context.WriteToMethodName,
+                                                                  context.WriteLiteralToMethodName,
+                                                                  context.TemplateTypeName,
+                                                                  context.DefineSectionMethodName,
+                                                                  context.BeginContextMethodName,
+                                                                  context.EndContextMethodName)
+                {
+                    ResolveUrlMethodName = context.ResolveUrlMethodName
+                };
+            }
             // REVIEW get rid of the namespace import to not force additional references in default MVC projects
             GetRidOfNamespace("System.Web.WebPages.Html");
         }
 
+        [CLSCompliant(false)]
         public override RazorCodeGenerator DecorateCodeGenerator(RazorCodeGenerator incomingCodeGenerator)
         {
             if (incomingCodeGenerator is CSharpRazorCodeGenerator)
@@ -45,10 +63,10 @@ namespace System.Web.Mvc.Razor
             {
                 return new MvcCSharpRazorCodeParser();
             }
-            else if (incomingCodeParser is VBCodeParser)
-            {
-                return new MvcVBRazorCodeParser();
-            }
+            //else if (incomingCodeParser is VBCodeParser)
+            //{
+            //    return new MvcVBRazorCodeParser();
+            //}
             else
             {
                 return base.DecorateCodeParser(incomingCodeParser);

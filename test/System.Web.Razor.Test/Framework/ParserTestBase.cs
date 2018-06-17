@@ -17,13 +17,21 @@ namespace System.Web.Razor.Test.Framework
 {
     public abstract class ParserTestBase
     {
-        protected static Block IgnoreOutput = new IgnoreOutputBlock();
+        protected static Block IgnoreOutput; 
 
         public SpanFactory Factory { get; private set; }
 
         protected ParserTestBase()
         {
+            Debugger.Break();
+
+            // IgnoreOutput = new IgnoreOutputBlock(null);
             Factory = CreateSpanFactory();
+            try
+            {
+                IgnoreOutput = new IgnoreOutputBlock();
+            }
+            catch {; }
         }
 
         public abstract ParserBase CreateMarkupParser();
@@ -215,7 +223,7 @@ namespace System.Web.Razor.Test.Framework
                 content = new String('.', indent * 2) + content;
             }
             WriteTraceLine(content);
-            Block block = node as Block;
+            var block = node as Block;
             if (block != null)
             {
                 foreach (SyntaxTreeNode child in block.Children)
@@ -418,9 +426,17 @@ namespace System.Web.Razor.Test.Framework
             return block.Build();
         }
 
-        private class IgnoreOutputBlock : Block
+        class IgnoreOutputBlock : Block
         {
+            public IgnoreOutputBlock(IEnumerable<SyntaxTreeNode> contents) : base(contents ?? Enumerable.Empty<SyntaxTreeNode>()) { }
+
             public IgnoreOutputBlock() : base(BlockType.Template, Enumerable.Empty<SyntaxTreeNode>(), null) { }
+
+/* Failed:
+            at System.Web.Razor.Test.Framework.ParserTestBase.IgnoreOutputBlock..ctor() in D:\Beta\Owin\Mvc5\test\System.Web.Razor.Test\Framework\ParserTestBase.cs:line 426
+   at System.Web.Razor.Test.Framework.ParserTestBase..ctor() in D:\Beta\Owin\Mvc5\test\System.Web.Razor.Test\Framework\ParserTestBase.cs:line 28
+   at System.Web.Razor.Test.Framework.CodeParserTestBase..ctor()
+*/
         }
     }
 }

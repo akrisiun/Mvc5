@@ -60,6 +60,7 @@
     <Compile Include="MultipartFormDataRemoteStreamProvider.cs" />
     <Compile Include="MultipartFormDataStreamProviderHelper.cs" />
     <Compile Include="MultipartRemoteFileData.cs" />
+    <Compile Include="Properties\CommonWebApiResourcesHttp.cs" />
     <Compile Include="RemoteStreamInfo.cs" />
     <Compile Include="UnsupportedMediaTypeException.cs" />
     <Compile Include="Internal\ByteRangeStream.cs" />

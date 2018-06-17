@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
@@ -104,11 +103,7 @@ namespace System.Web.Helpers.AntiXsrf
                 // Adding X-Frame-Options header to prevent ClickJacking. See
                 // http://tools.ietf.org/html/draft-ietf-websec-x-frame-options-10
                 // for more information.
-                const string FrameHeaderName = "X-Frame-Options";
-                if (httpContext.Response.Headers[FrameHeaderName] == null)
-                {
-                    httpContext.Response.AddHeader(FrameHeaderName, "SAMEORIGIN");
-                }
+                httpContext.Response.AddHeader("X-Frame-Options", "SAMEORIGIN");
             }
 
             // <input type="hidden" name="__AntiForgeryToken" value="..." />

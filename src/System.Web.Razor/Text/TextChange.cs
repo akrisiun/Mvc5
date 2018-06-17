@@ -1,11 +1,11 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Diagnostics;
 using System.Globalization;
 using System.Text;
 using System.Web.Razor.Parser.SyntaxTree;
 using Microsoft.Internal.Web.Utils;
+using System.Web.Razor.Common;
 
 namespace System.Web.Razor.Text
 {
@@ -17,7 +17,9 @@ namespace System.Web.Razor.Text
         /// <summary>
         /// Constructor for changes where the position hasn't moved (primarily for tests)
         /// </summary>
-        internal TextChange(int position, int oldLength, ITextBuffer oldBuffer, int newLength, ITextBuffer newBuffer)
+
+        // internal 
+        public TextChange(int position, int oldLength, ITextBuffer oldBuffer, int newLength, ITextBuffer newBuffer)
             : this(position, oldLength, oldBuffer, position, newLength, newBuffer)
         {
         }

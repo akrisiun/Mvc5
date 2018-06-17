@@ -30,7 +30,7 @@ namespace System.Web.Razor.Test.Parser
                     ),
                 factory.Markup("test")
                 );
-            WhiteSpaceRewriter rewriter = new WhiteSpaceRewriter(new HtmlMarkupParser().BuildSpan);
+            var rewriter = new WhiteSpaceRewriter(new HtmlMarkupParser().BuildSpan);
 
             // Act
             Block actual = rewriter.Rewrite(start);

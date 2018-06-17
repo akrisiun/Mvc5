@@ -6,6 +6,7 @@ using Microsoft.TestCommon;
 
 namespace System.Web.Razor.Test.Tokenizer
 {
+    /*
     public class VBTokenizerLiteralTest : VBTokenizerTestBase
     {
         [Fact]
@@ -180,4 +181,5 @@ namespace System.Web.Razor.Test.Tokenizer
             TestTokenizer("# 8/23/1970\n3:45:39AM", new VBSymbol(0, 0, 0, "# 8/23/1970", VBSymbolType.DateLiteral), IgnoreRemaining);
         }
     }
+    */
 }

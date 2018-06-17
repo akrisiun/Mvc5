@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,7 +7,8 @@ using System.Web.Razor.Text;
 
 namespace System.Web.Razor.Parser
 {
-    internal abstract class MarkupRewriter : ParserVisitor, ISyntaxTreeRewriter
+    // internal 
+    public abstract class MarkupRewriter : ParserVisitor, ISyntaxTreeRewriter
     {
         private Stack<BlockBuilder> _blocks = new Stack<BlockBuilder>();
         private Action<SpanBuilder, SourceLocation, string> _markupSpanFactory;

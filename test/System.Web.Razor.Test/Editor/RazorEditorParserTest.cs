@@ -105,7 +105,7 @@ namespace System.Web.Razor.Test.Editor
                     CreateHost(),
                     "C:\\Foo.cshtml").CheckForStructureChanges(change),
                 "change",
-                String.Format(RazorResources.Structure_Member_CannotBeNull, "Buffer", "TextChange"));
+                String.Format(RazorResourcesGet.Structure_Member_CannotBeNull, "Buffer", "TextChange"));
         }
 
         private static RazorEngineHost CreateHost()

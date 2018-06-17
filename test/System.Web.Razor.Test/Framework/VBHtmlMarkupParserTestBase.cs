@@ -10,8 +10,8 @@ namespace System.Web.Razor.Test.Framework
     {
         protected override ISet<string> KeywordSet
         {
-            get { return VBCodeParser.DefaultKeywords; }
-        }
+            get { return null; } // VBCodeParser.DefaultKeywords; }
+            }
 
         protected override SpanFactory CreateSpanFactory()
         {
@@ -25,7 +25,7 @@ namespace System.Web.Razor.Test.Framework
 
         public override ParserBase CreateCodeParser()
         {
-            return new VBCodeParser();
+            return null; //  new VBCodeParser();
         }
     }
 }

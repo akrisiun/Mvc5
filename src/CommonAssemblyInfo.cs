@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Reflection;
@@ -7,8 +6,8 @@ using System.Resources;
 using System.Runtime.InteropServices;
 
 #if !BUILD_GENERATED_VERSION
-[assembly: AssemblyCompany(".NET Foundation")]
-[assembly: AssemblyCopyright("Copyright © .NET Foundation. All rights reserved.")]
+[assembly: AssemblyCompany("Microsoft Open Technologies, Inc.")]
+[assembly: AssemblyCopyright("© Microsoft Open Technologies, Inc. All rights reserved.")]
 #endif
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyTrademark("")]
@@ -19,31 +18,37 @@ using System.Runtime.InteropServices;
 [assembly: NeutralResourcesLanguage("en-US")]
 [assembly: AssemblyMetadata("Serviceable", "True")]
 
-// ===================================================================================
-//  TAKE CARE WHEN EDITING OR REMOVING ANYTHING BELOW THIS COMMENT.
-//  BUILD_GENERATED_VERSION will be set in any CI build. Versions below are not used.
-// ===================================================================================
+// ===========================================================================
+//  DO NOT EDIT OR REMOVE ANYTHING BELOW THIS COMMENT.
+//  Version numbers are automatically generated based on regular expressions.
+// ===========================================================================
 
-#if (ASPNETMVC && (ASPNETWEBPAGES || ASPNETFACEBOOK)) || (ASPNETWEBPAGES && ASPNETFACEBOOK)
-#error Runtime projects cannot define more than one of ASPNETMVC, ASPNETWEBPAGES or ASPNETFACEBOOK
+#if ASPNETMVC && ASPNETWEBPAGES
+#error Runtime projects cannot define both ASPNETMVC and ASPNETWEBPAGES
 #elif ASPNETMVC
 #if !BUILD_GENERATED_VERSION
-[assembly: AssemblyVersion("5.2.6.0")] // ASPNETMVC
-[assembly: AssemblyFileVersion("5.2.6.0")] // ASPNETMVC
+[assembly: AssemblyVersion("5.5.0.0")] // ASPNETMVC
+[assembly: AssemblyFileVersion("5.5.1.0")] // ASPNETMVC
 #endif
 [assembly: AssemblyProduct("Microsoft ASP.NET MVC")]
 #elif ASPNETWEBPAGES
 #if !BUILD_GENERATED_VERSION
-[assembly: AssemblyVersion("3.0.0.0")] // ASPNETWEBPAGES
-[assembly: AssemblyFileVersion("3.0.0.0")] // ASPNETWEBPAGES
+
+// [assembly: AssemblyVersion("3.3.0.0")] // ASPNETWEBPAGES
+// [assembly: AssemblyFileVersion("3.3.0.0")] // ASPNETWEBPAGES
+
+[assembly: AssemblyVersion("3.3.2.0")] // ASPNETWEBPAGES
+[assembly: AssemblyFileVersion("3.3.2.0")] // ASPNETWEBPAGES
+
 #endif
 [assembly: AssemblyProduct("Microsoft ASP.NET Web Pages")]
+
 #elif ASPNETFACEBOOK
 #if !BUILD_GENERATED_VERSION
-[assembly: AssemblyVersion("1.1.0.0")] // ASPNETFACEBOOK
-[assembly: AssemblyFileVersion("1.1.0.0")] // ASPNETFACEBOOK
+[assembly: AssemblyVersion("1.4.0.0")] // ASPNETFACEBOOK
+[assembly: AssemblyFileVersion("1.4.0.0")] // ASPNETFACEBOOK
 #endif
 [assembly: AssemblyProduct("Microsoft ASP.NET Facebook")]
 #else
-#error Runtime projects must define ASPNETMVC, ASPNETWEBPAGES or ASPNETFACEBOOK
+#error Runtime projects must define either ASPNETMVC or ASPNETWEBPAGES
 #endif

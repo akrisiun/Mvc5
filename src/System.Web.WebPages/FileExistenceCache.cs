@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -18,7 +17,9 @@ namespace System.Web.WebPages
     /// expensive on subsequent calls, but it still needs to do MapPath which can 
     /// take quite some time.
     /// </summary>
-    internal class FileExistenceCache
+    
+    // internal 
+    public class FileExistenceCache
     {
         private const int TicksPerMillisecond = 10000;
         private readonly Func<VirtualPathProvider> _virtualPathProviderFunc;

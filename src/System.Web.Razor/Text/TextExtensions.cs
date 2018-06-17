@@ -1,12 +1,12 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace System.Web.Razor.Text
 {
-    internal static class TextExtensions
+    // internal 
+    public static class TextExtensions
     {
         public static void Seek(this ITextBuffer self, int characters)
         {
@@ -24,6 +24,7 @@ namespace System.Web.Razor.Text
             return ret;
         }
 
+        public static LookaheadToken BeginLookaheadGet(this ITextBuffer self) => BeginLookahead(self);
         public static LookaheadToken BeginLookahead(this ITextBuffer self)
         {
             int start = self.Position;

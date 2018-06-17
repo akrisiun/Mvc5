@@ -17,11 +17,11 @@ namespace System.Web.Razor.Test.Framework
                 {
                     first = span;
                 }
-                span.Previous = previous;
+                span.PreviousSet(previous);
 
                 if (previous != null)
                 {
-                    previous.Next = span;
+                    previous.NextSet(span);
                 }
                 previous = span;
             }

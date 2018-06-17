@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,7 +27,8 @@ namespace System.Web.Mvc
 
         public abstract ControllerDescriptor ControllerDescriptor { get; }
 
-        internal ActionMethodDispatcherCache DispatcherCache
+        //internal 
+        public ActionMethodDispatcherCache DispatcherCache
         {
             get
             {
@@ -61,7 +61,9 @@ namespace System.Web.Mvc
 
         public abstract object Execute(ControllerContext controllerContext, IDictionary<string, object> parameters);
 
-        internal static object ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary<string, object> parameters, MethodInfo methodInfo)
+        // internal 
+        public static object ExtractParameterFromDictionary(ParameterInfo parameterInfo, 
+            IDictionary<string, object> parameters, MethodInfo methodInfo)
         {
             object value;
 

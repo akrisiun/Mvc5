@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -163,7 +162,7 @@ namespace System.Web.Mvc
                 {
                     IEnumerable<ModelMetadata> originalProperties = Provider.GetMetadataForProperties(Model, RealModelType);
                     // This will be returned as a copied out array in the common case, so reuse the returned array for performance.
-                    _propertiesInternal = SortProperties(originalProperties.AsArray());
+                    _propertiesInternal = SortProperties(CollectionExtensionsMvc.AsArrayMvc(originalProperties));
                     _properties = new ReadOnlyCollection<ModelMetadata>(_propertiesInternal);
                 }
                 return _properties;
@@ -180,7 +179,7 @@ namespace System.Web.Mvc
                     Contract.Assert(_propertiesInternal != null);
                     return _propertiesInternal;
                 }
-                return virtualProperties.AsArray();
+                return virtualProperties.AsArrayMvc();
             }
         }
 

@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,9 +14,11 @@ namespace System.Web.Razor.Parser
 {
     public partial class CSharpCodeParser : TokenizerBackedParser<CSharpTokenizer, CSharpSymbol, CSharpSymbolType>
     {
-        internal static readonly int UsingKeywordLength = 5; // using
+        // internal 
+        public static readonly int UsingKeywordLength = 5; // using
 
-        internal static ISet<string> DefaultKeywords = new HashSet<string>()
+        // internal 
+           public static ISet<string> DefaultKeywords = new HashSet<string>()
         {
             "if",
             "do",
@@ -35,7 +36,8 @@ namespace System.Web.Razor.Parser
             "namespace",
             "class",
             "layout",
-            "sessionstate"
+            "sessionstate",
+            "await",
         };
 
         private Dictionary<string, Action> _directiveParsers = new Dictionary<string, Action>();
@@ -309,13 +311,23 @@ namespace System.Web.Razor.Parser
 
         private void ImplicitExpression()
         {
+            ImplicitExpression(AcceptedCharacters.NonWhiteSpace);
+        }
+
+        private void AsyncImplicitExpression()
+        {
+            ImplicitExpression(AcceptedCharacters.AnyExceptNewline);
+        }
+
+        private void ImplicitExpression(AcceptedCharacters acceptedCharacters)
+        {
             Context.CurrentBlock.Type = BlockType.Expression;
             Context.CurrentBlock.CodeGenerator = new ExpressionCodeGenerator();
 
             using (PushSpanConfig(span =>
             {
                 span.EditHandler = new ImplicitExpressionEditHandler(Language.TokenizeString, Keywords, acceptTrailingDot: IsNested);
-                span.EditHandler.AcceptedCharacters = AcceptedCharacters.NonWhiteSpace;
+                span.EditHandler.AcceptedCharacters = acceptedCharacters;
                 span.CodeGenerator = new ExpressionCodeGenerator();
             }))
             {

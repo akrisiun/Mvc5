@@ -6,6 +6,7 @@ using Microsoft.TestCommon;
 
 namespace System.Web.Razor.Test.Tokenizer
 {
+    /*
     public class VBTokenizerCommentTest : VBTokenizerTestBase
     {
         [Fact]
@@ -91,4 +92,5 @@ namespace System.Web.Razor.Test.Tokenizer
             TestTokenizer("REM Foo Bar Baz\na", new VBSymbol(0, 0, 0, "REM Foo Bar Baz", VBSymbolType.Comment), IgnoreRemaining);
         }
     }
+    */
 }

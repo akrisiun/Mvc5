@@ -1,14 +1,15 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 namespace System.Web.WebPages
 {
     internal class WebPageHttpModule : IHttpModule
     {
+#pragma warning disable 649 
         internal static EventHandler Initialize;
         internal static EventHandler ApplicationStart;
         internal static EventHandler BeginRequest;
         internal static EventHandler EndRequest;
+#pragma warning restore 649 
         private static bool _appStartExecuted = false;
         private static readonly object _appStartExecutedLock = new object();
         private static readonly object _hasBeenRegisteredKey = new object();

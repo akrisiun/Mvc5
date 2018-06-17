@@ -10,8 +10,9 @@ using Microsoft.TestCommon;
 
 namespace System.Web.Razor.Test.Parser.PartialParsing
 {
-    public class VBPartialParsingTest : PartialParsingTestBase<VBRazorCodeLanguage>
+    public class VBPartialParsingTest // : PartialParsingTestBase<VBRazorCodeLanguage>
     {
+        /*
         [Fact]
         public void ImplicitExpressionProvisionallyAcceptsDeleteOfIdentifierPartsIfDotRemains()
         {
@@ -245,6 +246,8 @@ namespace System.Web.Razor.Test.Parser.PartialParsing
             var factory = SpanFactory.CreateVbHtml();
             StringTextBuffer changed = new StringTextBuffer("@Code @foo. End Code");
             StringTextBuffer old = new StringTextBuffer("@Code @foo End Code");
+
+            /* no vb
             RunPartialParseTest(new TextChange(10, 0, old, 1, changed),
                 new MarkupBlock(
                     factory.EmptyHtml(),
@@ -260,6 +263,7 @@ namespace System.Web.Razor.Test.Parser.PartialParsing
                         factory.Code(" ").AsStatement(),
                         factory.MetaCode("End Code").Accepts(AcceptedCharacters.None)),
                     factory.EmptyHtml()));
+                    * /
         }
 
         [Fact]
@@ -375,5 +379,6 @@ namespace System.Web.Razor.Test.Parser.PartialParsing
         {
             RunTypeKeywordTest("layout");
         }
+        */
     }
 }

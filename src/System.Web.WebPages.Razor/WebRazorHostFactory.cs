@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Concurrent;
 using System.Diagnostics;
@@ -15,6 +14,8 @@ using Microsoft.Internal.Web.Utils;
 
 namespace System.Web.WebPages.Razor
 {
+
+    [CLSCompliant(false)]
     public class WebRazorHostFactory
     {
         private static ConcurrentDictionary<string, Func<WebRazorHostFactory>> _factories =
@@ -22,6 +23,7 @@ namespace System.Web.WebPages.Razor
 
         internal static Func<string, Type> TypeFactory = DefaultTypeFactory;
 
+        [CLSCompliant(false)]
         public static WebPageRazorHost CreateDefaultHost(string virtualPath)
         {
             return CreateDefaultHost(virtualPath, null);
@@ -44,7 +46,13 @@ namespace System.Web.WebPages.Razor
                 throw new ArgumentException(String.Format(CultureInfo.CurrentCulture, CommonResources.Argument_Cannot_Be_Null_Or_Empty, "virtualPath"), "virtualPath");
             }
 
-            return CreateHostFromConfigCore(GetRazorSection(virtualPath), virtualPath, physicalPath);
+            WebPageRazorHost host = null;
+            try
+            {
+                host = CreateHostFromConfigCore(GetRazorSection(virtualPath), virtualPath, physicalPath);
+            }
+            catch { }  // no fatal error
+            return host;
         }
 
         public static WebPageRazorHost CreateHostFromConfig(RazorWebSectionGroup config, string virtualPath)

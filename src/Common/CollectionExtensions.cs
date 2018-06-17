@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.ObjectModel;
 using System.Diagnostics.Contracts;
@@ -10,7 +9,7 @@ namespace System.Collections.Generic
     /// <summary>
     /// Helper extension methods for fast use of collections.
     /// </summary>
-    internal static class CollectionExtensions
+    internal  static class CollectionExtensions
     {
         /// <summary>
         /// Return a new array with the value added to the end. Slow and best suited to long lived arrays with few writes relative to reads.
@@ -30,7 +29,7 @@ namespace System.Collections.Generic
         /// Return the enumerable as an Array, copying if required. Optimized for common case where it is an Array. 
         /// Avoid mutating the return value.
         /// </summary>
-        public static T[] AsArray<T>(this IEnumerable<T> values)
+        internal static T[] AsArray<T>(this IEnumerable<T> values)
         {
             Contract.Assert(values != null);
 

@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
@@ -449,7 +448,12 @@ namespace System.Web.Mvc
         {
             if (!ControllerContext.IsChildAction)
             {
-                TempData.Save(ControllerContext, TempDataProvider);
+                try
+                {
+                    TempData.Save(ControllerContext, TempDataProvider);
+                    // ignore runtime warning : essionStateTempDataProvider class requires session
+                }
+                catch (Exception ex) { if (Diagnostics.Debugger.IsAttached || this.HttpContext.Request.IsLocal) throw ex; }
             }
         }
 

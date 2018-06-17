@@ -10,8 +10,9 @@ using Microsoft.TestCommon;
 
 namespace System.Web.Razor.Test.Parser.VB
 {
-    public class VBTemplateTest : VBHtmlCodeParserTestBase
+    public class VBTemplateTest // : VBHtmlCodeParserTestBase
     {
+        /*
         private const string TestTemplateCode = "@@<p>Foo #@item</p>";
 
         private TemplateBlock TestTemplate()
@@ -210,5 +211,6 @@ namespace System.Web.Razor.Test.Parser.VB
                 RazorResources.ParseError_InlineMarkup_Blocks_Cannot_Be_Nested,
                 absoluteIndex, lineIndex, characterIndex);
         }
+        */
     }
 }

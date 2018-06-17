@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props')" />
+  <!--<Import Project="..\..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props')" />
   <Import Project="..\..\packages\xunit.core.2.3.0\build\xunit.core.props" Condition="Exists('..\..\packages\xunit.core.2.3.0\build\xunit.core.props')" />
+  -->
+  <Import Project="..\..\lib\xunit.runner.visualstudio.props" />
+  <Import Project="..\..\lib\xunit.core.props" />
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),Runtime.sln))\tools\WebStack.settings.targets" />
   <PropertyGroup>
     <ProjectGuid>{0BB62A1D-E6B5-49FA-9E3C-6AF679A66DFE}</ProjectGuid>
@@ -13,6 +16,14 @@
     <NoWarn>0618</NoWarn>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <OutputPath>..\..\bin\Debug\Test\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
@@ -45,6 +56,9 @@
       <HintPath>..\..\packages\xunit.extensibility.execution.2.3.0\lib\net452\xunit.execution.desktop.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="xunit.runner.visualstudio.testadapter">
+      <HintPath>..\..\lib\xunit.runner.visualstudio.testadapter.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeCompileUnitExtensions.cs" />
@@ -58,8 +72,6 @@
     <Compile Include="Framework\ParserTestBase.cs" />
     <Compile Include="Framework\RawTextSymbol.cs" />
     <Compile Include="Framework\TestSpanBuilder.cs" />
-    <Compile Include="Framework\VBHtmlCodeParserTestBase.cs" />
-    <Compile Include="Framework\VBHtmlMarkupParserTestBase.cs" />
     <Compile Include="Generator\GeneratedCodeMappingTest.cs" />
     <Compile Include="Generator\PaddingTest.cs" />
     <Compile Include="Generator\TabTest.cs" />
@@ -84,35 +96,15 @@
     <Compile Include="Parser\Html\HtmlAttributeTest.cs" />
     <Compile Include="Parser\Html\HtmlUrlAttributeTest.cs" />
     <Compile Include="Parser\ParserVisitorExtensionsTest.cs" />
-    <Compile Include="Parser\VB\VBRazorCommentsTest.cs" />
-    <Compile Include="Parser\VB\VBLayoutDirectiveTest.cs" />
-    <Compile Include="Parser\VB\VBAutoCompleteTest.cs" />
     <Compile Include="Parser\Html\HtmlTagsTest.cs" />
-    <Compile Include="Parser\VB\VBContinueStatementTest.cs" />
-    <Compile Include="Parser\VB\VBDirectiveTest.cs" />
-    <Compile Include="Parser\VB\VBExitStatementTest.cs" />
-    <Compile Include="Parser\VB\VBExplicitExpressionTest.cs" />
-    <Compile Include="Parser\VB\VBImplicitExpressionTest.cs" />
-    <Compile Include="Parser\VB\VBReservedWordsTest.cs" />
     <Compile Include="Parser\CSharp\CSharpReservedWordsTest.cs" />
     <Compile Include="Parser\PartialParsing\VBPartialParsingTest.cs" />
     <Compile Include="Parser\PartialParsing\CSharpPartialParsingTest.cs" />
-    <Compile Include="Parser\VB\VBHelperTest.cs" />
     <Compile Include="Parser\CSharp\CSharpHelperTest.cs" />
     <Compile Include="Generator\RazorCodeGeneratorTest.cs" />
     <Compile Include="Parser\PartialParsing\PartialParsingTestBase.cs" />
-    <Compile Include="Parser\VB\VBNestedStatementsTest.cs" />
-    <Compile Include="Parser\VB\VBStatementTest.cs" />
     <Compile Include="Parser\WhitespaceRewriterTest.cs" />
     <Compile Include="RazorCodeLanguageTest.cs" />
-    <Compile Include="Parser\VB\VBHtmlDocumentTest.cs" />
-    <Compile Include="Parser\VB\VBErrorTest.cs" />
-    <Compile Include="Parser\VB\VBSectionTest.cs" />
-    <Compile Include="Parser\VB\VBTemplateTest.cs" />
-    <Compile Include="Parser\VB\VBExpressionsInCodeTest.cs" />
-    <Compile Include="Parser\VB\VBSpecialKeywordsTest.cs" />
-    <Compile Include="Parser\VB\VBBlockTest.cs" />
-    <Compile Include="Parser\VB\VBToMarkupSwitchTest.cs" />
     <Compile Include="Editor\RazorEditorParserTest.cs" />
     <Compile Include="RazorDirectiveAttributeTest.cs" />
     <Compile Include="RazorEngineHostTest.cs" />
@@ -172,12 +164,6 @@
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Output\HtmlCommentWithQuote_Single.cs" />
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Output\HtmlCommentWithQuote_Double.cs" />
     <Compile Include="Text\LineTrackingStringBufferTest.cs" />
-    <Compile Include="Tokenizer\VBTokenizerLiteralTest.cs" />
-    <Compile Include="Tokenizer\VBTokenizerIdentifierTest.cs" />
-    <Compile Include="Tokenizer\VBTokenizerCommentTest.cs" />
-    <Compile Include="Tokenizer\VBTokenizerOperatorsTest.cs" />
-    <Compile Include="Tokenizer\VBTokenizerTestBase.cs" />
-    <Compile Include="Tokenizer\VBTokenizerTest.cs" />
     <Compile Include="Tokenizer\CSharpTokenizerCommentTest.cs" />
     <Compile Include="Tokenizer\CSharpTokenizerLiteralTest.cs" />
     <Compile Include="Tokenizer\CSharpTokenizerIdentifierTest.cs" />
@@ -189,14 +175,12 @@
     <Compile Include="Tokenizer\HtmlTokenizerTestBase.cs" />
     <Compile Include="Tokenizer\TokenizerTestBase.cs" />
     <Compile Include="Utils\MiscUtils.cs" />
-    <Compile Include="Generator\VBRazorCodeGeneratorTest.cs" />
     <Compile Include="Generator\CSharpRazorCodeGeneratorTest.cs" />
     <Compile Include="CSharpRazorCodeLanguageTest.cs" />
     <Compile Include="Parser\CallbackParserListenerTest.cs" />
     <Compile Include="Parser\CSharp\CSharpExplicitExpressionTest.cs" />
     <Compile Include="Parser\CSharp\CSharpSectionTest.cs" />
     <Compile Include="Parser\BlockTest.cs" />
-    <Compile Include="Parser\VB\VBExpressionTest.cs" />
     <Compile Include="Text\BufferingTextReaderTest.cs" />
     <Compile Include="Parser\CSharp\CSharpErrorTest.cs" />
     <Compile Include="Parser\CSharp\CSharpImplicitExpressionTest.cs" />
@@ -217,7 +201,6 @@
     <Compile Include="Utils\SpanAssert.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="VBRazorCodeLanguageTest.cs" />
     <Compile Include="Text\TextChangeTest.cs" />
     <Compile Include="Text\TextReaderExtensionsTest.cs" />
     <Compile Include="Utils\EnumerableUtils.cs" />
@@ -225,11 +208,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\System.Web.Razor\System.Web.Razor.csproj">
-      <Project>{8F18041B-9410-4C36-A9C5-067813DF5F31}</Project>
+      <Project>{8f18041b-9410-4c36-a9c5-067813df5f31}</Project>
       <Name>System.Web.Razor</Name>
     </ProjectReference>
     <ProjectReference Include="..\Microsoft.TestCommon\Microsoft.TestCommon.csproj">
-      <Project>{FCCC4CB7-BAF7-4A57-9F89-E5766FE536C0}</Project>
+      <Project>{fccc4cb7-baf7-4a57-9f89-e5766fe536c0}</Project>
       <Name>Microsoft.TestCommon</Name>
     </ProjectReference>
   </ItemGroup>
@@ -462,27 +445,25 @@
     <EmbeddedResource Include="TestFiles\CodeGenerator\VB\Output\Sections.vb" />
     <EmbeddedResource Include="TestFiles\CodeGenerator\VB\Output\Templates.vb" />
     <EmbeddedResource Include="TestFiles\CodeGenerator\VB\Output\UnfinishedExpressionInCode.vb" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\CodeGenerator\VB\Output\RazorComments.DesignTime.vb" />
+    <EmbeddedResource Include="TestFiles\CodeGenerator\VB\Output\EmptySection.vb" />
+    <EmbeddedResource Include="TestFiles\CodeGenerator\VB\Output\FunctionsBlock.DesignTime.Tabs.vb" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestFiles\CodeGenerator\VB\Output\EmptySection.vb" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestFiles\CodeGenerator\VB\Output\FunctionsBlock.DesignTime.Tabs.vb" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\xunit.core.2.3.0\build\xunit.core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.core.2.3.0\build\xunit.core.props'))" />
+    <Error Condition="!Exists('..\..\..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props'))" />
+    <!--<Error Condition="!Exists('..\..\packages\xunit.core.2.3.0\build\xunit.core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.core.2.3.0\build\xunit.core.props'))" />
     <Error Condition="!Exists('..\..\packages\xunit.core.2.3.0\build\xunit.core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.core.2.3.0\build\xunit.core.targets'))" />
     <Error Condition="!Exists('..\..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props'))" />
+    -->
   </Target>
-  <Import Project="..\..\packages\xunit.core.2.3.0\build\xunit.core.targets" Condition="Exists('..\..\packages\xunit.core.2.3.0\build\xunit.core.targets')" />
+  <!--<Import Project="..\..\packages\xunit.core.2.3.0\build\xunit.core.targets" Condition="Exists('..\..\packages\xunit.core.2.3.0\build\xunit.core.targets')" />
+  -->
+  <Import Project="..\..\lib\xunit.core.targets" />
 </Project>

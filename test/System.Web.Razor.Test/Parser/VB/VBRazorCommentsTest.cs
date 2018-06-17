@@ -10,8 +10,9 @@ using Microsoft.TestCommon;
 
 namespace System.Web.Razor.Test.Parser.VB
 {
-    public class VBRazorCommentsTest : VBHtmlMarkupParserTestBase
+    public class VBRazorCommentsTest // : VBHtmlMarkupParserTestBase
     {
+        /*
         [Fact]
         public void UnterminatedRazorComment()
         {
@@ -171,5 +172,6 @@ namespace System.Web.Razor.Test.Parser.VB
                 new RazorError(RazorResources.ParseError_RazorComment_Not_Terminated, 7, 1, 0),
                 new RazorError(String.Format(RazorResources.ParseError_BlockNotTerminated, SyntaxConstants.VB.CodeKeyword, SyntaxConstants.VB.EndCodeKeyword), 1, 0, 1));
         }
+        */
     }
 }

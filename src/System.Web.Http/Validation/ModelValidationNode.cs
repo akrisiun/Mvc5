@@ -3,7 +3,6 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Web.Http.Controllers;
 using System.Web.Http.Metadata;
 using System.Web.Http.ModelBinding;
@@ -208,7 +207,7 @@ namespace System.Web.Http.Validation
 
             object container = TryConvertContainerToMetadataType(parentNode);
             // Optimize for the common case where the validators are in an array
-            ModelValidator[] validators = _validators.AsArray();
+            ModelValidator[] validators = _validators.AsArrayH();
             for (int i = 0; i < validators.Length; i++)
             {
                 ModelValidator validator = validators[i];

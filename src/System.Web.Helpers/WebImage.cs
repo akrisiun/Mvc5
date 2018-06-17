@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -105,7 +104,7 @@ namespace System.Web.Helpers
         {
             if (String.IsNullOrEmpty(filePath))
             {
-                throw new ArgumentException(CommonResources.Argument_Cannot_Be_Null_Or_Empty, "filePath");
+                throw new ArgumentException(CommonResourcesMvc.Argument_Cannot_Be_Null_Or_Empty, "filePath");
             }
 
             _fileName = filePath;
@@ -266,13 +265,13 @@ namespace System.Web.Helpers
             {
                 throw new ArgumentOutOfRangeException(
                     "width",
-                    String.Format(CultureInfo.InvariantCulture, CommonResources.Argument_Must_Be_GreaterThan, 0));
+                    String.Format(CultureInfo.InvariantCulture, CommonResourcesMvc.Argument_Must_Be_GreaterThan, 0));
             }
             if (height <= 0)
             {
                 throw new ArgumentOutOfRangeException(
                     "height",
-                    String.Format(CultureInfo.InvariantCulture, CommonResources.Argument_Must_Be_GreaterThan, 0));
+                    String.Format(CultureInfo.InvariantCulture, CommonResourcesMvc.Argument_Must_Be_GreaterThan, 0));
             }
 
             ResizeTransformation trans = new ResizeTransformation(height, width, preserveAspectRatio, preventEnlarge);
@@ -286,25 +285,25 @@ namespace System.Web.Helpers
             {
                 throw new ArgumentOutOfRangeException(
                     "top",
-                    String.Format(CultureInfo.InvariantCulture, CommonResources.Argument_Must_Be_GreaterThanOrEqualTo, 0));
+                    String.Format(CultureInfo.InvariantCulture, CommonResourcesMvc.Argument_Must_Be_GreaterThanOrEqualTo, 0));
             }
             if (left < 0)
             {
                 throw new ArgumentOutOfRangeException(
                     "left",
-                    String.Format(CultureInfo.InvariantCulture, CommonResources.Argument_Must_Be_GreaterThanOrEqualTo, 0));
+                    String.Format(CultureInfo.InvariantCulture, CommonResourcesMvc.Argument_Must_Be_GreaterThanOrEqualTo, 0));
             }
             if (bottom < 0)
             {
                 throw new ArgumentOutOfRangeException(
                     "bottom",
-                    String.Format(CultureInfo.InvariantCulture, CommonResources.Argument_Must_Be_GreaterThanOrEqualTo, 0));
+                    String.Format(CultureInfo.InvariantCulture, CommonResourcesMvc.Argument_Must_Be_GreaterThanOrEqualTo, 0));
             }
             if (right < 0)
             {
                 throw new ArgumentOutOfRangeException(
                     "right",
-                    String.Format(CultureInfo.InvariantCulture, CommonResources.Argument_Must_Be_GreaterThanOrEqualTo, 0));
+                    String.Format(CultureInfo.InvariantCulture, CommonResourcesMvc.Argument_Must_Be_GreaterThanOrEqualTo, 0));
             }
 
             CropTransformation crop = new CropTransformation(top, right, bottom, left);
@@ -366,7 +365,7 @@ namespace System.Web.Helpers
         {
             if (String.IsNullOrEmpty(text))
             {
-                throw new ArgumentException(CommonResources.Argument_Cannot_Be_Null_Or_Empty, "text");
+                throw new ArgumentException(CommonResourcesMvc.Argument_Cannot_Be_Null_Or_Empty, "text");
             }
 
             Color color;
@@ -377,7 +376,7 @@ namespace System.Web.Helpers
 
             if ((opacity < 0) || (opacity > 100))
             {
-                throw new ArgumentOutOfRangeException("opacity", String.Format(CultureInfo.InvariantCulture, CommonResources.Argument_Must_Be_Between, 0, 100));
+                throw new ArgumentOutOfRangeException("opacity", String.Format(CultureInfo.InvariantCulture, CommonResourcesMvc.Argument_Must_Be_Between, 0, 100));
             }
 
             int alpha = 255 * opacity / 100;
@@ -387,7 +386,7 @@ namespace System.Web.Helpers
             {
                 throw new ArgumentOutOfRangeException(
                     "fontSize",
-                    String.Format(CultureInfo.InvariantCulture, CommonResources.Argument_Must_Be_GreaterThan, 0));
+                    String.Format(CultureInfo.InvariantCulture, CommonResourcesMvc.Argument_Must_Be_GreaterThan, 0));
             }
 
             FontStyle fontStyleEnum;
@@ -409,7 +408,7 @@ namespace System.Web.Helpers
             {
                 throw new ArgumentOutOfRangeException(
                     "padding",
-                    String.Format(CultureInfo.InvariantCulture, CommonResources.Argument_Must_Be_GreaterThanOrEqualTo, 0));
+                    String.Format(CultureInfo.InvariantCulture, CommonResourcesMvc.Argument_Must_Be_GreaterThanOrEqualTo, 0));
             }
 
             WatermarkTextTransformation transformation =
@@ -447,13 +446,13 @@ namespace System.Web.Helpers
             {
                 throw new ArgumentOutOfRangeException(
                     "width",
-                    String.Format(CultureInfo.InvariantCulture, CommonResources.Argument_Must_Be_GreaterThanOrEqualTo, 0));
+                    String.Format(CultureInfo.InvariantCulture, CommonResourcesMvc.Argument_Must_Be_GreaterThanOrEqualTo, 0));
             }
             if (height < 0)
             {
                 throw new ArgumentOutOfRangeException(
                     "height",
-                    String.Format(CultureInfo.InvariantCulture, CommonResources.Argument_Must_Be_GreaterThanOrEqualTo, 0));
+                    String.Format(CultureInfo.InvariantCulture, CommonResourcesMvc.Argument_Must_Be_GreaterThanOrEqualTo, 0));
             }
             if (((width == 0) && (height > 0)) || ((width > 0) && (height == 0)))
             {
@@ -461,7 +460,7 @@ namespace System.Web.Helpers
             }
             if ((opacity < 0) || (opacity > 100))
             {
-                throw new ArgumentOutOfRangeException("opacity", String.Format(CultureInfo.InvariantCulture, CommonResources.Argument_Must_Be_Between, 0, 100));
+                throw new ArgumentOutOfRangeException("opacity", String.Format(CultureInfo.InvariantCulture, CommonResourcesMvc.Argument_Must_Be_Between, 0, 100));
             }
 
             HorizontalAlign horizontalAlignEnum = ParseHorizontalAlign(horizontalAlign);
@@ -471,7 +470,7 @@ namespace System.Web.Helpers
             {
                 throw new ArgumentOutOfRangeException(
                     "padding",
-                    String.Format(CultureInfo.InvariantCulture, CommonResources.Argument_Must_Be_GreaterThanOrEqualTo, 0));
+                    String.Format(CultureInfo.InvariantCulture, CommonResourcesMvc.Argument_Must_Be_GreaterThanOrEqualTo, 0));
             }
 
             WatermarkImageTransformation transformation =
@@ -569,7 +568,7 @@ namespace System.Web.Helpers
             filePath = filePath ?? FileName;
             if (String.IsNullOrEmpty(filePath))
             {
-                throw new ArgumentNullException("filePath", CommonResources.Argument_Cannot_Be_Null_Or_Empty);
+                throw new ArgumentNullException("filePath", CommonResourcesMvc.Argument_Cannot_Be_Null_Or_Empty);
             }
 
             // GetBytes takes care of executing pending transformations.

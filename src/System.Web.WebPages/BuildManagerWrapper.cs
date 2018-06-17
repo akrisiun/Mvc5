@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -22,7 +21,8 @@ namespace System.Web.WebPages
     /// VirtualPathProvider.FileExists which is used for all other scenarios. In this class, we optimize for the first scenario by storing the results of GetObjectFactory for a 
     /// long duration.
     /// </summary>
-    internal sealed class BuildManagerWrapper : IVirtualPathFactory
+    // internal 
+    public sealed class BuildManagerWrapper : IVirtualPathFactory
     {
         internal static readonly Guid KeyGuid = Guid.NewGuid();
         private static readonly TimeSpan _objectFactoryCacheDuration = TimeSpan.FromMinutes(1);
@@ -98,7 +98,8 @@ namespace System.Web.WebPages
         /// </remarks>
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes",
             Justification = "We want to replicate the behavior of BuildManager which catches all exceptions.")]
-        internal static bool IsNonUpdateablePrecompiledApp(VirtualPathProvider vpp, IVirtualPathUtility virtualPathUtility)
+        // internal 
+        public static bool IsNonUpdateablePrecompiledApp(VirtualPathProvider vpp, IVirtualPathUtility virtualPathUtility)
         {
             var virtualPath = virtualPathUtility.ToAbsolute("~/PrecompiledApp.config");
             if (!vpp.FileExists(virtualPath))

@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
@@ -9,7 +8,8 @@ using System.Web.Razor.Parser.SyntaxTree;
 
 namespace System.Web.Razor.Generator
 {
-    internal static class CodeGeneratorPaddingHelper
+    // internal 
+    public static class CodeGeneratorPaddingHelper
     {
         private static readonly char[] _newLineChars = { '\r', '\n' };
 
@@ -82,7 +82,8 @@ namespace System.Web.Razor.Generator
         }
 
         // internal for unit testing only, not intended to be used directly in code
-        internal static int CalculatePadding(RazorEngineHost host, Span target, int generatedStart)
+        // internal 
+        public static int CalculatePadding(RazorEngineHost host, Span target, int generatedStart)
         {
             if (host == null)
             {

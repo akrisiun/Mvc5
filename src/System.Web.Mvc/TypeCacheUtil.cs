@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace System.Web.Mvc
 {
@@ -28,6 +28,9 @@ namespace System.Web.Mvc
                 catch (ReflectionTypeLoadException ex)
                 {
                     typesInAsm = ex.Types;
+                    var errors = ex.LoaderExceptions;
+                    if (errors.Length > 0 && Debugger.IsAttached)
+                        Debugger.Log(0, "MVC55: TypeCacheUtil.FilterTypesInAssemblies", errors[0].Message);
                 }
                 typesSoFar = typesSoFar.Concat(typesInAsm);
             }

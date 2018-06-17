@@ -10,6 +10,7 @@ namespace System.Web.Razor.Test
 {
     public class VBRazorCodeLanguageTest
     {
+        /*
         [Fact]
         public void CreateCodeParserReturnsNewVBCodeParser()
         {
@@ -52,5 +53,6 @@ namespace System.Web.Razor.Test
             // Assert
             Assert.Equal(typeof(VBCodeProvider), service.CodeDomProviderType);
         }
+        */
     }
 }

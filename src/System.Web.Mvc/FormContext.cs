@@ -1,9 +1,8 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Web.Script.Serialization;
+//using System.Web.Script.Serialization;
 
 namespace System.Web.Mvc
 {
@@ -26,7 +25,6 @@ namespace System.Web.Mvc
         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Performs a potentially time-consuming conversion.")]
         public string GetJsonValidationMetadata()
         {
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
 
             SortedDictionary<string, object> dict = new SortedDictionary<string, object>()
             {
@@ -39,7 +37,9 @@ namespace System.Web.Mvc
             }
             dict["ReplaceValidationSummary"] = ReplaceValidationSummary;
 
-            return serializer.Serialize(dict);
+            //JavaScriptSerializer serializer = new JavaScriptSerializer();
+            //return serializer.Serialize(dict);
+            return Newtonsoft.Json.JsonConvert.SerializeObject(dict);
         }
 
         public FieldValidationMetadata GetValidationMetadataForField(string fieldName)

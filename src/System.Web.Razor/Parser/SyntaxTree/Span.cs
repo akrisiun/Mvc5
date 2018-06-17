@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -26,8 +25,11 @@ namespace System.Web.Razor.Parser.SyntaxTree
         public IEnumerable<ISymbol> Symbols { get; protected set; }
 
         // Allow test code to re-link spans
-        public Span Previous { get; protected internal set; }
-        public Span Next { get; protected internal set; }
+        public Span Previous { get; protected set; } // internal 
+        public Span Next { get; protected set; } // internal 
+
+        public Span PreviousSet(Span value) { Previous = value; return Previous; }
+        public Span NextSet(Span value) { Next = value; return Next; }
 
         public SpanEditHandler EditHandler { get; protected set; }
         public ISpanCodeGenerator CodeGenerator { get; protected set; }

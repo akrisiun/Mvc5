@@ -241,14 +241,14 @@ namespace System.Web.Razor.Test.Text
                 reader.Read(); // Reader: "cdefg"
             } // Reader: "bcdefg"
             reader.Read(); // Reader: "cdefg"
-            Assert.NotNull(reader.Buffer); // Verify our assumption that the buffer still exists
+            Assert.NotNull(reader.BufferGet); // Verify our assumption that the buffer still exists
 
             // Act
             reader.Read();
 
             // Assert
-            Assert.False(reader.Buffering, "The buffer was not reset when the end was reached");
-            Assert.Equal(0, reader.Buffer.Length);
+            Assert.False(reader.BufferingGet, "The buffer was not reset when the end was reached");
+            Assert.Equal(0, reader.BufferGet.Length);
         }
 
         private static void RunDisposeTest(Action<LookaheadTextReader> triggerAction)

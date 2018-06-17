@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +8,8 @@ using System.Web.Routing;
 
 namespace System.Web.WebPages
 {
-    internal static class UrlUtil
+    // internal 
+    public static class UrlUtil
     {
         private static UrlRewriterHelper _urlRewriterHelper = new UrlRewriterHelper();
 

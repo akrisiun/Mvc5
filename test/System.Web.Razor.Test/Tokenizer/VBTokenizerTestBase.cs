@@ -16,10 +16,10 @@ namespace System.Web.Razor.Test.Tokenizer
             get { return _ignoreRemaining; }
         }
 
-        protected override Tokenizer<VBSymbol, VBSymbolType> CreateTokenizer(ITextDocument source)
+        /* protected override Tokenizer<VBSymbol, VBSymbolType> CreateTokenizer(ITextDocument source)
         {
             return new VBTokenizer(source);
-        }
+        } */
 
         protected void TestSingleToken(string text, VBSymbolType expectedSymbolType)
         {

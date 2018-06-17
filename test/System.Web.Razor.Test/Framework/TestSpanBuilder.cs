@@ -166,8 +166,8 @@ namespace System.Web.Razor.Test.Framework
         {
             return new SpanFactory()
             {
-                MarkupTokenizerFactory = doc => new HtmlTokenizer(doc),
-                CodeTokenizerFactory = doc => new VBTokenizer(doc)
+                MarkupTokenizerFactory = doc => new HtmlTokenizer(doc)
+                // CodeTokenizerFactory = doc => new VBTokenizer(doc)
             };
         }
 

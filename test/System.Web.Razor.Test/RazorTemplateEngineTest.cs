@@ -98,12 +98,13 @@ namespace System.Web.Razor.Test
             RazorTemplateEngine engine = new RazorTemplateEngine(mockHost.Object);
 
             // Act
-            RazorCodeGenerator actual = engine.CreateCodeGenerator("Foo", "Bar", "Baz");
+            RazorCodeGenerator actual = engine.CreateCodeGeneratorGet("Foo", "Bar", "Baz");
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
+        //Fail
         [Fact]
         public void ParseTemplateCopiesTextReaderContentToSeekableTextReaderAndPassesToParseTemplateCore()
         {
@@ -116,7 +117,7 @@ namespace System.Web.Razor.Test
             mockEngine.Object.ParseTemplate(reader, cancelToken: source.Token);
 
             // Assert
-            mockEngine.Verify(e => e.ParseTemplateCore(It.Is<SeekableTextReader>(l => l.ReadToEnd() == "foo"),
+            mockEngine.Verify(e => e.ParseTemplateCoreGet(It.Is<SeekableTextReader>(l => l.ReadToEnd() == "foo"),
                                                        source.Token));
         }
 
@@ -135,7 +136,7 @@ namespace System.Web.Razor.Test
             mockEngine.Object.GenerateCode(reader, className: className, rootNamespace: ns, sourceFileName: src, cancelToken: source.Token);
 
             // Assert
-            mockEngine.Verify(e => e.GenerateCodeCore(It.Is<SeekableTextReader>(l => l.ReadToEnd() == "foo"),
+            mockEngine.Verify(e => e.GenerateCodeCoreGet(It.Is<SeekableTextReader>(l => l.ReadToEnd() == "foo"),
                                                       className, ns, src, source.Token));
         }
 

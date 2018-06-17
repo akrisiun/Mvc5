@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -9,7 +8,8 @@ namespace System.Web.Mvc
 {
     // The methods in this class don't perform error checking; that is the responsibility of the
     // caller.
-    internal sealed class ActionMethodDispatcher
+    // internal 
+    public sealed class ActionMethodDispatcher
     {
         private ActionExecutor _executor;
 
@@ -51,7 +51,7 @@ namespace System.Web.Mvc
 
             // Call method
             UnaryExpression instanceCast = (!methodInfo.IsStatic) ? Expression.Convert(controllerParameter, methodInfo.ReflectedType) : null;
-            MethodCallExpression methodCall = methodCall = Expression.Call(instanceCast, methodInfo, parameters);
+            MethodCallExpression methodCall = Expression.Call(instanceCast, methodInfo, parameters);
 
             // methodCall is "((TController) controller) method((T0) parameters[0], (T1) parameters[1], ...)"
             // Create function

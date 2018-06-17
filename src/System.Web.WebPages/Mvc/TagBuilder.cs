@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Globalization;
@@ -10,7 +9,7 @@ using Microsoft.Internal.Web.Utils;
 
 namespace System.Web.Mvc
 {
-    [TypeForwardedFrom("System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35")]
+    [TypeForwardedFrom("System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=2f9147bba06de483")]
     public class TagBuilder
     {
         private string _idAttributeDotReplacement;
@@ -180,6 +179,11 @@ namespace System.Web.Mvc
         }
 
         internal HtmlString ToHtmlString(TagRenderMode renderMode)
+        {
+            return new HtmlString(ToString(renderMode));
+        }
+
+        public HtmlString ToHtmlStringMvc(TagRenderMode renderMode)
         {
             return new HtmlString(ToString(renderMode));
         }

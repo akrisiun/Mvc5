@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
@@ -61,7 +60,7 @@ namespace System.Web.WebPages
         {
             if (String.IsNullOrEmpty(pattern))
             {
-                throw new ArgumentException(CommonResources.Argument_Cannot_Be_Null_Or_Empty, "pattern");
+                throw new ArgumentException(CommonResourcesMvc.Argument_Cannot_Be_Null_Or_Empty, "pattern");
             }
 
             errorMessage = DefaultIfEmpty(errorMessage, WebPageResources.ValidationDefault_Regex);
@@ -74,7 +73,7 @@ namespace System.Web.WebPages
         {
             if (String.IsNullOrEmpty(otherFieldName))
             {
-                throw new ArgumentException(CommonResources.Argument_Cannot_Be_Null_Or_Empty, "otherFieldName");
+                throw new ArgumentException(CommonResourcesMvc.Argument_Cannot_Be_Null_Or_Empty, "otherFieldName");
             }
 
             errorMessage = DefaultIfEmpty(errorMessage, WebPageResources.ValidationDefault_EqualsTo);

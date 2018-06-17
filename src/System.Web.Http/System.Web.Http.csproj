@@ -7,34 +7,40 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>System.Web.Http</RootNamespace>
     <AssemblyName>System.Web.Http</AssemblyName>
-    <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
-    <RunCodeAnalysis>$(CodeAnalysis)</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>..\Strict.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
     <DefineConstants>$(DefineConstants);ASPNETMVC;ASPNETWEBAPI</DefineConstants>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>xmAspNet.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;ASPNETMVC;ASPNETWEBAPI</DefineConstants>
+    <DocumentationFile />
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <OutputPath>..\..\lib\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\CollectionExtensions.cs">
-      <Link>Common\CollectionExtensions.cs</Link>
     </Compile>
     <Compile Include="..\Common\DictionaryExtensions.cs">
       <Link>Common\DictionaryExtensions.cs</Link>
@@ -111,6 +117,7 @@
     <Compile Include="Batch\HttpBatchHandler.cs" />
     <Compile Include="Batch\DefaultHttpBatchHandler.cs" />
     <Compile Include="Batch\BatchHttpRequestMessageExtensions.cs" />
+    <Compile Include="Common\CollectionExtensionsHttp.cs" />
     <Compile Include="Controllers\ActionFilterResult.cs" />
     <Compile Include="Controllers\AuthenticationFilterResult.cs" />
     <Compile Include="Controllers\AuthorizationFilterResult.cs" />
@@ -269,9 +276,7 @@
     <Compile Include="Tracing\Tracers\FormatterLoggerTraceWrapper.cs" />
     <Compile Include="Tracing\Tracers\DefaultHttpControllerTypeResolverTracer.cs" />
     <Compile Include="Tracing\Tracers\OverrideFilterTracer.cs" />
-    <Compile Include="Validation\BodyModelValidatorContext.cs" />
     <Compile Include="Validation\IModelValidatorCache.cs" />
-    <Compile Include="Validation\IBodyModelValidatorKeyBuilder.cs" />
     <Compile Include="Validation\ModelValidatorCache.cs" />
     <Compile Include="Controllers\ResponseMessageResultConverter.cs" />
     <Compile Include="Controllers\ValueResultConverter.cs" />
@@ -532,9 +537,6 @@
     <Compile Include="ApiController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <CodeAnalysisDictionary Include="..\CodeAnalysisDictionary.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\Common\CommonWebApiResources.Designer.cs">
       <Link>Properties\CommonWebApiResources.Designer.cs</Link>
       <AutoGen>True</AutoGen>
@@ -564,6 +566,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="xmAspNet.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

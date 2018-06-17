@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections;
 using System.Collections.Generic;
@@ -105,7 +104,7 @@ namespace System.Web.Mvc.Html
                     {
                         actionCache[fullViewName] = new ActionCacheViewItem { ViewName = fullViewName };
 
-                        using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
+                        using (var writer = new StringBlockWriter(CultureInfo.InvariantCulture))
                         {
                             viewEngineResult.View.Render(new ViewContext(html.ViewContext, viewEngineResult.View, viewData, html.ViewContext.TempData, writer), writer);
                             return writer.ToString();
@@ -349,7 +348,7 @@ namespace System.Web.Mvc.Html
             public override string Execute(HtmlHelper html, ViewDataDictionary viewData)
             {
                 ViewEngineResult viewEngineResult = ViewEngines.Engines.FindPartialView(html.ViewContext, ViewName);
-                using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
+                using (var writer = new StringBlockWriter(CultureInfo.InvariantCulture))
                 {
                     viewEngineResult.View.Render(new ViewContext(html.ViewContext, viewEngineResult.View, viewData, html.ViewContext.TempData, writer), writer);
                     return writer.ToString();

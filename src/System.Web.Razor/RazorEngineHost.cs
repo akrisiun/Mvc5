@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.CodeDom;
 using System.Collections.Generic;
@@ -26,8 +25,10 @@ namespace System.Web.Razor
     /// </remarks>
     public class RazorEngineHost
     {
-        internal const string InternalDefaultClassName = "__CompiledTemplate";
-        internal const string InternalDefaultNamespace = "Razor";
+        // internal 
+        public const string InternalDefaultClassName = "__CompiledTemplate";
+        // internal 
+        public const string InternalDefaultNamespace = "Razor";
 
         private bool _instrumentationActive = false;
         private Func<ParserBase> _markupParserFactory;

@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -36,9 +35,12 @@ namespace System.Web.Razor.Parser
             };
         }
 
-        internal ParserBase CodeParser { get; private set; }
-        internal ParserBase MarkupParser { get; private set; }
-        internal IList<ISyntaxTreeRewriter> Optimizers { get; private set; }
+        // internal 
+        public ParserBase CodeParser { get; private set; }
+        // internal 
+        public ParserBase MarkupParser { get; private set; }
+        // internal 
+        public IList<ISyntaxTreeRewriter> Optimizers { get; private set; }
 
         public bool DesignTimeMode { get; set; }
 
@@ -146,10 +148,10 @@ namespace System.Web.Razor.Parser
             Span prev = null;
             foreach (Span node in current.Flatten())
             {
-                node.Previous = prev;
+                node.PreviousSet(prev);
                 if (prev != null)
                 {
-                    prev.Next = node;
+                    prev.NextSet(node);
                 }
                 prev = node;
             }

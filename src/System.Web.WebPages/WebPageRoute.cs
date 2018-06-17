@@ -1,16 +1,18 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.IO;
-using System.Web.WebPages.Deployment;
+//using System.Web.WebPages.Deployment;
 using System.Web.WebPages.Resources;
 
 namespace System.Web.WebPages
 {
     internal sealed class WebPageRoute
     {
-        private static readonly Lazy<bool> _isRootExplicitlyDisabled = new Lazy<bool>(() => WebPagesDeployment.IsExplicitlyDisabled("~/"));
+        private static readonly Lazy<bool> _isRootExplicitlyDisabled
+            = new Lazy<bool>(() => WebPagesDeployment_IsExplicitlyDisabled("~/"));
+        internal static bool WebPagesDeployment_IsExplicitlyDisabled(string path) { return false; } // WebPagesDeployment.IsExplicitlyDisabled("~/"));
+
         private bool? _isExplicitlyDisabled;
 
         internal bool IsExplicitlyDisabled
@@ -41,7 +43,7 @@ namespace System.Web.WebPages
                 string virtualPath = "~/" + webpageRouteMatch.MatchedPath;
 
                 // Verify that this path is enabled before remapping
-                if (!WebPagesDeployment.IsExplicitlyDisabled(virtualPath))
+                if (!WebPagesDeployment_IsExplicitlyDisabled(virtualPath))
                 {
                     IHttpHandler handler = WebPageHttpHandler.CreateFromVirtualPath(virtualPath);
                     if (handler != null)

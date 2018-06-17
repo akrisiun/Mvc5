@@ -12,6 +12,7 @@ namespace System.Web.Razor.Test.Parser.VB
 {
     public class VBBlockTest : VBHtmlCodeParserTestBase
     {
+        /*
         [Fact]
         public void ParseBlockMethodThrowsArgNullExceptionOnNullContext()
         {
@@ -363,5 +364,6 @@ namespace System.Web.Razor.Test.Parser.VB
                 AcceptedCharacters.WhiteSpace | AcceptedCharacters.NonWhiteSpace :
                 AcceptedCharacters.None;
         }
+        */
     }
 }

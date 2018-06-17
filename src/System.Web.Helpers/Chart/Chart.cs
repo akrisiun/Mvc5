@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections;
 using System.Collections.Generic;
@@ -92,14 +91,14 @@ namespace System.Web.Helpers
             {
                 throw new ArgumentOutOfRangeException("width", String.Format(
                     CultureInfo.CurrentCulture,
-                    CommonResources.Argument_Must_Be_GreaterThanOrEqualTo,
+                    CommonResourcesMvc.Argument_Must_Be_GreaterThanOrEqualTo,
                     0));
             }
             if (height < 0)
             {
                 throw new ArgumentOutOfRangeException("height", String.Format(
                     CultureInfo.CurrentCulture,
-                    CommonResources.Argument_Must_Be_GreaterThanOrEqualTo,
+                    CommonResourcesMvc.Argument_Must_Be_GreaterThanOrEqualTo,
                     0));
             }
 
@@ -179,7 +178,7 @@ namespace System.Web.Helpers
         {
             if (String.IsNullOrEmpty(chartType))
             {
-                throw new ArgumentException(CommonResources.Argument_Cannot_Be_Null_Or_Empty, "chartType");
+                throw new ArgumentException(CommonResourcesMvc.Argument_Cannot_Be_Null_Or_Empty, "chartType");
             }
 
             DataSourceData dataSource = null;
@@ -273,11 +272,11 @@ namespace System.Web.Helpers
             }
             if (String.IsNullOrEmpty(groupByField))
             {
-                throw new ArgumentException(CommonResources.Argument_Cannot_Be_Null_Or_Empty, "groupByField");
+                throw new ArgumentException(CommonResourcesMvc.Argument_Cannot_Be_Null_Or_Empty, "groupByField");
             }
             if (String.IsNullOrEmpty(yFields))
             {
-                throw new ArgumentException(CommonResources.Argument_Cannot_Be_Null_Or_Empty, "yFields");
+                throw new ArgumentException(CommonResourcesMvc.Argument_Cannot_Be_Null_Or_Empty, "yFields");
             }
 
             _dataSource = new DataSourceData
@@ -365,7 +364,7 @@ namespace System.Web.Helpers
         {
             if (String.IsNullOrEmpty(path))
             {
-                throw new ArgumentException(CommonResources.Argument_Cannot_Be_Null_Or_Empty, "path");
+                throw new ArgumentException(CommonResourcesMvc.Argument_Cannot_Be_Null_Or_Empty, "path");
             }
             var imageFormat = ConvertStringToChartImageFormat(format);
 
@@ -414,7 +413,7 @@ namespace System.Web.Helpers
         {
             if (String.IsNullOrEmpty(path))
             {
-                throw new ArgumentException(CommonResources.Argument_Cannot_Be_Null_Or_Empty, "path");
+                throw new ArgumentException(CommonResourcesMvc.Argument_Cannot_Be_Null_Or_Empty, "path");
             }
 
             ExecuteChartAction(c =>
@@ -524,7 +523,7 @@ namespace System.Web.Helpers
 
             if (String.IsNullOrEmpty(key))
             {
-                throw new ArgumentException(CommonResources.Argument_Cannot_Be_Null_Or_Empty, "key");
+                throw new ArgumentException(CommonResourcesMvc.Argument_Cannot_Be_Null_Or_Empty, "key");
             }
 
             var chart = WebCache.Get(key) as Chart;
@@ -749,7 +748,7 @@ namespace System.Web.Helpers
         {
             if (String.IsNullOrEmpty(format))
             {
-                throw new ArgumentException(CommonResources.Argument_Cannot_Be_Null_Or_Empty, "format");
+                throw new ArgumentException(CommonResourcesMvc.Argument_Cannot_Be_Null_Or_Empty, "format");
             }
             if (format.StartsWith("image/", StringComparison.OrdinalIgnoreCase))
             {

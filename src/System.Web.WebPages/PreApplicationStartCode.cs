@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.ComponentModel;
 using System.Web.UI;
@@ -33,7 +32,7 @@ namespace System.Web.WebPages
             _startWasCalled = true;
 
             WebPageHttpHandler.RegisterExtension("cshtml");
-            WebPageHttpHandler.RegisterExtension("vbhtml");
+            // WebPageHttpHandler.RegisterExtension("vbhtml");
 
             // Turn off the string resource behavior which would not work in our simple base page
             PageParser.EnableLongStringsAsResources = false;

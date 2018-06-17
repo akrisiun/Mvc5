@@ -1,10 +1,10 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Reflection;
 using System.Threading;
 using System.Web.Razor.Generator;
 using System.Web.Razor.Parser;
@@ -78,7 +78,10 @@ namespace System.Web.Razor
             return ParseTemplateCore(new SeekableTextReader(input), cancelToken);
         }
 
-        protected internal virtual ParserResults ParseTemplateCore(ITextDocument input, CancellationToken? cancelToken)
+        public ParserResults ParseTemplateCoreGet(ITextDocument input, CancellationToken? cancelToken) => ParseTemplateCore(input, cancelToken);
+
+        protected // internal 
+            virtual ParserResults ParseTemplateCore(ITextDocument input, CancellationToken? cancelToken)
         {
             // Construct the parser
             RazorParser parser = CreateParser();
@@ -150,14 +153,20 @@ namespace System.Web.Razor
             return GenerateCodeCore(new SeekableTextReader(input), className, rootNamespace, sourceFileName, cancelToken);
         }
 
-        protected internal virtual GeneratorResults GenerateCodeCore(ITextDocument input, string className, string rootNamespace, string sourceFileName, CancellationToken? cancelToken)
+        public GeneratorResults GenerateCodeCoreGet(ITextDocument input, string className, string rootNamespace, string sourceFileName, CancellationToken? cancelToken)
+            => GenerateCodeCore(input, className, rootNamespace, sourceFileName, cancelToken);
+
+        protected // internal 
+            virtual GeneratorResults GenerateCodeCore(ITextDocument input, string className, string rootNamespace, string sourceFileName, CancellationToken? cancelToken)
         {
             className = (className ?? Host.DefaultClassName) ?? DefaultClassName;
             rootNamespace = (rootNamespace ?? Host.DefaultNamespace) ?? DefaultNamespace;
 
             // Run the parser
             RazorParser parser = CreateParser();
-            Debug.Assert(parser != null);
+            if (parser == null)
+                return null;
+            // Debug.Assert(parser != null);
             ParserResults results = parser.Parse(input);
 
             // Generate code
@@ -179,13 +188,18 @@ namespace System.Web.Razor
             return new GeneratorResults(results, generator.Context.CompileUnit, designTimeLineMappings);
         }
 
-        protected internal virtual RazorCodeGenerator CreateCodeGenerator(string className, string rootNamespace, string sourceFileName)
+        public RazorCodeGenerator CreateCodeGeneratorGet(string className, string rootNamespace, string sourceFileName)
+            => this.CreateCodeGenerator(className, rootNamespace, sourceFileName);
+
+        protected // internal 
+            virtual RazorCodeGenerator CreateCodeGenerator(string className, string rootNamespace, string sourceFileName)
         {
             return Host.DecorateCodeGenerator(
                 Host.CodeLanguage.CreateCodeGenerator(className, rootNamespace, sourceFileName, Host));
         }
 
-        protected internal virtual RazorParser CreateParser()
+        public // internal 
+            virtual RazorParser CreateParser()
         {
             ParserBase codeParser = Host.CodeLanguage.CreateCodeParser();
             ParserBase markupParser = Host.CreateMarkupParser();

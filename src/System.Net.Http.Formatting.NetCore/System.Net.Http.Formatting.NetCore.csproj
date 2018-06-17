@@ -9,14 +9,13 @@
     <AssemblyName>System.Net.Http.Formatting</AssemblyName>
     <OutputPath>$(OutputPath)NetCore\</OutputPath>
     <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
-    <RunCodeAnalysis>$(CodeAnalysis)</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>..\Strict.ruleset</CodeAnalysisRuleSet>
-    <CodeAnalysisAdditionalOptions> /assemblycomparemode:StrongNameIgnoringVersion</CodeAnalysisAdditionalOptions>
-    <CodeAnalysisSearchGlobalAssemblyCache>false</CodeAnalysisSearchGlobalAssemblyCache>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
     <DefineConstants>$(DefineConstants);NETFX_CORE;ASPNETMVC;NOT_CLS_COMPLIANT</DefineConstants>
     <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <NoWarn>1591</NoWarn>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\CommonAssemblyInfo.cs">
@@ -57,9 +56,6 @@
     </Compile>
     <Compile Include="..\System.Net.Http.Formatting\Formatting\FormUrlEncodedJson.cs">
       <Link>Formatting\FormUrlEncodedJson.cs</Link>
-    </Compile>
-    <Compile Include="..\System.Net.Http.Formatting\Formatting\FormUrlEncodedMediaTypeFormatter.cs">
-      <Link>Formatting\FormUrlEncodedMediaTypeFormatter.cs</Link>
     </Compile>
     <Compile Include="..\System.Net.Http.Formatting\Formatting\IFormatterLogger.cs">
       <Link>Formatting\IFormatterLogger.cs</Link>
@@ -117,9 +113,6 @@
     </Compile>
     <Compile Include="..\System.Net.Http.Formatting\Formatting\XmlMediaTypeFormatter.cs">
       <Link>Formatting\XmlMediaTypeFormatter.cs</Link>
-    </Compile>
-    <Compile Include="..\System.Net.Http.Formatting\HttpContentFormDataExtensions.cs">
-      <Link>HttpContentFormDataExtensions.cs</Link>
     </Compile>
     <Compile Include="..\System.Net.Http.Formatting\Internal\HttpValueCollection.cs">
       <Link>HttpValueCollection.cs</Link>
@@ -243,11 +236,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <CodeAnalysisDictionary Include="..\CodeAnalysisDictionary.xml">
-      <Link>CodeAnalysisDictionary.xml</Link>
-    </CodeAnalysisDictionary>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

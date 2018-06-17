@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections;
 using System.Collections.Generic;
@@ -11,15 +10,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Newtonsoft.Json;
-#if NEWTONSOFTJSON10
-using BsonReader = Newtonsoft.Json.Bson.BsonDataReader;
-using BsonWriter = Newtonsoft.Json.Bson.BsonDataWriter;
-#else
 using Newtonsoft.Json.Bson;
-#endif
 
 namespace System.Net.Http.Formatting
 {
+    [Obsolete]
+    public class BsonMediaTypeFormatter
+    { }
+
+
+/*
     /// <summary>
     /// <see cref="MediaTypeFormatter"/> class to handle Bson.
     /// </summary>
@@ -200,7 +200,7 @@ namespace System.Net.Http.Formatting
                 throw Error.ArgumentNull("effectiveEncoding");
             }
 
-            BsonReader reader = new BsonReader(new BinaryReader(readStream, effectiveEncoding));
+            var reader = new BsonReader(new BinaryReader(readStream, effectiveEncoding));
 
             try
             {
@@ -320,4 +320,6 @@ namespace System.Net.Http.Formatting
             return isSimpleType;
         }
     }
+*/
+
 }

@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -24,6 +23,7 @@ namespace System.Web.Razor.Parser
             MapKeywords(UsingKeyword, CSharpKeyword.Using);
             MapKeywords(DoStatement, CSharpKeyword.Do);
             MapKeywords(ReservedDirective, CSharpKeyword.Namespace, CSharpKeyword.Class);
+            MapKeywords(AwaitKeyword, CSharpKeyword.Await);
         }
 
         protected virtual void ReservedDirective(bool topLevel)
@@ -383,6 +383,17 @@ namespace System.Web.Razor.Parser
         private void Statement()
         {
             Statement(null);
+        }
+
+        private void AwaitKeyword(bool topLevel)
+        {
+            Assert(CSharpKeyword.Await);
+            AcceptAndMoveNext();
+            AcceptWhile(IsSpacingToken(includeNewLines: false, includeComments: true));
+            if (topLevel)
+            {
+                AsyncImplicitExpression();
+            }
         }
 
         private void Statement(Block block)

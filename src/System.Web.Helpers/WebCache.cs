@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Globalization;
 using System.Runtime.Caching;
@@ -14,13 +13,13 @@ namespace System.Web.Helpers
             if (minutesToCache <= 0)
             {
                 throw new ArgumentOutOfRangeException("minutesToCache",
-                                                      String.Format(CultureInfo.CurrentCulture, CommonResources.Argument_Must_Be_GreaterThan, 0));
+                                                      String.Format(CultureInfo.CurrentCulture, CommonResourcesMvc.Argument_Must_Be_GreaterThan, 0));
             }
             else if (slidingExpiration && (minutesToCache > 365 * 24 * 60))
             {
                 // For sliding expiration policies, MemoryCache has a time limit of 365 days. 
                 throw new ArgumentOutOfRangeException("minutesToCache",
-                                                      String.Format(CultureInfo.CurrentCulture, CommonResources.Argument_Must_Be_LessThanOrEqualTo, 365 * 24 * 60));
+                                                      String.Format(CultureInfo.CurrentCulture, CommonResourcesMvc.Argument_Must_Be_LessThanOrEqualTo, 365 * 24 * 60));
             }
 
             CacheItemPolicy policy = new CacheItemPolicy();

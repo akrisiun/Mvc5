@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -66,7 +65,7 @@ namespace System.Web.Helpers
             {
                 if (String.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentException(CommonResources.Argument_Cannot_Be_Null_Or_Empty, "SmtpServer");
+                    throw new ArgumentException(CommonResourcesMvc.Argument_Cannot_Be_Null_Or_Empty, "SmtpServer");
                 }
                 ScopeStorage.CurrentScope[SmtpServerKey] = value;
             }

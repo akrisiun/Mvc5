@@ -6,6 +6,7 @@ using Microsoft.TestCommon;
 
 namespace System.Web.Razor.Test.Tokenizer
 {
+    /*
     public class VBTokenizerIdentifierTest : VBTokenizerTestBase
     {
         [Fact]
@@ -265,4 +266,5 @@ namespace System.Web.Razor.Test.Tokenizer
             TestTokenizer(keyword, new VBSymbol(0, 0, 0, keyword, VBSymbolType.Keyword) { Keyword = keywordType });
         }
     }
+    */
 }

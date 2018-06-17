@@ -5,7 +5,8 @@ using System.Collections;
 
 namespace Microsoft.Internal.Web.Utils
 {
-    internal class HashCodeCombiner
+    // internal 
+    public class HashCodeCombiner
     {
         private long _combinedHash64 = 0x1505L;
 

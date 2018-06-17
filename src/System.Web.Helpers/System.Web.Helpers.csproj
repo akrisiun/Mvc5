@@ -1,16 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),Runtime.sln))\tools\WebStack.settings.targets" />
   <PropertyGroup>
     <ProjectGuid>{9B7E3740-6161-4548-833C-4BBCA43B970E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>System.Web.Helpers</RootNamespace>
     <AssemblyName>System.Web.Helpers</AssemblyName>
-    <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
-    <RunCodeAnalysis>$(CodeAnalysis)</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>..\WebHelpers.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
     <DefineConstants>$(DefineConstants);ASPNETWEBPAGES</DefineConstants>
     <NoWarn>1591</NoWarn>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <OutputPath>..\..\lib\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -22,11 +25,19 @@
     <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\System.Web.WebPages.dll</HintPath>
+    </Reference>
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\CommonResources.Designer.cs">
+      <Link>Common\CommonResources.Designer.cs</Link>
+      <DependentUpon>CommonResources.resx</DependentUpon>
     </Compile>
     <Compile Include="..\GlobalSuppressions.cs">
       <Link>Common\GlobalSuppressions.cs</Link>
@@ -46,6 +57,7 @@
     <Compile Include="Json.cs" />
     <Compile Include="ObjectInfo.cs" />
     <Compile Include="ObjectVisitor.cs" />
+    <Compile Include="Resources\ChartTemplates.Designer.cs" />
     <Compile Include="WebCache.cs" />
     <Compile Include="ServerInfo.cs" />
     <Compile Include="Resources\HelpersResources.Designer.cs">
@@ -72,16 +84,16 @@
     <Compile Include="WebMail.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="..\CommonResources.resx">
+      <Link>Common\CommonResources.resx</Link>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CommonResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ChartTemplates.resx" />
     <EmbeddedResource Include="Resources\HelpersResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>HelpersResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\System.Web.WebPages\System.Web.WebPages.csproj">
-      <Project>{76EFA9C5-8D7E-4FDF-B710-E20F8B6B00D2}</Project>
-      <Name>System.Web.WebPages</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="WebGrid\_WebGridRenderer.cshtml">
@@ -89,9 +101,6 @@
       <LastGenOutput>_WebGridRenderer.generated.cs</LastGenOutput>
       <CustomToolNamespace>System.Web.Helpers</CustomToolNamespace>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <CodeAnalysisDictionary Include="..\CodeAnalysisDictionary.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

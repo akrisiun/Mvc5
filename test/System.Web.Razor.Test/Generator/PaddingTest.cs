@@ -92,7 +92,7 @@ namespace System.Web.Razor.Test.Generator
 
             int generatedStart = 1;
             string code = " if (true)";
-            int paddingCharCount;
+            int paddingCharCount = 0;
 
             string padded = CodeGeneratorPaddingHelper.PadStatement(host, code, span, ref generatedStart, out paddingCharCount);
 
@@ -130,7 +130,7 @@ namespace System.Web.Razor.Test.Generator
 
             int generatedStart = 1;
             string code = " if (true)";
-            int paddingCharCount;
+            int paddingCharCount = 0;
 
             string padded = CodeGeneratorPaddingHelper.PadStatement(host, code, span, ref generatedStart, out paddingCharCount);
 
@@ -168,7 +168,7 @@ namespace System.Web.Razor.Test.Generator
 
             int generatedStart = 1;
             string code = " if (true) { \r\n";
-            int paddingCharCount;
+            int paddingCharCount = 0;
             string padded = CodeGeneratorPaddingHelper.PadStatement(host, code, span, ref generatedStart, out paddingCharCount);
 
             VerifyPadded(numTabs, numSpaces, code, padded, paddingCharCount);
