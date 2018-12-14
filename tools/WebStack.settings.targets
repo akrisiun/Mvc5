@@ -1,59 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(CustomBeforeWebStackTargets)" Condition="Exists('$(CustomBeforeWebStackTargets)')" 
-          Label="Pre-targets Build Extensibility Point"/>
+    <PropertyGroup>
+        <!-- Define some basic reference paths -->
+        <WebStackRootPath>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\'))</WebStackRootPath>
+        <WebStackToolsPath>$(MSBuildThisFileDirectory)</WebStackToolsPath>
 
-  <PropertyGroup>
-    <!-- Define some basic reference paths -->
-    <WebStackRootPath>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\'))</WebStackRootPath>
-    <WebStackToolsPath>$(MSBuildThisFileDirectory)</WebStackToolsPath>
+        <!-- Define default configuration (so building from command line is consistent) -->
+        <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
 
-    <!-- Use CustomAfterMicrosoftCommonTargets property (defined in Microsoft.Common.targets) to
+        <!-- Define basic output paths -->
+        <OutputPath Condition=" '$(OutputPath)' == '' ">$(WebStackRootPath)bin\$(Configuration)\</OutputPath>
+        <WebStackIntermediateOutputPath>$(WebStackRootPath)obj\$(Configuration)\$(MSBuildProjectName)\</WebStackIntermediateOutputPath>
+
+        <!-- Variables for output redirection (localization, signing, etc)-->
+        <Language Condition=" '$(Language)' == '' ">ENU</Language>
+        <LocalizedPath Condition=" '$(LocalizedPath)' == '' "></LocalizedPath>
+
+        <!-- StyleCop support -->
+        <StyleCopTreatErrorsAsWarnings Condition=" '$(StyleCopTreatErrorsAsWarnings)' == '' ">false</StyleCopTreatErrorsAsWarnings>
+        <StyleCopEnabled Condition=" '$(StyleCopEnabled)' == '' ">false</StyleCopEnabled>
+
+        <!-- VisualStudioVersion does not appear in 4.0 so its absence defaults to Dev10 -->
+        <VisualStudioVersion Condition = "'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+
+        <!-- Target 4.0 for both VS2010 and VS 11 by default -->
+        <TargetFrameworkVersion Condition = "'$(TargetFrameworkVersion)' == ''">v4.0</TargetFrameworkVersion>
+
+        <!-- Enable NuGet package restore for all projects -->
+        <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">$(WebStackRootPath)</SolutionDir>
+        <RestorePackages Condition=" '$(RestorePackages)' == '' ">$(EnableNuGetPackageRestore)</RestorePackages>
+        <RestorePackages Condition=" '$(RestorePackages)' == '' ">false</RestorePackages>
+
+        <!-- Use CustomAfterMicrosoftCommonTargets property (defined in Microsoft.Common.targets) to
              inject post-Common targets files without requiring the inclusion -->
-    <CustomAfterMicrosoftCommonTargets>$(WebStackToolsPath)WebStack.targets</CustomAfterMicrosoftCommonTargets>
-    
-    <!-- Force rebuild if this file changes -->
-    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
-  </PropertyGroup>
-  
-  <!-- Project Defaults -->
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <OutputPath Condition="'$(OutputPath)' == ''">$(WebStackRootPath)bin\$(Configuration)\</OutputPath>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <FileAlignment>512</FileAlignment>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <CustomAfterMicrosoftCommonTargets>$(WebStackToolsPath)WebStack.targets</CustomAfterMicrosoftCommonTargets>
+    </PropertyGroup>
 
-    <!-- Variables for output redirection (localization, signing, etc)-->
-    <Language Condition=" '$(Language)' == '' ">ENU</Language>
-    <LocalizedPath Condition=" '$(LocalizedPath)' == '' "></LocalizedPath>
-
-    <!-- Target 4.5 by default -->
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-
-    <!-- 
+    <!-- Everything is delay signed by default -->
+    <PropertyGroup>
         <SignAssembly>true</SignAssembly>
-        <AssemblyOriginatorKeyFile>$(WebStackRootPath)\tools\xmAspNet.snk</AssemblyOriginatorKeyFile>
-    -->        
-  </PropertyGroup>
-
-  <!-- Per-configuration properties -->
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <DefineConstants>TRACE</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'CodeAnalysis|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <DefineConstants>TRACE;CODE_ANALYSIS</DefineConstants>
-  </PropertyGroup>
+        <DelaySign>true</DelaySign>
+        <AssemblyOriginatorKeyFile>$(WebStackRootPath)\tools\35MSSharedLib1024.snk</AssemblyOriginatorKeyFile>
+    </PropertyGroup>
 </Project>
