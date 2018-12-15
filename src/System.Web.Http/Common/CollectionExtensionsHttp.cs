@@ -29,7 +29,7 @@ namespace System.Collections.Generic
         /// Return the enumerable as an Array, copying if required. Optimized for common case where it is an Array. 
         /// Avoid mutating the return value.
         /// </summary>
-        public static T[] AsArrayH<T>(this IEnumerable<T> values)
+        public static T[] AsArray<T>(this IEnumerable<T> values)
         {
             Contract.Assert(values != null);
 

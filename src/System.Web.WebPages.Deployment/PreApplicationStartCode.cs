@@ -106,7 +106,8 @@ namespace System.Web.WebPages.Deployment
             }
             else if (!webPagesEnabled)
             {
-                Debug.WriteLine("WebPages Bootstrapper v{0}: WebPages not enabled, registering for change notifications", AssemblyUtils.ThisAssemblyName.Version);
+                Debug.WriteLine("WebPages Bootstrapper v{0}: WebPages not enabled, registering for change notifications", 
+                    AssemblyUtils.ThisAssemblyName.Version);
                 // Register for change notifications under the application root
                 registerForChangeNotification();
                 return false;
@@ -116,7 +117,9 @@ namespace System.Web.WebPages.Deployment
                 if (version == AssemblyUtils.WebPagesV1Version && configVersion == null && binVersion == null)
                 {
                     // No version was specified. We're implicitly assuming that the site is a v1 site. However, the user does not have V1 binaries available. 
-                    throw new InvalidOperationException(ConfigurationResources.WebPagesImplicitVersionFailure);
+                    throw new InvalidOperationException(
+                        // ConfigurationResources.
+                        "WebPagesImplicitVersionFailure");
                 }
                 else 
                 {

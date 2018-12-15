@@ -178,7 +178,8 @@ namespace System.Web.Mvc
             InnerHtml = HttpUtility.HtmlEncode(innerText);
         }
 
-        internal HtmlString ToHtmlString(TagRenderMode renderMode)
+        // internal 
+        public HtmlString ToHtmlString(TagRenderMode renderMode)
         {
             return new HtmlString(ToString(renderMode));
         }

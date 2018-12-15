@@ -65,7 +65,7 @@ namespace System.Web.Helpers
             {
                 if (String.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentException(CommonResourcesMvc.Argument_Cannot_Be_Null_Or_Empty, "SmtpServer");
+                    throw new ArgumentException($"Argument_Cannot_Be_Null_Or_Empty {SmtpServer}");
                 }
                 ScopeStorage.CurrentScope[SmtpServerKey] = value;
             }

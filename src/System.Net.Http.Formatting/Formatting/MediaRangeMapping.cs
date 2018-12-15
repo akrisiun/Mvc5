@@ -76,17 +76,13 @@ namespace System.Net.Http.Formatting
 
         private void Initialize(MediaTypeHeaderValue mediaRange)
         {
-            if (mediaRange == null)
-            {
-                throw new ArgumentNullException("mediaRange");
-            }
-
+            /* TODO:  wtf is  IsMediaRange
             if (!mediaRange.IsMediaRange())
             {
-                throw new InvalidOperationException(RS.Format(Properties.Resources.InvalidMediaRange, mediaRange.ToString()));
-            }
+                throw new InvalidOperationException(string.Format(Properties.Resources.InvalidMediaRange, mediaRange.ToString()));
+            } */
 
-            MediaRange = mediaRange;
+            MediaRange = mediaRange ?? throw new ArgumentNullException("mediaRange");
         }
     }
 }

@@ -40,7 +40,7 @@ namespace System.Net.Http.Formatting
                 {
                     base.Read();
                 }
-                throw new JsonReaderQuotaException(RS.Format(Properties.Resources.JsonTooDeep, _maxDepth));
+                throw new JsonReaderQuotaException(string.Format(Properties.Resources.JsonTooDeep, _maxDepth));
             }
             return didRead;
         }

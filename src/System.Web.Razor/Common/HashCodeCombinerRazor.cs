@@ -5,7 +5,7 @@ using System.Collections;
 
 namespace Microsoft.Internal.Web.Utils
 {
-    public class HashCodeCombiner
+    internal class HashCodeCombiner1
     {
         private long _combinedHash64 = 0x1505L;
 
@@ -13,7 +13,7 @@ namespace Microsoft.Internal.Web.Utils
             get { return _combinedHash64.GetHashCode(); }
         }
 
-        public HashCodeCombiner Add(IEnumerable e)
+        public HashCodeCombiner1 Add(IEnumerable e)
         {
             if (e == null)
             {
@@ -32,22 +32,22 @@ namespace Microsoft.Internal.Web.Utils
             return this;
         }
 
-        public HashCodeCombiner Add(int i)
+        public HashCodeCombiner1 Add(int i)
         {
             _combinedHash64 = ((_combinedHash64 << 5) + _combinedHash64) ^ i;
             return this;
         }
 
-        public HashCodeCombiner Add(object o)
+        public HashCodeCombiner1 Add(object o)
         {
             int hashCode = (o != null) ? o.GetHashCode() : 0;
             Add(hashCode);
             return this;
         }
 
-        public static HashCodeCombiner Start()
+        public static HashCodeCombiner1 Start()
         {
-            return new HashCodeCombiner();
+            return new HashCodeCombiner1();
         }
     }
 }

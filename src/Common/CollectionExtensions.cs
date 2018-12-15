@@ -9,7 +9,8 @@ namespace System.Collections.Generic
     /// <summary>
     /// Helper extension methods for fast use of collections.
     /// </summary>
-    internal  static class CollectionExtensions
+    // internal 
+    public static class CollectionExtensions
     {
         /// <summary>
         /// Return a new array with the value added to the end. Slow and best suited to long lived arrays with few writes relative to reads.
@@ -29,7 +30,7 @@ namespace System.Collections.Generic
         /// Return the enumerable as an Array, copying if required. Optimized for common case where it is an Array. 
         /// Avoid mutating the return value.
         /// </summary>
-        internal static T[] AsArray<T>(this IEnumerable<T> values)
+        public static T[] AsArray<T>(this IEnumerable<T> values)
         {
             Contract.Assert(values != null);
 

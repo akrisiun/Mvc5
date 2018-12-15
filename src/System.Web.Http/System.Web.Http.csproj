@@ -1,9 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),Runtime.sln))\tools\WebStack.settings.targets" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <ProjectGuid>{DDC1CE0C-486E-4E35-BB3B-EAB61F8F9440}</ProjectGuid>
+    <TargetFramework>net4.5</TargetFramework>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+
     <OutputType>Library</OutputType>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+
+    <ProjectGuid>{DDC1CE0C-486E-4E35-BB3B-EAB61F8F9440}</ProjectGuid>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>System.Web.Http</RootNamespace>
     <AssemblyName>System.Web.Http</AssemblyName>
@@ -21,9 +28,8 @@
     <OutputPath>..\..\lib\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -276,7 +282,9 @@
     <Compile Include="Tracing\Tracers\FormatterLoggerTraceWrapper.cs" />
     <Compile Include="Tracing\Tracers\DefaultHttpControllerTypeResolverTracer.cs" />
     <Compile Include="Tracing\Tracers\OverrideFilterTracer.cs" />
+    <Compile Include="Validation\BodyModelValidatorContext.cs" />
     <Compile Include="Validation\IModelValidatorCache.cs" />
+    <Compile Include="Validation\IBodyModelValidatorKeyBuilder.cs" />
     <Compile Include="Validation\ModelValidatorCache.cs" />
     <Compile Include="Controllers\ResponseMessageResultConverter.cs" />
     <Compile Include="Controllers\ValueResultConverter.cs" />
@@ -555,7 +563,6 @@
     <EmbeddedResource Include="Properties\SRResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>SRResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -568,5 +575,5 @@
     <None Include="packages.config" />
     <None Include="xmAspNet.snk" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!--<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />-->
 </Project>

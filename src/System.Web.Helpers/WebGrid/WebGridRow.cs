@@ -49,7 +49,7 @@ namespace System.Web.Helpers
             {
                 if (String.IsNullOrEmpty(name))
                 {
-                    throw new ArgumentException(CommonResourcesMvc.Argument_Cannot_Be_Null_Or_Empty, "name");
+                    throw new ArgumentException("Argument_Cannot_Be_Null_Or_Empty {nameof(name)}");
                 }
                 object value = null;
                 if (!TryGetMember(name, out value))

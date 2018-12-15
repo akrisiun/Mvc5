@@ -10,7 +10,7 @@ namespace System.Web.Http
     /// Helpers for encoding, decoding, and parsing URI query components. In .Net 4.5
     /// please use the WebUtility class.
     /// </summary>
-    internal static class UriQueryUtility
+    internal static class UriQueryUtility1
     {
         public static string UrlEncode(string str)
         {

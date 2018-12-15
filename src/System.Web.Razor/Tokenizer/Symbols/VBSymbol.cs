@@ -63,7 +63,7 @@ namespace System.Web.Razor.Tokenizer.Symbols
         {
         }
 
-        public VBKeyword? Keyword { get; set; }
+        // public VBKeyword? Keyword { get; set; }
 
         public override bool Equals(object obj)
         {

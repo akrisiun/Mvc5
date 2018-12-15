@@ -1,8 +1,8 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web.Http.Controllers;
 using System.Web.Http.Metadata;
 using System.Web.Http.ModelBinding;
@@ -207,7 +207,7 @@ namespace System.Web.Http.Validation
 
             object container = TryConvertContainerToMetadataType(parentNode);
             // Optimize for the common case where the validators are in an array
-            ModelValidator[] validators = _validators.AsArrayH();
+            ModelValidator[] validators = _validators.AsArray();
             for (int i = 0; i < validators.Length; i++)
             {
                 ModelValidator validator = validators[i];
