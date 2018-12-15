@@ -9,6 +9,7 @@ using System.Web.Http.Metadata.Providers;
 using System.Web.Http.Validation.Validators;
 using Microsoft.TestCommon;
 using Moq;
+using Xunit;
 
 namespace System.Web.Http.Validation.Providers
 {
@@ -88,12 +89,12 @@ namespace System.Web.Http.Validation.Providers
             var provider = new DataAnnotationsModelValidatorProvider();
 
             // Attribute type cannot be null
-            Assert.ThrowsArgumentNull(
+            Assert1.ThrowsArgumentNull(
                 () => provider.RegisterAdapter(null, typeof(MyValidationAttributeAdapter)),
                 "attributeType");
 
             // Adapter type cannot be null
-            Assert.ThrowsArgumentNull(
+            Assert1.ThrowsArgumentNull(
                 () => provider.RegisterAdapter(typeof(MyValidationAttribute), null),
                 "adapterType");
 

@@ -12,7 +12,6 @@ using System.Web.Http.Metadata.Providers;
 using System.Web.Http.ModelBinding;
 using System.Web.Http.Services;
 using System.Web.Http.Validation;
-using Xunit;
 using Microsoft.TestCommon;
 using Moq;
 
@@ -155,7 +154,7 @@ namespace System.Web.Http.Tracing.Tracers
             };
 
             // Act & Assert
-            Exception thrown = Assert.Throws<InvalidOperationException>(() => tracer.ExecuteBindingAsync(metadataProvider, actionContext, CancellationToken.None));
+            Exception thrown = Assert1.Throws<InvalidOperationException>(() => tracer.ExecuteBindingAsync(metadataProvider, actionContext, CancellationToken.None));
 
             // Assert
             Assert.Same(exception, thrown);

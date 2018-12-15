@@ -14,7 +14,7 @@ namespace System.Web
         public void Constructor_GuardClauses()
         {
             // Act & assert
-            Assert.ThrowsArgumentNull(() => new PrefixContainer(null), "values");
+            Assert1.ThrowsArgumentNull(() => new PrefixContainer(null), "values");
         }
 
         [Fact]
@@ -24,7 +24,7 @@ namespace System.Web
             var container = new PrefixContainer(new string[0]);
 
             // Act & assert
-            Assert.ThrowsArgumentNull(() => container.ContainsPrefix(null), "prefix");
+            Assert1.ThrowsArgumentNull(() => container.ContainsPrefix(null), "prefix");
         }
 
         [Fact]

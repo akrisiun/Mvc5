@@ -4,7 +4,7 @@
 using System.Collections.Generic;
 using System.Web.Http.Routing;
 using Microsoft.TestCommon;
-using Xunit;
+using FactAttribute = Xunit.FactAttribute;
 
 namespace System.Web.Http.ValueProviders.Providers
 {

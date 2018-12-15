@@ -2,7 +2,6 @@
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using Microsoft.TestCommon;
-using Xunit;
 
 namespace System.Web.Http.Validation
 {
@@ -30,7 +29,7 @@ namespace System.Web.Http.Validation
             TypeThatOverridesEquals t1 = new TypeThatOverridesEquals();
             TypeThatOverridesEquals t2 = new TypeThatOverridesEquals();
 
-            Assert.DoesNotThrow(() => ReferenceEqualityComparer.Instance.Equals(t1, t2));
+            Assert1.DoesNotThrow(() => ReferenceEqualityComparer.Instance.Equals(t1, t2));
         }
 
         [Fact]
@@ -58,7 +57,7 @@ namespace System.Web.Http.Validation
         public void GetHashCode_DoesNotThrowForNull()
         {
             var comparer = ReferenceEqualityComparer.Instance;
-            Assert.DoesNotThrow(() => comparer.GetHashCode(null));
+            Assert1.DoesNotThrow(() => comparer.GetHashCode(null));
         }
 
         private class TypeThatOverridesEquals

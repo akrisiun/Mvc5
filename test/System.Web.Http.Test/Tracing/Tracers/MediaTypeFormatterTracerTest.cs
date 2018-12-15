@@ -211,7 +211,7 @@ namespace System.Web.Http.Tracing.Tracers
                 return Task.FromResult(_result);
             }
 
-            public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content,
+            public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContentHeaders content,
                 TransportContext transportContext, CancellationToken cancellationToken)
             {
                 return Task.FromResult(_result);

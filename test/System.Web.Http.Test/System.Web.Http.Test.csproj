@@ -39,6 +39,9 @@
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0-preview-20170427-09" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>C:\Program Files\IIS\Microsoft Web Deploy V3\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="xunit.core">
       <HintPath>..\..\lib\xunit.core.dll</HintPath>
       <Private>true</Private>
@@ -207,9 +210,6 @@
     <Compile Include="..\Common\Routing\RouteConstraintsTests.cs">
       <Link>Routing\RouteConstraintsTests.cs</Link>
     </Compile>
-    <Compile Include="..\Common\Routing\DefaultInlineConstraintResolverTest.cs">
-      <Link>Routing\DefaultInlineConstraintResolverTest.cs</Link>
-    </Compile>
     <Compile Include="..\Common\Routing\InlineRouteTemplateParserTests.cs">
       <Link>Routing\InlineRouteTemplateParserTests.cs</Link>
     </Compile>
@@ -241,7 +241,6 @@
     <Compile Include="Tracing\TraceManagerTest.cs" />
     <Compile Include="Tracing\TracerCorrectnessTest.cs" />
     <Compile Include="Tracing\TraceRecordComparer.cs" />
-    <Compile Include="Tracing\Tracers\BufferedMediaTypeFormatterTracerTest.cs" />
     <Compile Include="Tracing\Tracers\DefaultHttpControllerTypeResolverTracerTest.cs" />
     <Compile Include="Tracing\Tracers\OverrideFilterTracerTests.cs" />
     <Compile Include="Tracing\Tracers\AuthenticationFilterTracerTests.cs" />
@@ -359,15 +358,8 @@
     <Compile Include="Validation\Providers\AssociatedValidatorProviderTest.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Validation\Providers\DataAnnotationsModelValidatorProviderTest.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Validation\Providers\DataMemberModelValidatorProviderTest.cs" />
-    <Compile Include="Validation\Providers\InvalidModelValidatorProviderTest.cs" />
     <Compile Include="Validation\ReferenceEqualityComparerTest.cs" />
-    <Compile Include="Validation\Validators\DataAnnotationsModelValidatorTest.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Validation\Validators\ErrorModelValidatorTest.cs" />
     <Compile Include="ValueProviders\Providers\ElementalValueProviderTest.cs" />
     <Compile Include="ValueProviders\Providers\RouteDataValueProviderFactoryTest.cs" />

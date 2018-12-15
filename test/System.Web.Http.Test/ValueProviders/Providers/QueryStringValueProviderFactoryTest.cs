@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Net.Http;
 using System.Web.Http.Controllers;
 using Microsoft.TestCommon;
-using Xunit;
+using FactAttribute = Xunit.FactAttribute;
 
 namespace System.Web.Http.ValueProviders.Providers
 {
@@ -16,7 +16,7 @@ namespace System.Web.Http.ValueProviders.Providers
         [Fact]
         public void GetValueProvider_WhenActionContextParameterIsNull_Throws()
         {
-            Assert.ThrowsArgumentNull(() => _factory.GetValueProvider(actionContext: null), "actionContext");
+            Assert1.ThrowsArgumentNull(() => _factory.GetValueProvider(actionContext: null), "actionContext");
         }
 
         [Fact]

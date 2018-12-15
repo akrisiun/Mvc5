@@ -8,7 +8,8 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Routing;
 using Microsoft.TestCommon;
 using Moq;
-using Xunit;
+using FactAttribute = Xunit.FactAttribute;
+using Assert = Microsoft.TestCommon.AssertEx;
 
 namespace System.Web.Http.ValueProviders.Providers
 {

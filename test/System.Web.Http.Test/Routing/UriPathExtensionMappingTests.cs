@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System.Net.Http.Formatting.DataSets;
+using System.Net.Http.Formatting.DataSets.Types;
 using System.Net.Http.Headers;
 using System.Web.Http.Routing;
 using Microsoft.TestCommon;

@@ -23,19 +23,19 @@ namespace System.Net.Http
         [Fact]
         public void TypeIsCorrect()
         {
-            Assert.Type.HasProperties(typeof(UriQueryUtility), TypeAssert.TypeProperties.IsClass | TypeAssert.TypeProperties.IsStatic);
+            Assert.Type.HasProperties(typeof(UriQueryUtility1), TypeAssert.TypeProperties.IsClass | TypeAssert.TypeProperties.IsStatic);
         }
 
         [Fact]
         public void UrlEncode_ReturnsNull()
         {
-            Assert.Null(UriQueryUtility.UrlEncode(null));
+            Assert.Null(UriQueryUtility1.UrlEncode(null));
         }
 
         [Fact]
         public void UrlDecode_ReturnsNull()
         {
-            Assert.Null(UriQueryUtility.UrlDecode(null));
+            Assert.Null(UriQueryUtility1.UrlDecode(null));
         }
 
         [Fact]

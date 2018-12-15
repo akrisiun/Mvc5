@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Web.Http.Metadata.Providers;
 using Microsoft.TestCommon;
+using Xunit;
 
 namespace System.Web.Http.Validation.Providers
 {

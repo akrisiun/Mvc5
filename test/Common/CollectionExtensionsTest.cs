@@ -4,7 +4,8 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.TestCommon;
-using Xunit;
+// using Xunit;
+using FactAttribute = Xunit.FactAttribute;
 
 namespace System.Collections.Generic
 {

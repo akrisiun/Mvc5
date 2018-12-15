@@ -95,10 +95,10 @@ namespace System.Web.Http.Tracing.Tracers
             XmlMediaTypeFormatterTracer tracer = CreateTracer(formatter.Object);
 
             // Act
-            tracer.InvokeCreateXmlReader(stream, content);
+            tracer.InvokeCreateXmlReader(stream, content.Headers);
 
             // Assert
-            formatter.Protected().Verify("CreateXmlReader", Times.Once(), stream, content);
+            formatter.Protected().Verify("CreateXmlReader", Times.Once(), stream, content.Headers);
         }
 
         [Fact]
@@ -111,7 +111,7 @@ namespace System.Web.Http.Tracing.Tracers
             XmlMediaTypeFormatterTracer tracer = CreateTracer(formatter.Object);
 
             // Act
-            tracer.InvokeCreateXmlWriter(stream, content);
+            tracer.InvokeCreateXmlWriter(stream, content.Headers);
 
             // Assert
             formatter.Protected().Verify("CreateXmlWriter", Times.Once(), stream, content);
@@ -144,7 +144,7 @@ namespace System.Web.Http.Tracing.Tracers
             XmlMediaTypeFormatterTracer tracer = CreateTracer(formatter.Object);
 
             // Act
-            tracer.InvokeGetSerializer(type, value, content);
+            tracer.InvokeGetSerializer(type, value, content.Headers);
 
             // Assert
             formatter.Protected().Verify("GetSerializer", Times.Once(), type, value, content);

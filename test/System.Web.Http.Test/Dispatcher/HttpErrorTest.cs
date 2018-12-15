@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http.Formatting;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http.ModelBinding;
 using Microsoft.TestCommon;
@@ -138,9 +139,9 @@ namespace System.Web.Http.Dispatcher
             MediaTypeFormatter formatter = new JsonMediaTypeFormatter();
             MemoryStream stream = new MemoryStream();
 
-            await formatter.WriteToStreamAsync(typeof(HttpError), error, stream, content: null, transportContext: null);
+            await formatter.WriteToStreamAsync(typeof(HttpError), error, stream, content: null, transportContext: null, cancellationToken: CancellationToken.None);
             stream.Position = 0;
-            HttpError roundtrippedError = (await formatter.ReadFromStreamAsync(typeof(HttpError), stream, content: null, formatterLogger: null)) as HttpError;
+            HttpError roundtrippedError = (await formatter.ReadFromStreamAsync(typeof(HttpError), stream, contentHeaders: null, formatterLogger: null)) as HttpError;
 
             Assert.NotNull(roundtrippedError);
             Assert.Equal("error", roundtrippedError.Message);
@@ -159,9 +160,11 @@ namespace System.Web.Http.Dispatcher
             MediaTypeFormatter formatter = new XmlMediaTypeFormatter();
             MemoryStream stream = new MemoryStream();
 
-            await formatter.WriteToStreamAsync(typeof(HttpError), error, stream, content: null, transportContext: null);
+            await formatter.WriteToStreamAsync(typeof(HttpError), error, stream, content: null, transportContext: null, cancellationToken: CancellationToken.None);
             stream.Position = 0;
-            HttpError roundtrippedError = (await formatter.ReadFromStreamAsync(typeof(HttpError), stream, content: null, formatterLogger: null)) as HttpError;
+            HttpError roundtrippedError = (await formatter.ReadFromStreamAsync(typeof(HttpError), stream, content: null, formatterLogger: null, 
+                cancellationToken: CancellationToken.None
+                )) as HttpError;
 
             Assert.NotNull(roundtrippedError);
             Assert.Equal("error", roundtrippedError.Message);
@@ -177,9 +180,9 @@ namespace System.Web.Http.Dispatcher
             MediaTypeFormatter formatter = new XmlMediaTypeFormatter();
             MemoryStream stream = new MemoryStream();
 
-            await formatter.WriteToStreamAsync(typeof(HttpError), error, stream, content: null, transportContext: null);
+            await formatter.WriteToStreamAsync(typeof(HttpError), error, stream, contentHeaders: null, transportContext: null);
             stream.Position = 0;
-            HttpError roundtrippedError = (await formatter.ReadFromStreamAsync(typeof(HttpError), stream, content: null, formatterLogger: null)) as HttpError;
+            HttpError roundtrippedError = (await formatter.ReadFromStreamAsync(typeof(HttpError), stream, contentHeaders: null, formatterLogger: null)) as HttpError;
 
             Assert.NotNull(roundtrippedError);
             Assert.Equal(message, roundtrippedError.Message);
@@ -192,9 +195,9 @@ namespace System.Web.Http.Dispatcher
             MediaTypeFormatter formatter = new XmlMediaTypeFormatter() { UseXmlSerializer = true };
             MemoryStream stream = new MemoryStream();
 
-            await formatter.WriteToStreamAsync(typeof(HttpError), error, stream, content: null, transportContext: null);
+            await formatter.WriteToStreamAsync(typeof(HttpError), error, stream, contentHeaders: null, transportContext: null);
             stream.Position = 0;
-            HttpError roundtrippedError = (await formatter.ReadFromStreamAsync(typeof(HttpError), stream, content: null, formatterLogger: null)) as HttpError;
+            HttpError roundtrippedError = (await formatter.ReadFromStreamAsync(typeof(HttpError), stream, contentHeaders: null, formatterLogger: null)) as HttpError;
 
             Assert.NotNull(roundtrippedError);
             Assert.Equal("error", roundtrippedError.Message);
@@ -209,7 +212,7 @@ namespace System.Web.Http.Dispatcher
             MediaTypeFormatter formatter = new XmlMediaTypeFormatter() { UseXmlSerializer = true };
             MemoryStream stream = new MemoryStream();
 
-            await formatter.WriteToStreamAsync(typeof(HttpError), error, stream, content: null, transportContext: null);
+            await formatter.WriteToStreamAsync(typeof(HttpError), error, stream, content: null, transportContext: null, cancellationToken: CancellationToken.None);
             stream.Position = 0;
             string serializedError = new StreamReader(stream).ReadToEnd();
 

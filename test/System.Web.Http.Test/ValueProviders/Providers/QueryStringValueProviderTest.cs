@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Net.Http;
 using Microsoft.TestCommon;
-using Xunit;
+// using Xunit;
+using FactAttribute = Xunit.FactAttribute;
 
 namespace System.Web.Http.ValueProviders.Providers
 {

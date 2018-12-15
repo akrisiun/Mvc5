@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Microsoft.TestCommon;
-using Xunit;
 
 namespace System.Web.Http.ValueProviders.Providers
 {
@@ -24,11 +23,11 @@ namespace System.Web.Http.ValueProviders.Providers
         public void Constructor_GuardClauses()
         {
             // Act & assert
-            Assert.ThrowsArgumentNull(
+            Assert1.ThrowsArgumentNull(
                 () => new NameValuePairsValueProvider(values: (IEnumerable<KeyValuePair<string, string>>)null, culture: CultureInfo.InvariantCulture),
                 "values");
 
-            Assert.ThrowsArgumentNull(
+            Assert1.ThrowsArgumentNull(
                 () => new NameValuePairsValueProvider(valuesFactory: null, culture: CultureInfo.InvariantCulture),
                 "valuesFactory");
         }
@@ -40,7 +39,7 @@ namespace System.Web.Http.ValueProviders.Providers
             var valueProvider = new NameValuePairsValueProvider(_backingStore, null);
 
             // Act & assert
-            Assert.ThrowsArgumentNull(
+            Assert1.ThrowsArgumentNull(
                 () => valueProvider.ContainsPrefix(null),
                 "prefix");
         }
@@ -103,7 +102,7 @@ namespace System.Web.Http.ValueProviders.Providers
             var valueProvider = new NameValuePairsValueProvider(_backingStore, null);
 
             // Act & assert
-            Assert.ThrowsArgumentNull(
+            Assert1.ThrowsArgumentNull(
                 () => valueProvider.GetKeysFromPrefix(null),
                 "prefix");
         }
@@ -158,7 +157,7 @@ namespace System.Web.Http.ValueProviders.Providers
             var valueProvider = new NameValuePairsValueProvider(_backingStore, null);
 
             // Act & assert
-            Assert.ThrowsArgumentNull(
+            Assert1.ThrowsArgumentNull(
                 () => valueProvider.GetValue(null),
                 "key");
         }
