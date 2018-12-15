@@ -22,7 +22,7 @@ namespace System.Web
             }
 
             _originalValues = values;
-            _sortedValues = _originalValues.ToArrayWithoutNulls();
+            _sortedValues = CollectionExtensionsMvc.ToArrayWithoutNulls(_originalValues);
             Array.Sort(_sortedValues, StringComparer.OrdinalIgnoreCase);
         }
 

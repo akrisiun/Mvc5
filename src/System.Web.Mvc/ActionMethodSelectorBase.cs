@@ -224,7 +224,7 @@ namespace System.Web.Mvc
                         // when the first selection attribute is discovered, remove any items later in the list without selection attributes
                         if (i + 1 < methodInfos.Count)
                         {
-                            methodInfos.RemoveFrom(i + 1);
+                            CollectionExtensionsMvc.RemoveFrom(methodInfos, i + 1);
                         }
                         hasValidSelectionAttributes = true;
                     }

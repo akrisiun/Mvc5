@@ -21,7 +21,7 @@ namespace System.Web.Mvc
         internal static IModelBinder GetBinderFromAttributes(Type type, Action<Type> errorAction)
         {
             AttributeList allAttrs = new AttributeList(TypeDescriptorHelper.Get(type).GetAttributes());
-            CustomModelBinderAttribute binder = allAttrs.SingleOfTypeDefaultOrError<Attribute, CustomModelBinderAttribute, Type>(errorAction, type);
+            CustomModelBinderAttribute binder = CollectionExtensionsMvc.SingleOfTypeDefaultOrError<Attribute, CustomModelBinderAttribute, Type>(allAttrs, errorAction, type);
             return binder == null ? null : binder.GetBinder();
         }
 
@@ -33,7 +33,7 @@ namespace System.Web.Mvc
             {                
                 return null;
             }
-            CustomModelBinderAttribute binder = attrs.SingleDefaultOrError(errorAction, element);
+            CustomModelBinderAttribute binder = CollectionExtensionsMvc.SingleDefaultOrError(attrs, errorAction, element);
             return binder == null ? null : binder.GetBinder();
         }
 

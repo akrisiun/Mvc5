@@ -228,7 +228,8 @@ namespace System.Web.Mvc.Routing
             }
 
             decimal minimum = candidates.Min(c => c.Precedence);
-            return candidates.Where(c => c.Precedence == minimum).AsList();
+            return CollectionExtensionsMvc.AsList(
+                   candidates.Where(c => c.Precedence == minimum));
         }
     }
 }
