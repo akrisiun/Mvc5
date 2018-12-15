@@ -4,6 +4,9 @@ namespace System.Web.Http.Owin.Properties
 {
     using System;
 
+    internal class CommonWebApiResources : CommonWebApiResourcesHttp
+    { }
+
     public class CommonWebApiResourcesHttp
     {
 
@@ -24,7 +27,9 @@ namespace System.Web.Http.Owin.Properties
             get {
                 if (object.ReferenceEquals(resourceMan, null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("System.Web.Http.Owin.Properties.CommonWebApiResources", typeof(CommonWebApiResources).Assembly);
+                    global::System.Resources.ResourceManager temp = 
+                        new global::System.Resources.ResourceManager("System.Web.Http.Owin.Properties.CommonWebApiResources", 
+                        typeof(CommonWebApiResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

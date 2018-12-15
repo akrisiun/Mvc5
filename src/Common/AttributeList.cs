@@ -9,7 +9,8 @@ namespace System.ComponentModel
     /// <summary>
     /// Wrapper for AttributeCollection to provide generic collection implementation.
     /// </summary>
-    internal sealed class AttributeList : IList<Attribute>
+    // internal 
+    public sealed class AttributeList : IList<Attribute>
     {
         private readonly AttributeCollection _attributes;
 

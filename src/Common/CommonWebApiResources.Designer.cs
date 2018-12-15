@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace System.Web.Http.Owin.Properties {
+namespace System.Web.Http.Properties {
     using System;
     
     

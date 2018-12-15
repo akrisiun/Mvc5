@@ -9,6 +9,7 @@
     <AssemblyName>System.Web.Http</AssemblyName>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <DefineConstants>$(DefineConstants);ASPNETMVC;ASPNETWEBAPI</DefineConstants>
+    <ContinueOnError>true</ContinueOnError>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
