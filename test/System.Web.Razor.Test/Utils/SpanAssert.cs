@@ -6,7 +6,8 @@ using System.Globalization;
 using System.Text;
 using System.Web.Razor.Parser.SyntaxTree;
 using System.Web.Razor.Text;
-using Microsoft.TestCommon;
+using Xunit;
+using Assert = Microsoft.TestCommon.Assert1;
 
 namespace System.Web.Razor.Test.Utils
 {

@@ -21,11 +21,11 @@ namespace System.Web.Razor.Test.Framework
                 self.Span(SpanKind.Code, new CSharpSymbol(self.LocationTracker.CurrentLocation, String.Empty, CSharpSymbolType.Unknown)));
         }
 
-        public static UnclassifiedCodeSpanConstructor EmptyVB(this SpanFactory self)
-        {
-            return new UnclassifiedCodeSpanConstructor(
-                self.Span(SpanKind.Code, new VBSymbol(self.LocationTracker.CurrentLocation, String.Empty, VBSymbolType.Unknown)));
-        }
+        //public static UnclassifiedCodeSpanConstructor EmptyVB(this SpanFactory self)
+        //{
+        //    return new UnclassifiedCodeSpanConstructor(
+        //        self.Span(SpanKind.Code, new VBSymbol(self.LocationTracker.CurrentLocation, String.Empty, VBSymbolType.Unknown)));
+        //}
 
         public static SpanConstructor EmptyHtml(this SpanFactory self)
         {
@@ -59,15 +59,15 @@ namespace System.Web.Razor.Test.Framework
             return self.Span(SpanKind.Transition, content, type).Accepts(AcceptedCharacters.None);
         }
 
-        public static SpanConstructor CodeTransition(this SpanFactory self, VBSymbolType type)
-        {
-            return self.Span(SpanKind.Transition, SyntaxConstants.TransitionString, type).Accepts(AcceptedCharacters.None);
-        }
+        //public static SpanConstructor CodeTransition(this SpanFactory self, VBSymbolType type)
+        //{
+        //    return self.Span(SpanKind.Transition, SyntaxConstants.TransitionString, type).Accepts(AcceptedCharacters.None);
+        //}
 
-        public static SpanConstructor CodeTransition(this SpanFactory self, string content, VBSymbolType type)
-        {
-            return self.Span(SpanKind.Transition, content, type).Accepts(AcceptedCharacters.None);
-        }
+        //public static SpanConstructor CodeTransition(this SpanFactory self, string content, VBSymbolType type)
+        //{
+        //    return self.Span(SpanKind.Transition, content, type).Accepts(AcceptedCharacters.None);
+        //}
 
         public static SpanConstructor MarkupTransition(this SpanFactory self)
         {
@@ -99,10 +99,10 @@ namespace System.Web.Razor.Test.Framework
             return self.Span(SpanKind.MetaCode, content, type);
         }
 
-        public static SpanConstructor MetaCode(this SpanFactory self, string content, VBSymbolType type)
-        {
-            return self.Span(SpanKind.MetaCode, content, type);
-        }
+        //public static SpanConstructor MetaCode(this SpanFactory self, string content, VBSymbolType type)
+        //{
+        //    return self.Span(SpanKind.MetaCode, content, type);
+        //}
 
         public static SpanConstructor MetaMarkup(this SpanFactory self, string content)
         {
@@ -119,10 +119,10 @@ namespace System.Web.Razor.Test.Framework
             return self.Span(SpanKind.Comment, content, type);
         }
 
-        public static SpanConstructor Comment(this SpanFactory self, string content, VBSymbolType type)
-        {
-            return self.Span(SpanKind.Comment, content, type);
-        }
+        //public static SpanConstructor Comment(this SpanFactory self, string content, VBSymbolType type)
+        //{
+        //    return self.Span(SpanKind.Comment, content, type);
+        //}
 
         public static SpanConstructor Comment(this SpanFactory self, string content, HtmlSymbolType type)
         {
@@ -181,10 +181,10 @@ namespace System.Web.Razor.Test.Framework
             return CreateSymbolSpan(kind, content, st => new CSharpSymbol(st, content, type));
         }
 
-        public SpanConstructor Span(SpanKind kind, string content, VBSymbolType type)
-        {
-            return CreateSymbolSpan(kind, content, st => new VBSymbol(st, content, type));
-        }
+        //public SpanConstructor Span(SpanKind kind, string content, VBSymbolType type)
+        //{
+        //    return CreateSymbolSpan(kind, content, st => new VBSymbol(st, content, type));
+        //}
 
         public SpanConstructor Span(SpanKind kind, string content, HtmlSymbolType type)
         {

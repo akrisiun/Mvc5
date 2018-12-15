@@ -1,11 +1,24 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <!--<Import Project="..\..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props')" />
-  <Import Project="..\..\packages\xunit.core.2.3.0\build\xunit.core.props" Condition="Exists('..\..\packages\xunit.core.2.3.0\build\xunit.core.props')" />
-  -->
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net452</TargetFramework>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <!--
+    <Import Project="..\..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props')" />
+    <Import Project="..\..\packages\xunit.core.2.3.0\build\xunit.core.props" Condition="Exists('..\..\packages\xunit.core.2.3.0\build\xunit.core.props')" />
+    -->
+  </PropertyGroup>
   <Import Project="..\..\lib\xunit.runner.visualstudio.props" />
   <Import Project="..\..\lib\xunit.core.props" />
-  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),Runtime.sln))\tools\WebStack.settings.targets" />
+
+  <!--<Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),Runtime.sln))\tools\WebStack.settings.targets" />-->
   <PropertyGroup>
     <ProjectGuid>{0BB62A1D-E6B5-49FA-9E3C-6AF679A66DFE}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -18,6 +31,12 @@
     </NuGetPackageImportStamp>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
   </PropertyGroup>
+
+  <PropertyGroup>
+      <AssemblyOriginatorKeyFile>..\xmAspNet.snk</AssemblyOriginatorKeyFile>
+      <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
@@ -25,20 +44,41 @@
     <OutputPath>..\..\bin\Debug\Test\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Moq" Version="4.10.1" />
+    <PackageReference Include="xunit.core" Version="2.4.1" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0-preview-20170427-09" />
+    <Reference Include="xunit.core">
+      <HintPath>..\..\lib\xunit.core.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+
+    <!--Severity	Code	Description	Project	File	Line	Suppression State
+    Error	CS1705	Assembly 'Microsoft.TestCommon' with identity
+    'Microsoft.TestCommon, Version=0.0.0.0, Culture=neutral, PublicKeyToken=2f9147bba06de483' uses
+    'xunit.core, Version=2.3.0.3820, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c'
+    which has a higher version than referenced assembly 'xunit.core' with identity
+    'xunit.core, Version=2.2.0.3545, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c'	System.Web.Razor.Test	E:\Beta\mono02\mono02\external\aspnetwebstack\test\System.Web.Razor.Test\CSC	1	Active-->
+    <!--
+    <Reference Include="xunit.core, Version=2.3.0.3820, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\xunit.extensibility.core.2.3.0\lib\netstandard1.1\xunit.core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Moq, Version=4.7.142.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Moq.4.7.142\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
+
     <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\xunit.abstractions.2.0.1\lib\net35\xunit.abstractions.dll</HintPath>
       <Private>True</Private>
@@ -47,10 +87,6 @@
       <HintPath>..\..\packages\xunit.assert.2.3.0\lib\netstandard1.1\xunit.assert.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="xunit.core, Version=2.3.0.3820, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\xunit.extensibility.core.2.3.0\lib\netstandard1.1\xunit.core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="xunit.execution.desktop, Version=2.3.0.3820, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\xunit.extensibility.execution.2.3.0\lib\net452\xunit.execution.desktop.dll</HintPath>
       <Private>True</Private>
@@ -58,10 +94,7 @@
     <Reference Include="xunit.execution.desktop, Version=2.3.0.3820, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\xunit.extensibility.execution.2.3.0\lib\net452\xunit.execution.desktop.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="xunit.runner.visualstudio.testadapter">
-      <HintPath>..\..\lib\xunit.runner.visualstudio.testadapter.dll</HintPath>
-    </Reference>
+    </Reference>-->
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeCompileUnitExtensions.cs" />
@@ -214,10 +247,7 @@
       <Project>{8f18041b-9410-4c36-a9c5-067813df5f31}</Project>
       <Name>System.Web.Razor</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Microsoft.TestCommon\Microsoft.TestCommon.csproj">
-      <Project>{fccc4cb7-baf7-4a57-9f89-e5766fe536c0}</Project>
-      <Name>Microsoft.TestCommon</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\Microsoft.TestCommon\Microsoft.TestCommon.csproj" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="TestFiles\nested-1000.html" />
@@ -235,78 +265,33 @@
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\ImplicitExpression.cshtml" />
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\Imports.cshtml" />
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\MarkupInCodeBlock.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
+
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\DesignTime.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\ExpressionsInCode.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\FunctionsBlock.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\Sections.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\Inherits.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\NestedHelpers.cshtml" />
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\Instrumented.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\RazorComments.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\ParserError.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\ImplicitExpressionAtEOF.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\CodeBlockAtEOF.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\ExplicitExpressionAtEOF.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\EmptyCodeBlock.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\EmptyExplicitExpression.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\EmptyImplicitExpression.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\UnfinishedExpressionInCode.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\DesignTime\Simple.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\DesignTime\Simple.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\Helpers.cshtml" />
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\HelpersMissingCloseParen.cshtml" />
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\HelpersMissingName.cshtml" />
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\HelpersMissingOpenBrace.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\HelpersMissingOpenParen.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\NestedCodeBlocks.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\InlineBlocks.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\EmptyImplicitExpressionInCode.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\CodeGenerator\CS\Source\HiddenSpansInCode.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -324,18 +309,19 @@
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!--<Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />-->
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props'))" />
+    <!--<Error Condition="!Exists('..\..\..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props'))" />-->
     <!--<Error Condition="!Exists('..\..\packages\xunit.core.2.3.0\build\xunit.core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.core.2.3.0\build\xunit.core.props'))" />
     <Error Condition="!Exists('..\..\packages\xunit.core.2.3.0\build\xunit.core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.core.2.3.0\build\xunit.core.targets'))" />
     <Error Condition="!Exists('..\..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props'))" />
     -->
   </Target>
-  <!--<Import Project="..\..\packages\xunit.core.2.3.0\build\xunit.core.targets" Condition="Exists('..\..\packages\xunit.core.2.3.0\build\xunit.core.targets')" />
-  -->
+  <!--
+  <Import Project="..\..\packages\xunit.core.2.3.0\build\xunit.core.targets" Condition="Exists('..\..\packages\xunit.core.2.3.0\build\xunit.core.targets')" />
   <Import Project="..\..\lib\xunit.core.targets" />
+  -->
 </Project>

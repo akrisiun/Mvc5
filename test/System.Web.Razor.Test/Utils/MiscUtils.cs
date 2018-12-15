@@ -4,7 +4,8 @@
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Threading;
-using Microsoft.TestCommon;
+using Xunit;
+using Assert = Microsoft.TestCommon.Assert1;
 
 namespace System.Web.Razor.Test.Utils
 {

@@ -1,11 +1,13 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
+using Microsoft.TestCommon;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 using Xunit;
-using Xunit.Extensions;
+// using Xunit.Extensions;
 using Assert = Microsoft.TestCommon.AssertEx;
+using PropertyDataAttribute = Microsoft.TestCommon.PropertyDataAttribute;
 
 namespace System.Net.Http.Formatting
 {

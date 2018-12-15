@@ -75,18 +75,18 @@ namespace System.Web.Http.Tracing.Tracers
             return _innerTracer.ReadFromStreamAsync(type, readStream, content, formatterLogger, cancellationToken);
         }
 
-        public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
+        public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContentHeaders content, IFormatterLogger formatterLogger)
         {
             return _innerTracer.ReadFromStreamAsync(type, readStream, content, formatterLogger);
         }
 
-        public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content,
+        public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContentHeaders content,
             TransportContext transportContext, CancellationToken cancellationToken)
         {
             return _innerTracer.WriteToStreamAsync(type, value, writeStream, content, transportContext, cancellationToken);
         }
 
-        public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content, TransportContext transportContext)
+        public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContentHeaders content, TransportContext transportContext)
         {
             return _innerTracer.WriteToStreamAsync(type, value, writeStream, content, transportContext);
         }

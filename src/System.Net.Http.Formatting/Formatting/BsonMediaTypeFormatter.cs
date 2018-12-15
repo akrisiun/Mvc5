@@ -14,15 +14,10 @@ using Newtonsoft.Json.Bson;
 
 namespace System.Net.Http.Formatting
 {
-    [Obsolete]
-    public class BsonMediaTypeFormatter
-    { }
-
-
-/*
     /// <summary>
     /// <see cref="MediaTypeFormatter"/> class to handle Bson.
     /// </summary>
+    [Obsolete]
     public class BsonMediaTypeFormatter : BaseJsonMediaTypeFormatter
     {
         private static readonly Type OpenDictionaryType = typeof(Dictionary<,>);
@@ -80,7 +75,8 @@ namespace System.Net.Http.Formatting
         }
 
         /// <inheritdoc />
-        public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
+        // [Obsolete]
+        public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContentHeaders content, IFormatterLogger formatterLogger)
         {
             if (type == null)
             {
@@ -92,7 +88,7 @@ namespace System.Net.Http.Formatting
                 throw Error.ArgumentNull("readStream");
             }
 
-            if (type == typeof(DBNull) && content != null && content.Headers != null && content.Headers.ContentLength == 0)
+            if (type == typeof(DBNull) && content != null && content != null && content.ContentLength == 0)
             {
                 // Lower-level Json.Net deserialization can convert null to DBNull.Value. However this formatter treats
                 // DBNull.Value like null and serializes no content. Json.Net code won't be invoked at all (for read or
@@ -108,7 +104,10 @@ namespace System.Net.Http.Formatting
         }
 #endif
 
+#pragma warning disable 809
+
         /// <inheritdoc />
+        [Obsolete]
         public override object ReadFromStream(Type type, Stream readStream, Encoding effectiveEncoding,
             IFormatterLogger formatterLogger)
         {
@@ -183,6 +182,7 @@ namespace System.Net.Http.Formatting
         }
 
         /// <inheritdoc />
+        [Obsolete]
         public override JsonReader CreateJsonReader(Type type, Stream readStream, Encoding effectiveEncoding)
         {
             if (type == null)
@@ -320,6 +320,4 @@ namespace System.Net.Http.Formatting
             return isSimpleType;
         }
     }
-*/
-
 }

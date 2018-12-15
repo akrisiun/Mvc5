@@ -4,7 +4,8 @@
 using System.Text;
 using System.Web.Razor.Resources;
 using System.Web.Razor.Text;
-using Microsoft.TestCommon;
+using Xunit;
+using Assert = Microsoft.TestCommon.Assert1;
 
 namespace System.Web.Razor.Test.Text
 {

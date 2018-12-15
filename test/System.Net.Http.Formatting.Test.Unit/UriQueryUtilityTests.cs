@@ -17,7 +17,7 @@ namespace System.Net.Http
         [Fact]
         public void TypeIsCorrect()
         {
-            Assert.Type.HasProperties(typeof(UriQueryUtility), TypeAssert.TypeProperties.IsClass | TypeAssert.TypeProperties.IsStatic);
+            Assert.Type.HasProperties(typeof(UriQueryUtility), Microsoft.TestCommon.TypeAssert.TypeProperties.IsClass | TypeAssert.TypeProperties.IsStatic);
         }
 
         #region UrlEncode
@@ -110,7 +110,7 @@ namespace System.Net.Http
         [Theory]
         [InlineData("N", "N", "")]
         [InlineData("%26", "&", "")]
-        [PropertyData("UriQueryData")]
+        [Microsoft.TestCommon.PropertyData("UriQueryData")]
         public void UrlDecodeParsesCorrectly(string segment, string resultName, string resultValue)
         {
             int iterations = 16;

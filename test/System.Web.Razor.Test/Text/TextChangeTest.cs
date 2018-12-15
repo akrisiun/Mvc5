@@ -3,7 +3,8 @@
 
 using System.Web.Razor.Text;
 using System.Web.WebPages.TestUtils;
-using Microsoft.TestCommon;
+using Xunit;
+using Assert = Microsoft.TestCommon.Assert1;
 using Moq;
 
 namespace System.Web.Razor.Test.Text

@@ -6,12 +6,12 @@ using System.Linq;
 using System.Net.Http.Formatting.Internal;
 using Microsoft.TestCommon;
 using Xunit;
-using Xunit.Extensions;
+using PropertyDataAttribute = Microsoft.TestCommon.PropertyDataAttribute; // using Xunit.Extensions;
 using Assert = Microsoft.TestCommon.AssertEx;
 
 namespace System.Net.Http.Internal
 {
-    class HttpValueCollectionTest
+    public class HttpValueCollectionTest
     {
         public static TheoryDataSet<IEnumerable<KeyValuePair<string, string>>> KeyValuePairs
         {

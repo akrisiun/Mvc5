@@ -178,7 +178,7 @@ namespace System.Net.Http.Formatting
         /// <returns>A <see cref="Task"/> whose result will be an object of the given type.</returns>
         /// <exception cref="NotSupportedException">Derived types need to support reading.</exception>
         /// <seealso cref="CanReadType(Type)"/>
-        public virtual Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
+        public virtual Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContentHeaders contentHeaders, IFormatterLogger formatterLogger)
         {
             throw Error.NotSupported(Properties.Resources.MediaTypeFormatterCannotRead, GetType().Name);
         }
@@ -209,7 +209,7 @@ namespace System.Net.Http.Formatting
                 return TaskHelpers.Canceled<object>();
             }
 
-            return ReadFromStreamAsync(type, readStream, content, formatterLogger);
+            return ReadFromStreamAsync(type, readStream, content.Headers, formatterLogger);
         }
 
         /// <summary>
@@ -231,12 +231,12 @@ namespace System.Net.Http.Formatting
         /// <returns>A <see cref="Task"/> that will perform the write.</returns>
         /// <exception cref="NotSupportedException">Derived types need to support writing.</exception>
         /// <seealso cref="CanWriteType(Type)"/>
-        public virtual Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content, TransportContext transportContext)
+        public virtual Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContentHeaders contentHeaders, TransportContext transportContext)
         {
             // HttpContent.SerializeToStreamAsync doesn't take in a CancellationToken. So, there is no easy way to get the CancellationToken
             // to the formatter while writing response. We are cheating here by passing fake cancellation tokens. We should fix this
             // when we fix HttpContent.
-            return WriteToStreamAsync(type, value, writeStream, content, transportContext, CancellationToken.None);
+            return WriteToStreamAsync(type, value, writeStream, contentHeaders, transportContext, CancellationToken.None);
         }
 
         /// <summary>
@@ -259,7 +259,7 @@ namespace System.Net.Http.Formatting
         /// <returns>A <see cref="Task"/> that will perform the write.</returns>
         /// <exception cref="NotSupportedException">Derived types need to support writing.</exception>
         /// <seealso cref="CanWriteType(Type)"/>
-        public virtual Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content,
+        public virtual Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContentHeaders content,
             TransportContext transportContext, CancellationToken cancellationToken)
         {
             throw Error.NotSupported(Properties.Resources.MediaTypeFormatterCannotWrite, GetType().Name);

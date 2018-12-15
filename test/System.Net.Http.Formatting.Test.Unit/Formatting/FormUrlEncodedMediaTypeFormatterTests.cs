@@ -72,33 +72,33 @@ namespace System.Net.Http.Formatting
                  roundTripTestValue: 10);
         }
 
-        [Fact]
-        [Trait("Description", "Deeply nested objects throws.")]
-        public void ReadDeeplyNestedObjectThrows()
-        {
-            FormUrlEncodedMediaTypeFormatter formatter = new FormUrlEncodedMediaTypeFormatter() { MaxDepth = 100 };
+        //[Fact]
+        //[Trait("Description", "Deeply nested objects throws.")]
+        //public void ReadDeeplyNestedObjectThrows()
+        //{
+        //    FormUrlEncodedMediaTypeFormatter formatter = new FormUrlEncodedMediaTypeFormatter() { MaxDepth = 100 };
 
-            StringContent content = new StringContent(GetDeeplyNestedObject(125));
+        //    StringContent content = new StringContent(GetDeeplyNestedObject(125));
 
-            content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
-            Assert.ThrowsArgument(
-                () => formatter.ReadFromStreamAsync(typeof(JToken), content.ReadAsStreamAsync().Result, content.Headers, null).Result,
-                null);
-        }
+        //    content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+        //    Assert.ThrowsArgument(
+        //        () => formatter.ReadFromStreamAsync(typeof(JToken), content.ReadAsStreamAsync().Result, content.Headers, null).Result,
+        //        null);
+        //}
 
-        [Fact]
-        [Trait("Description", "Read DeeplyNestedobject WithBigDepthQuota should work")]
-        public void ReadDeeplyNestedObjectWithBigDepthQuotaWorks()
-        {
-            FormUrlEncodedMediaTypeFormatter formatter = new FormUrlEncodedMediaTypeFormatter() { MaxDepth = 150 };
+        //[Fact]
+        //[Trait("Description", "Read DeeplyNestedobject WithBigDepthQuota should work")]
+        //public void ReadDeeplyNestedObjectWithBigDepthQuotaWorks()
+        //{
+        //    FormUrlEncodedMediaTypeFormatter formatter = new FormUrlEncodedMediaTypeFormatter() { MaxDepth = 150 };
 
-            StringContent content = new StringContent(GetDeeplyNestedObject(125));
+        //    StringContent content = new StringContent(GetDeeplyNestedObject(125));
 
-            content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+        //    content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
 
-            JToken result = (JToken)formatter.ReadFromStreamAsync(typeof(JToken), content.ReadAsStreamAsync().Result, content.Headers, null).Result;
-            Assert.NotNull(result);
-        }
+        //    JToken result = (JToken)formatter.ReadFromStreamAsync(typeof(JToken), content.ReadAsStreamAsync().Result, content.Headers, null).Result;
+        //    Assert.NotNull(result);
+        //}
 
         static string GetDeeplyNestedObject(int depth)
         {

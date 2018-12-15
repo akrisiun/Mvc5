@@ -4,7 +4,8 @@
 using System.Collections.Generic;
 using System.Web.Razor.Parser;
 using System.Web.Razor.Parser.SyntaxTree;
-using Microsoft.TestCommon;
+using Xunit;
+using Assert = Microsoft.TestCommon.Assert1;
 using Moq;
 
 namespace System.Web.Razor.Test.Parser

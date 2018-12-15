@@ -8,6 +8,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using Xunit;
 using Assert = Microsoft.TestCommon.AssertEx;
+using PropertyDataAttribute = Microsoft.TestCommon.PropertyDataAttribute;
 using Xunit.Extensions;
 using System.Threading.Tasks;
 
@@ -161,7 +162,8 @@ namespace System.Net.Http.Formatting
             return true;
         }
 
-        public override object ReadFromStream(Type type, Stream stream, HttpContentHeaders contentHeaders, IFormatterLogger formatterLogger)
+        public // override 
+            object ReadFromStream(Type type, Stream stream, HttpContentHeaders contentHeaders, IFormatterLogger formatterLogger)
         {
             object result = null;
 
@@ -180,7 +182,8 @@ namespace System.Net.Http.Formatting
             return result;
         }
 
-        public override void WriteToStream(Type type, object value, Stream stream, HttpContentHeaders contentHeaders)
+        public // override 
+            void WriteToStream(Type type, object value, Stream stream, HttpContentHeaders contentHeaders)
         {
             Encoding effectiveEncoding = SelectCharacterEncoding(contentHeaders);
             using (StreamWriter sWriter = new StreamWriter(stream, effectiveEncoding))

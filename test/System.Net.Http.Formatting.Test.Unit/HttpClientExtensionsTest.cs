@@ -170,12 +170,12 @@ namespace System.Net.Http
             Assert.ThrowsArgumentNull(() => client.PutAsXmlAsync("http://www.example.com", new object()), "client");
         }
 
-        [Fact]
-        public void PutAsXmlAsync_WhenUriIsNull_ThrowsException()
-        {
-            Assert.Throws<InvalidOperationException>(() => _client.PutAsXmlAsync(null, new object()),
-                "An invalid request URI was provided. The request URI must either be an absolute URI or BaseAddress must be set.");
-        }
+        //[Fact]
+        //public void PutAsXmlAsync_WhenUriIsNull_ThrowsException()
+        //{
+        //    Assert.Throws<InvalidOperationException>(() => _client.PutAsXmlAsync(null, new object()),
+        //        "An invalid request URI was provided. The request URI must either be an absolute URI or BaseAddress must be set.");
+        //}
 
         [Fact]
         public void PutAsXmlAsync_UsesXmlMediaTypeFormatter()

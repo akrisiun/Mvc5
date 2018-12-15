@@ -11,7 +11,7 @@ namespace System.Web.Http.Owin.Properties
 
         private static global::System.Globalization.CultureInfo resourceCulture;
 
-        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         public CommonWebApiResourcesHttp()
         {
         }
@@ -26,7 +26,7 @@ namespace System.Web.Http.Owin.Properties
                 {
                     global::System.Resources.ResourceManager temp =
                         new global::System.Resources.ResourceManager("System.Web.Http.Owin.Properties.CommonWebApiResources", 
-                            typeof(Http.Properties.CommonWebApiResources).Assembly);
+                        typeof(CommonWebApiResourcesHttp).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

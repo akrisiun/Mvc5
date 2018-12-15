@@ -9,9 +9,9 @@ namespace Microsoft.TestCommon
     // Xunit.MemberDataAttribute is unfortunately sealed. Duplicate its code here since there's nothing to it.
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
     [TraitDiscoverer("Xunit.Sdk.TraitDiscoverer", "xunit.core")]
-    public class TraitAttribute : Attribute, ITraitAttribute
+    public class TraitEx : Attribute, ITraitAttribute
     {
-        public TraitAttribute(string name, string value)
+        public TraitEx(string name, string value)
         {
         }
     }

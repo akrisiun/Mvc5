@@ -3,7 +3,8 @@
 
 using System.Web.Razor.Tokenizer;
 using System.Web.Razor.Tokenizer.Symbols;
-using Microsoft.TestCommon;
+using Xunit;
+using Assert = Microsoft.TestCommon.Assert1;
 
 namespace System.Web.Razor.Test.Tokenizer
 {

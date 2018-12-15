@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Net.Http;
 using System.Web.Http.Controllers;
 using Microsoft.TestCommon;
+using Xunit;
 
 namespace System.Web.Http.ValueProviders.Providers
 {

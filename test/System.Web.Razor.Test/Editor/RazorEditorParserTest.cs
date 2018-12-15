@@ -11,8 +11,9 @@ using System.Web.Razor.Test.Utils;
 using System.Web.Razor.Text;
 using System.Web.WebPages.TestUtils;
 using Microsoft.CSharp;
-using Microsoft.TestCommon;
+using Xunit;
 using Moq;
+using Assert = Microsoft.TestCommon.Assert1;
 
 namespace System.Web.Razor.Test.Editor
 {
@@ -114,7 +115,7 @@ namespace System.Web.Razor.Test.Editor
         }
 
         [Fact]
-        [ReplaceCulture]
+        [Microsoft.TestCommon.ReplaceCulture]
         public void CheckForStructureChangesStartsReparseAndFiresDocumentParseCompletedEventIfNoAdditionalChangesQueued()
         {
             // Arrange

@@ -418,7 +418,7 @@ namespace System.Net.Formatting.Tests
 
             MemoryStream ms = new MemoryStream();
 
-            formatter.WriteToStreamAsync(tSource, obj, ms, contentHeaders:null, transportContext: null).Wait();
+            formatter.WriteToStreamAsync(tSource, obj, ms, contentHeaders: null, transportContext: null).Wait();
 
             ms.Position = 0;
             return ms;

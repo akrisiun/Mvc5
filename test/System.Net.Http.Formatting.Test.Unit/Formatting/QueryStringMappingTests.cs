@@ -187,7 +187,7 @@ namespace System.Net.Http.Formatting
         public void TryMatchMediaTypeThrowsWithNullUriInHttpRequestMessage(string queryStringParameterName, string queryStringParameterValue, string mediaType)
         {
             QueryStringMapping mapping = new QueryStringMapping(queryStringParameterName, queryStringParameterValue, mediaType);
-            string errorMessage = RS.Format(Properties.Resources.NonNullUriRequiredForMediaTypeMapping, typeof(QueryStringMapping).Name);
+            string errorMessage = string.Format(Properties.Resources.NonNullUriRequiredForMediaTypeMapping, typeof(QueryStringMapping).Name);
             Assert.Throws<InvalidOperationException>(() => mapping.TryMatchMediaType(new HttpRequestMessage()), errorMessage);
         }
 

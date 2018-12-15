@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 using Xunit;
-using Xunit.Extensions;
+using PropertyDataAttribute = Microsoft.TestCommon.PropertyDataAttribute; // using Xunit.Extensions;
 using Assert = Microsoft.TestCommon.AssertEx;
 
 namespace System.Net.Http.Formatting

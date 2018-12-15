@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.TestCommon;
+using Xunit;
 
 namespace System.Collections.ObjectModel
 {

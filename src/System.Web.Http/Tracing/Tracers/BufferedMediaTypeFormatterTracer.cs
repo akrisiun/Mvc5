@@ -128,23 +128,23 @@ namespace System.Web.Http.Tracing.Tracers
             return value;
         }
 
-        public override void WriteToStream(Type type, object value, Stream writeStream, HttpContent content)
+        public override void WriteToStream(Type type, object value, Stream writeStream, HttpContentHeaders content)
         {
             WriteToStreamCore(type, value, writeStream, content);
         }
 
-        public override void WriteToStream(Type type, object value, Stream writeStream, HttpContent content,
+        public override void WriteToStream(Type type, object value, Stream writeStream, HttpContentHeaders content,
             CancellationToken cancellationToken)
         {
             WriteToStreamCore(type, value, writeStream, content, cancellationToken);
         }
 
-        private void WriteToStreamCore(Type type, object value, Stream writeStream, HttpContent content,
+        private void WriteToStreamCore(Type type, object value, Stream writeStream, HttpContentHeaders content,
             CancellationToken? cancellationToken = null)
         {
             BufferedMediaTypeFormatter innerFormatter = InnerFormatter as BufferedMediaTypeFormatter;
 
-            HttpContentHeaders contentHeaders = content == null ? null : content.Headers;
+            HttpContentHeaders contentHeaders = content == null ? null : content; // .Headers;
             MediaTypeHeaderValue contentType = contentHeaders == null
                            ? null
                            : contentHeaders.ContentType;

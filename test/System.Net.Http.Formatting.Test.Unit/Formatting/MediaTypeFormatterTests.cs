@@ -12,6 +12,7 @@ using Moq;
 using Xunit;
 using Xunit.Extensions;
 using Assert = Microsoft.TestCommon.AssertEx;
+using PropertyDataAttribute = Microsoft.TestCommon.PropertyDataAttribute;
 
 namespace System.Net.Http.Formatting
 {

@@ -12,6 +12,7 @@ using System.Web.Http.Metadata.Providers;
 using System.Web.Http.ModelBinding;
 using System.Web.Http.Services;
 using System.Web.Http.Validation;
+using Xunit;
 using Microsoft.TestCommon;
 using Moq;
 
@@ -28,7 +29,7 @@ namespace System.Web.Http.Tracing.Tracers
             mockParamDescriptor.Setup(d => d.ParameterType).Returns(typeof(string));
             Mock<FormatterParameterBinding> mockBinding = new Mock<FormatterParameterBinding>(mockParamDescriptor.Object, new MediaTypeFormatterCollection(), null);
             mockBinding.Setup(b => b.ErrorMessage).Returns("errorMessage").Verifiable();
-            FormatterParameterBindingTracer tracer = new FormatterParameterBindingTracer(mockBinding.Object, new TestTraceWriter());
+            var tracer = new FormatterParameterBindingTracer(mockBinding.Object, new TestTraceWriter());
 
             // Act & Assert
             Assert.Equal("errorMessage", tracer.ErrorMessage);

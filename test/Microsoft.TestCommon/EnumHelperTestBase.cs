@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
+using Xunit;
 
 namespace Microsoft.TestCommon
 {
@@ -81,7 +82,7 @@ namespace Microsoft.TestCommon
         /// <param name="allowDerivedExceptions">Pass true to allow exceptions which derive from TException; pass false, otherwise</param>
         protected virtual void AssertForUndefinedValue(Action testCode, string parameterName, int invalidValue, Type enumType, bool allowDerivedExceptions = false)
         {
-            Assert.ThrowsInvalidEnumArgument(
+            Assert1.ThrowsInvalidEnumArgument(
                 testCode,
                 parameterName,
                 invalidValue,

@@ -6,8 +6,9 @@ using System.Net.Http.Formatting.DataSets;
 using System.Text;
 using Microsoft.TestCommon;
 using Xunit;
-using Xunit.Extensions;
+// using Xunit.Extensions;
 using Assert = Microsoft.TestCommon.AssertEx;
+using PropertyDataAttribute = Microsoft.TestCommon.PropertyDataAttribute;
 
 namespace System.Net.Http.Formatting.Parsers
 {

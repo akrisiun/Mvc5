@@ -255,7 +255,7 @@ namespace System.Net.Http.Formatting
         /// <param name="formatterLogger">The <see cref="IFormatterLogger"/> to log events to.</param>
         /// <returns>A <see cref="Task"/> whose result will be the object instance that has been read.</returns>
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "The caught exception type is reflected into a faulted task.")]
-        public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
+        public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContentHeaders content, IFormatterLogger formatterLogger)
         {
             if (type == null)
             {
@@ -277,9 +277,9 @@ namespace System.Net.Http.Formatting
             }
         }
 
-        private object ReadFromStream(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
+        private object ReadFromStream(Type type, Stream readStream, HttpContentHeaders content, IFormatterLogger formatterLogger)
         {
-            HttpContentHeaders contentHeaders = content == null ? null : content.Headers;
+            HttpContentHeaders contentHeaders = content == null ? null : content; //.Headers;
 
             // If content length is 0 then return default value for this type
             if (contentHeaders != null && contentHeaders.ContentLength == 0)
@@ -332,16 +332,21 @@ namespace System.Net.Http.Formatting
             return GetSerializerForType(type);
         }
 
+        protected internal virtual object GetDeserializer(Type type, HttpContentHeaders content)
+        {
+            return GetSerializerForType(type);
+        }
+
         /// <summary>
         /// Called during deserialization to get the XML reader to use for reading objects from the stream.
         /// </summary>
         /// <param name="readStream">The <see cref="Stream"/> to read from.</param>
         /// <param name="content">The <see cref="HttpContent"/> for the content being read.</param>
         /// <returns>The <see cref="XmlReader"/> to use for reading objects.</returns>
-        protected internal virtual XmlReader CreateXmlReader(Stream readStream, HttpContent content)
+        protected internal virtual XmlReader CreateXmlReader(Stream readStream, HttpContentHeaders content)
         {
             // Get the character encoding for the content
-            Encoding effectiveEncoding = SelectCharacterEncoding(content == null ? null : content.Headers);
+            Encoding effectiveEncoding = SelectCharacterEncoding(content == null ? null : content); // .Headers);
 #if NETFX_CORE
             // Force a preamble into the stream, since CreateTextReader in WinRT only supports auto-detecting encoding.
             return XmlDictionaryReader.CreateTextReader(new ReadOnlyStreamWithEncodingPreamble(readStream, effectiveEncoding), _readerQuotas);
@@ -352,7 +357,7 @@ namespace System.Net.Http.Formatting
 
         /// <inheritdoc/>
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "The caught exception type is reflected into a faulted task.")]
-        public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content,
+        public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContentHeaders content,
             TransportContext transportContext, CancellationToken cancellationToken)
         {
             if (type == null)
@@ -379,7 +384,7 @@ namespace System.Net.Http.Formatting
             }
         }
 
-        private void WriteToStream(Type type, object value, Stream writeStream, HttpContent content)
+        private void WriteToStream(Type type, object value, Stream writeStream, HttpContentHeaders content)
         {
             bool isRemapped = false;
             if (UseXmlSerializer)
@@ -424,7 +429,7 @@ namespace System.Net.Http.Formatting
         /// <param name="value">The object to serialize.</param>
         /// <param name="content">The <see cref="HttpContent"/> for the content being written.</param>
         /// <returns>An instance of <see cref="XmlObjectSerializer"/> or <see cref="XmlSerializer"/> to use for serializing the object.</returns>
-        protected internal virtual object GetSerializer(Type type, object value, HttpContent content)
+        protected internal virtual object GetSerializer(Type type, object value, HttpContentHeaders content)
         {
             return GetSerializerForType(type);
         }
@@ -435,9 +440,9 @@ namespace System.Net.Http.Formatting
         /// <param name="writeStream">The <see cref="Stream"/> to write to.</param>
         /// <param name="content">The <see cref="HttpContent"/> for the content being written.</param>
         /// <returns>The <see cref="XmlWriter"/> to use for writing objects.</returns>
-        protected internal virtual XmlWriter CreateXmlWriter(Stream writeStream, HttpContent content)
+        protected internal virtual XmlWriter CreateXmlWriter(Stream writeStream, HttpContentHeaders content)
         {
-            Encoding effectiveEncoding = SelectCharacterEncoding(content != null ? content.Headers : null);
+            Encoding effectiveEncoding = SelectCharacterEncoding(content != null ? content : null);
             XmlWriterSettings writerSettings = WriterSettings.Clone();
             writerSettings.Encoding = effectiveEncoding;
             return XmlWriter.Create(writeStream, writerSettings);
@@ -467,16 +472,16 @@ namespace System.Net.Http.Formatting
         /// This method is to support infrastructure and is not intended to be used directly from your code.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public XmlReader InvokeCreateXmlReader(Stream readStream, HttpContent content)
+        public XmlReader InvokeCreateXmlReader(Stream readStream, HttpContentHeaders content)
         {
-            return CreateXmlReader(readStream, content);
+            return CreateXmlReader(readStream, content); // .Headers);
         }
 
         /// <summary>
         /// This method is to support infrastructure and is not intended to be used directly from your code.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public XmlWriter InvokeCreateXmlWriter(Stream writeStream, HttpContent content)
+        public XmlWriter InvokeCreateXmlWriter(Stream writeStream, HttpContentHeaders content)
         {
             return CreateXmlWriter(writeStream, content);
         }
@@ -494,7 +499,16 @@ namespace System.Net.Http.Formatting
         /// This method is to support infrastructure and is not intended to be used directly from your code.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public object InvokeGetSerializer(Type type, object value, HttpContent content)
+        public object InvokeGetDeserializer(Type type, HttpContentHeaders content)
+        {
+            return GetDeserializer(type, content);
+        }
+
+        /// <summary>
+        /// This method is to support infrastructure and is not intended to be used directly from your code.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object InvokeGetSerializer(Type type, object value, HttpContentHeaders content)
         {
             return GetSerializer(type, value, content);
         }

@@ -11,6 +11,9 @@ namespace Microsoft.TestCommon
     // Xunit.MemberDataAttribute is unfortunately sealed. Duplicate its code here since method we need is protected.
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
     [DataDiscoverer("Xunit.Sdk.MemberDataDiscoverer", "xunit.core")]
+
+
+    // using PropertyDataAttribute = Microsoft.TestCommon.PropertyDataAttribute;
     public class PropertyDataAttribute : MemberDataAttributeBase
     {
         public PropertyDataAttribute(string propertyName, params object[] parameters)

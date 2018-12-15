@@ -5,6 +5,7 @@
     <TargetFramework>net4.5</TargetFramework>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 
     <OutputType>Library</OutputType>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
@@ -19,7 +20,8 @@
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>xmAspNet.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\xmAspNet.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;ASPNETMVC;ASPNETWEBAPI</DefineConstants>
@@ -575,5 +577,11 @@
     <None Include="packages.config" />
     <None Include="xmAspNet.snk" />
   </ItemGroup>
+  
   <!--<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />-->
+  <Target Name="PostBuildTask" AfterTargets="Build">
+    <Message Condition=" Exists($(LibDir)) "  Importance="High" Text="net*  -&gt; $(TargetDir)$(TargetName).dll" />
+    <Copy Condition=" '$(SolutionDir)' != '*Undefined*' And Exists($(LibDir)) And '$(TargetFramework)' == 'net45'" 
+          SourceFiles="$(TargetDir)\$(TargetName).dll" DestinationFiles=" $(LibDir)\$(TargetName).dll" SkipUnchangedFiles="false" />
+  </Target>
 </Project>

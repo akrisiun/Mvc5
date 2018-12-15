@@ -11,11 +11,11 @@ namespace Microsoft.TestCommon
     // Xunit.InlineDataAttribute is unfortunately sealed. Delegate to an instance to avoid duplicating its code.
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
     [DataDiscoverer("Xunit.Sdk.InlineDataDiscoverer", "xunit.core")]
-    public class InlineDataAttribute : Xunit.Sdk.DataAttribute
+    public class InlineDataEx : Xunit.Sdk.DataAttribute
     {
         Xunit.InlineDataAttribute _inner;
 
-        public InlineDataAttribute(params object[] dataValues)
+        public InlineDataEx(params object[] dataValues)
             : base()
         {
             _inner = new Xunit.InlineDataAttribute(dataValues);

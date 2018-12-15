@@ -3,7 +3,7 @@
 
 using System.Globalization;
 using System.Linq;
-using Microsoft.TestCommon;
+using Assert = Microsoft.TestCommon.Assert1;
 
 namespace System.Web.TestUtil
 {

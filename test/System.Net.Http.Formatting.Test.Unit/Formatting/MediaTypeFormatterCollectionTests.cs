@@ -7,6 +7,7 @@ using System.Net.Http.Formatting.DataSets;
 using Microsoft.TestCommon;
 using Xunit;
 using Assert = Microsoft.TestCommon.AssertEx;
+using RS = System.String;
 
 namespace System.Net.Http.Formatting
 {

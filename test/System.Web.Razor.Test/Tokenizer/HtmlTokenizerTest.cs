@@ -3,7 +3,7 @@
 
 using System.Web.Razor.Tokenizer;
 using System.Web.Razor.Tokenizer.Symbols;
-using Microsoft.TestCommon;
+using Xunit;
 
 namespace System.Web.Razor.Test.Tokenizer
 {
@@ -12,7 +12,7 @@ namespace System.Web.Razor.Test.Tokenizer
         [Fact]
         public void Constructor_Throws_ArgNull_If_Null_Source_Provided()
         {
-            Assert.ThrowsArgumentNull(() => new HtmlTokenizer(null), "source");
+            Microsoft.TestCommon.Assert1.ThrowsArgumentNull(() => new HtmlTokenizer(null), "source");
         }
 
         [Fact]

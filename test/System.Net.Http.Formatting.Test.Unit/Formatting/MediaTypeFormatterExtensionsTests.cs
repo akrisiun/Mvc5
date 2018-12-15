@@ -35,21 +35,21 @@ namespace System.Net.Http.Formatting
             Assert.ThrowsArgumentNull(() => formatter.AddQueryStringMapping("name", "value", "application/xml"), "formatter");
         }
 
-        [Fact]
-        [Trait("Description", "AddMediaRangeMapping(MediaTypeFormatter, MediaTypeHeaderValue, MediaTypeHeaderValue) throws for null 'this'.")]
-        public void AddMediaRangeMappingThrowsWithNullThis()
-        {
-            MediaTypeFormatter formatter = null;
-            Assert.ThrowsArgumentNull(() => formatter.AddMediaRangeMapping(new MediaTypeHeaderValue("application/*"), new MediaTypeHeaderValue("application/xml")), "formatter");
-        }
+        //[Fact]
+        //[Trait("Description", "AddMediaRangeMapping(MediaTypeFormatter, MediaTypeHeaderValue, MediaTypeHeaderValue) throws for null 'this'.")]
+        //public void AddMediaRangeMappingThrowsWithNullThis()
+        //{
+        //    MediaTypeFormatter formatter = null;
+        //    Assert.ThrowsArgumentNull(() => formatter.AddMediaRangeMapping(new MediaTypeHeaderValue("application/*"), new MediaTypeHeaderValue("application/xml")), "formatter");
+        //}
 
-        [Fact]
-        [Trait("Description", "AddMediaRangeMapping(MediaTypeFormatter, string, string) throws for null 'this'.")]
-        public void AddMediaRangeMapping1ThrowsWithNullThis()
-        {
-            MediaTypeFormatter formatter = null;
-            Assert.ThrowsArgumentNull(() => formatter.AddMediaRangeMapping("application/*", "application/xml"), "formatter");
-        }
+        //[Fact]
+        //[Trait("Description", "AddMediaRangeMapping(MediaTypeFormatter, string, string) throws for null 'this'.")]
+        //public void AddMediaRangeMapping1ThrowsWithNullThis()
+        //{
+        //    MediaTypeFormatter formatter = null;
+        //    Assert.ThrowsArgumentNull(() => formatter.AddMediaRangeMapping("application/*", "application/xml"), "formatter");
+        //}
 
 
 

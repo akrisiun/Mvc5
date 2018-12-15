@@ -4,11 +4,11 @@ using System.Collections.Specialized;
 using Microsoft.TestCommon;
 using Xunit;
 using Assert = Microsoft.TestCommon.AssertEx;
-using Xunit.Extensions;
+using PropertyDataAttribute = Microsoft.TestCommon.PropertyDataAttribute; // using Xunit.Extensions;
 
 namespace System.Net.Http.Headers
 {
-    class CookieHeaderValueTest
+    public class CookieHeaderValueTest
     {
         public static TheoryDataSet<CookieHeaderValue, string> CookieHeaderDataSet
         {
@@ -70,7 +70,7 @@ namespace System.Net.Http.Headers
         public void CookieHeaderValueCtor1_InitializesCorrectly()
         {
             CookieHeaderValue header = new CookieHeaderValue("cookie", "value");
-            Assert.Equal(1, header.Cookies.Count);
+            Assert1.Equal(1, header.Cookies.Count);
             Assert.Equal("cookie", header.Cookies[0].Name);
             Assert.Equal("value", header.Cookies[0].Values.AllKeys[0]);
         }

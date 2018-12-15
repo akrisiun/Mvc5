@@ -8,7 +8,7 @@ using Microsoft.TestCommon;
 
 namespace System.Net.Http.Headers
 {
-    class CookieStateTest
+    public class CookieStateTest
     {
         [Fact]
         public void CookieState_CtorThrowsOnNullName()

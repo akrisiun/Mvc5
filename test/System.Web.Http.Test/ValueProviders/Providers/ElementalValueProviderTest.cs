@@ -3,6 +3,7 @@
 
 using System.Globalization;
 using Microsoft.TestCommon;
+using Xunit;
 
 namespace System.Web.Http.ValueProviders.Providers
 {

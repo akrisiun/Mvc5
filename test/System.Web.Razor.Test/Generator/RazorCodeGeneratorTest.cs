@@ -3,6 +3,7 @@
 
 //#define GENERATE_BASELINES
 
+using Microsoft.TestCommon;
 using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
@@ -14,7 +15,8 @@ using System.Web.Razor.Generator;
 using System.Web.Razor.Parser.SyntaxTree;
 using System.Web.Razor.Test.Utils;
 using System.Web.WebPages.TestUtils;
-using Microsoft.TestCommon;
+using Xunit;
+using Assert = Microsoft.TestCommon.Assert1;
 
 namespace System.Web.Razor.Test.Generator
 {

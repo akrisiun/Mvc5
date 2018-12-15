@@ -1,7 +1,18 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),Runtime.sln))\tools\WebStack.settings.targets" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
+    <TargetFramework>net452</TargetFramework>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
@@ -15,8 +26,14 @@
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WebStackRootPath>..\..</WebStackRootPath>
+    <!--<TreatWarningsAsErrors>true</TreatWarningsAsErrors>-->
   </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\xmAspNet.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -40,31 +57,51 @@
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Moq, Version=4.0.10827.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+
+    <PackageReference Include="Moq" Version="4.10.1" />
+    <PackageReference Include="xunit.core" Version="2.4.1" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0-preview-20170427-09" />
+    <Reference Include="xunit.core">
+      <HintPath>..\..\lib\xunit.core.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
+
+    <!--<Reference Include="Moq, Version=4.0.10827.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Newtonsoft.Json.4.5.1\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Net.Http.2.0.20326.1\lib\net40\System.Net.Http.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.WebRequest, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Net.Http.2.0.20326.1\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.XML" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.9.0.1566\lib\xunit.dll</HintPath>
     </Reference>
     <Reference Include="xunit.extensions">
       <HintPath>..\..\packages\xunit.extensions.1.9.0.1566\lib\xunit.extensions.dll</HintPath>
-    </Reference>
+    </Reference>-->
+    
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
@@ -89,7 +126,6 @@
     <Compile Include="DataSets\Types\XmlSerializableType.cs" />
     <Compile Include="Formatting\DataContractJsonMediaTypeFormatterTests.cs" />
     <Compile Include="Formatting\SerializerConsistencyTests.cs" />
-    <Compile Include="Formatting\XmlSerializerMediaTypeFormatterTests.cs" />
     <Compile Include="Formatting\MediaTypeFormatterTestBase.cs" />
     <Compile Include="Formatting\StringWithQualityHeaderValueComparerTests.cs" />
     <Compile Include="Formatting\FormDataCollectionTests.cs" />
@@ -97,8 +133,6 @@
     <Compile Include="Formatting\FormUrlEncodedJsonTests.cs" />
     <Compile Include="Headers\CookieStateTest.cs" />
     <Compile Include="Headers\CookieHeaderValueTest.cs" />
-    <Compile Include="HttpClientExtensionsTest.cs" />
-    <Compile Include="HttpContentExtensionsTest.cs" />
     <Compile Include="HttpRequestMessageCommonExtensionsTest.cs" />
     <Compile Include="Internal\HttpValueCollectionTest.cs" />
     <Compile Include="Internal\NonClosingDelegatingStreamTest.cs" />
@@ -113,20 +147,16 @@
     <Compile Include="Formatting\BufferedMediaTypeFormatterTests.cs" />
     <Compile Include="Formatting\DefaultContentNegotiatorTests.cs" />
     <Compile Include="Formatting\FormUrlEncodedMediaTypeFormatterTests.cs" />
-    <Compile Include="Formatting\JsonMediaTypeFormatterTests.cs" />
     <Compile Include="Formatting\MediaRangeMappingTests.cs" />
     <Compile Include="Formatting\MediaTypeConstantsTests.cs" />
     <Compile Include="Formatting\MediaTypeFormatterCollectionTests.cs" />
     <Compile Include="Formatting\MediaTypeFormatterExtensionsTests.cs" />
-    <Compile Include="Formatting\MediaTypeFormatterTests.cs" />
     <Compile Include="Formatting\MediaTypeWithQualityHeaderValueComparerTests.cs" />
     <Compile Include="Formatting\MediaTypeHeaderValueExtensionsTests.cs" />
-    <Compile Include="Formatting\ParsedMediaTypeHeaderValueTests.cs" />
     <Compile Include="Formatting\QueryStringMappingTests.cs" />
     <Compile Include="Formatting\RequestHeaderMappingTests.cs" />
     <Compile Include="Formatting\XmlMediaTypeFormatterTests.cs" />
     <Compile Include="Formatting\Parsers\FormUrlEncodedParserTests.cs" />
-    <Compile Include="HttpContentCollectionExtensionsTests.cs" />
     <Compile Include="HttpContentMessageExtensionsTests.cs" />
     <Compile Include="HttpContentMultipartExtensionsTests.cs" />
     <Compile Include="HttpMessageContentTests.cs" />
@@ -136,9 +166,7 @@
     <Compile Include="Formatting\Parsers\HttpStatusLineParserTests.cs" />
     <Compile Include="Formatting\Parsers\InternetMessageFormatHeaderParserTests.cs" />
     <Compile Include="Formatting\Parsers\MimeMultipartParserTests.cs" />
-    <Compile Include="MultipartFileStreamProviderTests.cs" />
     <Compile Include="MultipartFormDataStreamProviderTests.cs" />
-    <Compile Include="MultipartMemoryStreamProviderTests.cs" />
     <Compile Include="ObjectContentOfTTests.cs" />
     <Compile Include="ObjectContentTests.cs" />
     <Compile Include="ParserData.cs" />
@@ -156,11 +184,5 @@
       <Name>Microsoft.TestCommon</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!--<Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />-->
 </Project>

@@ -3,7 +3,7 @@
 
 using System.IO;
 using System.Reflection;
-using Microsoft.TestCommon;
+using Assert = Microsoft.TestCommon.Assert1;
 
 namespace System.Web.WebPages.TestUtils
 {

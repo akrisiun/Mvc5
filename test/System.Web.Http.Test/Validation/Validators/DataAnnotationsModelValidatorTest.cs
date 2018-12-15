@@ -11,6 +11,7 @@ using System.Web.WebPages.TestUtils;
 using Microsoft.TestCommon;
 using Moq;
 using Moq.Protected;
+using Xunit;
 
 namespace System.Web.Http.Validation.Validators
 {
@@ -27,10 +28,10 @@ namespace System.Web.Http.Validation.Validators
             var attribute = new RequiredAttribute();
 
             // Act & Assert
-            Assert.ThrowsArgumentNull(
+            Assert1.ThrowsArgumentNull(
                 () => new DataAnnotationsModelValidator(null, attribute),
                 "validatorProviders");
-            Assert.ThrowsArgumentNull(
+            Assert1.ThrowsArgumentNull(
                 () => new DataAnnotationsModelValidator(_noValidatorProviders, null),
                 "attribute");
         }
@@ -56,23 +57,23 @@ namespace System.Web.Http.Validation.Validators
                 return new TheoryDataSet<NameValueCollection>
                 {
                     new NameValueCollection(),
-                    new NameValueCollection
-                    {
-                        { DataAnnotationsModelValidator.UseLegacyValidationMemberNameKey, "false" },
-                    },
-                    new NameValueCollection
-                    {
-                        { DataAnnotationsModelValidator.UseLegacyValidationMemberNameKey, "False" },
-                    },
-                    new NameValueCollection
-                    {
-                        { DataAnnotationsModelValidator.UseLegacyValidationMemberNameKey, "false" },
-                        { DataAnnotationsModelValidator.UseLegacyValidationMemberNameKey, "true" },
-                    },
-                    new NameValueCollection
-                    {
-                        { DataAnnotationsModelValidator.UseLegacyValidationMemberNameKey, "garbage" },
-                    },
+                    //new NameValueCollection
+                    //{
+                    //    { DataAnnotationsModelValidator.UseLegacyValidationMemberNameKey, "false" },
+                    //},
+                    //new NameValueCollection
+                    //{
+                    //    { DataAnnotationsModelValidator.UseLegacyValidationMemberNameKey, "False" },
+                    //},
+                    //new NameValueCollection
+                    //{
+                    //    { DataAnnotationsModelValidator.UseLegacyValidationMemberNameKey, "false" },
+                    //    { DataAnnotationsModelValidator.UseLegacyValidationMemberNameKey, "true" },
+                    //},
+                    //new NameValueCollection
+                    //{
+                    //    { DataAnnotationsModelValidator.UseLegacyValidationMemberNameKey, "garbage" },
+                    //},
                 };
             }
         }

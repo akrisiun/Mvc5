@@ -1,22 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net4.5</TargetFramework>
+    <TargetFramework>net45</TargetFramework>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 
-    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
-
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    
+    <OutputType>Library</OutputType>
     <RootNamespace>System.Web.Razor</RootNamespace>
     <AssemblyName>System.Web.Razor</AssemblyName>
 
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <DefineConstants>$(DefineConstants);ASPNETWEBPAGES</DefineConstants>
     <NoWarn>1591</NoWarn>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <PackageId>Beta.Web.Razor</PackageId>
     <Version>5.5.2</Version>
     <ProjectGuid>{8F18041B-9410-4C36-A9C5-067813DF5F31}</ProjectGuid>
@@ -31,10 +32,9 @@
     <OutputPath>..\..\lib\</OutputPath>
     <DocumentationFile />
   </PropertyGroup>
+
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>..\Key.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\xmAspNet.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
@@ -212,8 +212,10 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="..\Key.snk" />
-  </ItemGroup>
 
+  <Target Name="PostBuildTask" AfterTargets="Build">
+    <Message Condition=" Exists($(LibDir)) "  Importance="High" Text="net*  -&gt; $(TargetDir)$(TargetName).dll" />
+    <Copy Condition=" '$(SolutionDir)' != '*Undefined*' And Exists($(LibDir)) And '$(TargetFramework)' == 'net45'"
+          SourceFiles="$(TargetDir)\$(TargetName).dll" DestinationFiles=" $(LibDir)\$(TargetName).dll" SkipUnchangedFiles="false" />
+  </Target>
 </Project>

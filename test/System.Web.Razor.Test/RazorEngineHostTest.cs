@@ -4,7 +4,8 @@
 using System.CodeDom;
 using System.Web.Razor.Generator;
 using System.Web.Razor.Parser;
-using Microsoft.TestCommon;
+using Xunit;
+using Assert = Microsoft.TestCommon.Assert1;
 
 namespace System.Web.Razor.Test
 {

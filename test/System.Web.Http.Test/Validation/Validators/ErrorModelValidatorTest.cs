@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http.Metadata.Providers;
 using Microsoft.TestCommon;
+using Xunit;
 
 namespace System.Web.Http.Validation.Validators
 {
@@ -16,10 +17,10 @@ namespace System.Web.Http.Validation.Validators
         [Fact]
         public void ConstructorGuards()
         {
-            Assert.ThrowsArgumentNull(
+            Assert1.ThrowsArgumentNull(
                 () => new ErrorModelValidator(validatorProviders: null, errorMessage: "error"),
                 "validatorProviders");
-            Assert.ThrowsArgumentNull(
+            Assert1.ThrowsArgumentNull(
                 () => new ErrorModelValidator(validatorProviders: _noValidatorProviders, errorMessage: null),
                 "errorMessage");
         }
@@ -29,7 +30,7 @@ namespace System.Web.Http.Validation.Validators
         {
             ErrorModelValidator validator = new ErrorModelValidator(_noValidatorProviders, "error");
 
-            Assert.Throws<InvalidOperationException>(() => validator.Validate(null, null), "error");
+            Assert1.Throws<InvalidOperationException>(() => validator.Validate(null, null), "error");
         }
     }
 }
