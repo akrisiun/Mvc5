@@ -16,6 +16,15 @@ _[Ss]cripts
 *.psess
 *.orig
 *.sln.ide
-.vs/
+.vs*/
+.arch*/
+*.zip
+node_modules/
+obj/
+Debug/
+Release/
 project.lock.json
-*launchSettings.json
+src/Microsoft.AspNet.Facebook*/
+test/WebMatrix.WebData*/
+src/WebMatrix*/
+test/Microsoft.AspNet.Facebook*/

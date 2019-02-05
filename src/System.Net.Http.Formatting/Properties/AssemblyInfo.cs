@@ -11,8 +11,8 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("System.Net.Http.Formatting")]
-[assembly: AssemblyDescription("")]
+// [assembly: AssemblyTitle("System.Net.Http.Formatting")]
+// [assembly: AssemblyDescription("")]
 
 #if !NETFX_CORE // GuidAttibute is not supported in portable libraries.
 [assembly: Guid("7fa1ae84-36e2-46b6-812c-c985a8e65e9a")]
