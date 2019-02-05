@@ -85,14 +85,6 @@
       <Project>{76EFA9C5-8D7E-4FDF-B710-E20F8B6B00D2}</Project>
       <Name>System.Web.WebPages</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WebMatrix.Data\WebMatrix.Data.csproj">
-      <Project>{4D39BAAF-8A96-473E-AB79-C8A341885137}</Project>
-      <Name>WebMatrix.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WebMatrix.WebData\WebMatrix.WebData.csproj">
-      <Project>{55A15F40-1435-4248-A7F2-2A146BB83586}</Project>
-      <Name>WebMatrix.WebData</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -105,7 +97,6 @@
     <RazorSrcFiles Include="Maps.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  
   <!-- Note: RazorGenerator.MsBuild uses Razor 3.0 \ Mvc 5.0 for generating views. In the event we update the Mvc parser, we'll need to ensure this package references the updated Mvc build -->
   <Import Project="..\..\packages\RazorGenerator.MsBuild.2.2.0\build\RazorGenerator.MsBuild.targets" Condition="Exists('..\..\packages\RazorGenerator.MsBuild.2.2.0\build\RazorGenerator.MsBuild.targets')" />
 </Project>

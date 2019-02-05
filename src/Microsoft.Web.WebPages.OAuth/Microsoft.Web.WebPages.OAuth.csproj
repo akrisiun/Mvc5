@@ -88,10 +88,6 @@
       <Project>{0939B11A-FE4E-4BA1-8AD6-D97741EE314F}</Project>
       <Name>System.Web.WebPages.Razor</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WebMatrix.WebData\WebMatrix.WebData.csproj">
-      <Project>{55A15F40-1435-4248-A7F2-2A146BB83586}</Project>
-      <Name>WebMatrix.WebData</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\CommonResources.resx">

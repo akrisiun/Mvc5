@@ -1,8 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project>
+  <Sdk Name="Microsoft.NET.Sdk" ToolsVersion="15.0"/>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),Runtime.sln))\tools\WebStack.settings.targets" />
+  <Import Project="..\VersionPages.props" />
   <PropertyGroup>
-    <ProjectGuid>{9B7E3740-6161-4548-833C-4BBCA43B970E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <TargetFrameworks>net45;net452;net461</TargetFrameworks>
+
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo> 
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+
     <OutputType>Library</OutputType>
     <RootNamespace>System.Web.Helpers</RootNamespace>
     <AssemblyName>System.Web.Helpers</AssemblyName>

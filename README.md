@@ -1,3 +1,6 @@
+
+./build.cmd EnableSkipStrongNames
+ 
 ASP.NET MVC, Web API, Web Pages, and Razor
 ===
 
