@@ -116,10 +116,6 @@
       <Project>{DDC1CE0C-486E-4E35-BB3B-EAB61F8F9440}</Project>
       <Name>System.Web.Http</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Microsoft.Web.Http.Data.EntityFramework\Microsoft.Web.Http.Data.EntityFramework.csproj">
-      <Project>{653F3946-541C-42D3-BBC1-CE89B392BDA9}</Project>
-      <Name>Microsoft.Web.Http.Data.EntityFramework</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\Microsoft.Web.Http.Data\Microsoft.Web.Http.Data.csproj">
       <Project>{ACE91549-D86E-4EB6-8C2A-5FF51386BB68}</Project>
       <Name>Microsoft.Web.Http.Data</Name>

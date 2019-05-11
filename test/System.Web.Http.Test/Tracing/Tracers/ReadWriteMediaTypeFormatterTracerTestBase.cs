@@ -21,10 +21,11 @@ namespace System.Web.Http.Tracing.Tracers
         where TFormatter : MediaTypeFormatter
     {
         [Fact]
-        public async Task ReadFromStreamAsync_Traces()
+        public Task ReadFromStreamAsync_Traces()
         {
             // Arrange
             Mock<TFormatter> mockFormatter = new Mock<TFormatter>() { CallBase = true };
+            return null;
             //mockFormatter.Setup(f => f.ReadFromStreamAsync(It.IsAny<Type>(), It.IsAny<Stream>(), It.IsAny<HttpContent>(), It.IsAny<IFormatterLogger>()))
             //    .Returns(Task.FromResult<object>("sampleValue"));
             //TestTraceWriter traceWriter = new TestTraceWriter();
@@ -80,13 +81,15 @@ namespace System.Web.Http.Tracing.Tracers
         }
 
         [Fact]
-        public async Task ReadFromStreamAsync_Traces_And_Faults_When_Inner_Faults()
+        public Task ReadFromStreamAsync_Traces_And_Faults_When_Inner_Faults()
         {
             // Arrange
             InvalidOperationException exception = new InvalidOperationException("test");
             Mock<TFormatter> mockFormatter = new Mock<TFormatter>() { CallBase = true };
             TaskCompletionSource<object> tcs = new TaskCompletionSource<object>();
             tcs.TrySetException(exception);
+
+            return null;
 
             //mockFormatter.Setup(f => f.ReadFromStreamAsync(It.IsAny<Type>(), It.IsAny<Stream>(), It.IsAny<HttpContent>(), It.IsAny<IFormatterLogger>()))
             //    .Returns(tcs.Task);
@@ -113,10 +116,11 @@ namespace System.Web.Http.Tracing.Tracers
         }
 
         [Fact]
-        public async Task WriteToStreamAsync_Traces()
+        public Task WriteToStreamAsync_Traces()
         {
             // Arrange
             Mock<TFormatter> mockFormatter = new Mock<TFormatter>() { CallBase = true };
+            return null;
             //mockFormatter.Setup(f => f.WriteToStreamAsync(It.IsAny<Type>(), It.IsAny<Object>(), It.IsAny<Stream>(), It.IsAny<HttpContent>(), It.IsAny<TransportContext>()))
             //    .Returns(TaskHelpers.Completed());
             //TestTraceWriter traceWriter = new TestTraceWriter();
@@ -171,13 +175,15 @@ namespace System.Web.Http.Tracing.Tracers
         }
 
         [Fact]
-        public async Task WriteToStreamAsync_Traces_And_Faults_When_Inner_Faults()
+        public Task WriteToStreamAsync_Traces_And_Faults_When_Inner_Faults()
         {
             // Arrange
             InvalidOperationException exception = new InvalidOperationException("test");
             Mock<TFormatter> mockFormatter = new Mock<TFormatter>() { CallBase = true };
             TaskCompletionSource<object> tcs = new TaskCompletionSource<object>();
             tcs.TrySetException(exception);
+
+            return null;
 
             //mockFormatter.Setup(f => f.WriteToStreamAsync(It.IsAny<Type>(), It.IsAny<Object>(), It.IsAny<Stream>(), It.IsAny<HttpContent>(), It.IsAny<TransportContext>()))
             //    .Returns(tcs.Task);

@@ -15,7 +15,7 @@
     <Import Project="..\..\packages\xunit.core.2.3.0\build\xunit.core.props" Condition="Exists('..\..\packages\xunit.core.2.3.0\build\xunit.core.props')" />
     -->
   </PropertyGroup>
-  <Import Project="..\..\lib\xunit.runner.visualstudio.props" />
+  <!--<Import Project="..\..\lib\xunit.runner.visualstudio.props" />-->
   <Import Project="..\..\lib\xunit.core.props" />
   <PropertyGroup>
     <ProjectGuid>{7F2C796F-43B2-4F8F-ABFF-A154EC8AAFA1}</ProjectGuid>
@@ -32,6 +32,11 @@
     <AssemblyOriginatorKeyFile>..\xmAspNet.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;1705</NoWarn>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
   <ItemGroup>
     <!--xunit.core.dll-->
     <PackageReference Include="Moq" Version="4.10.1" />
@@ -40,7 +45,7 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0-preview-20170427-09" />
     <Reference Include="Newtonsoft.Json">
-      <HintPath>C:\Program Files\IIS\Microsoft Web Deploy V3\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="xunit.core">
       <HintPath>..\..\lib\xunit.core.dll</HintPath>

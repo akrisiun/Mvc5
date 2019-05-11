@@ -166,9 +166,10 @@ namespace System.Web.Http.Tracing.Tracers
         [Theory]
         [ReplaceCulture]
         [PropertyData("RequestBodies")]
-        public async Task ReadFromStreamAsync_LogErrorFromJsonRequestBody(IList<TraceRecord> expectedTraces,
-                                                                    HttpRequestMessage request,
-                                                                    string requestBody)
+        public object ReadFromStreamAsync_LogErrorFromJsonRequestBody(
+            // IList<TraceRecord> expectedTraces,
+            HttpRequestMessage request,
+            string requestBody)
         {
             // Arrange
             var formatter = new JsonMediaTypeFormatter();
@@ -181,10 +182,13 @@ namespace System.Web.Http.Tracing.Tracers
             var tracer = new MediaTypeFormatterTracer(formatter, traceWriter, request);
 
             //// Act
-            //await tracer.ReadFromStreamAsync(typeof(SampleType),
-            //                           await content.ReadAsStreamAsync(),
-            //                           content, loggerMock.Object
-            //                          );
+            return tracer.ReadFromStreamAsync(typeof(SampleType),
+                                       content.ReadAsStreamAsync().GetAwaiter().GetResult(),
+                                       null, // content
+                                       loggerMock.Object
+                                      )
+                                      .ConfigureAwait(false)
+                                      .GetAwaiter().GetResult();
 
             //// Assert
             //// Error must always be marked as handled at ReadFromStream in BaseJsonMediaTypeFormatters,
@@ -196,4 +200,7 @@ namespace System.Web.Http.Tracing.Tracers
             //                          new TraceRecordComparer() { IgnoreExceptionReference = true });
         }
     }
+
+    public class SampleType
+    { }
 }
