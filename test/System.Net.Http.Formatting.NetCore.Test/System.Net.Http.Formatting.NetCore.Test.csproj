@@ -295,10 +295,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\System.Net.Http.Formatting.NetCore\System.Net.Http.Formatting.NetCore.csproj">
-      <Project>{C7060639-719B-4BD2-8A37-2F146B5A0668}</Project>
-      <Name>System.Net.Http.Formatting</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Microsoft.TestCommon\Microsoft.TestCommon.csproj">
       <Project>{FCCC4CB7-BAF7-4A57-9F89-E5766FE536C0}</Project>
       <Name>Microsoft.TestCommon</Name>
