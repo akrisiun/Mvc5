@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Reflection;
@@ -8,7 +7,8 @@ using System.Web.Routing;
 
 namespace System.Web.WebPages
 {
-    internal static class TypeHelper
+    // internal 
+    public static class TypeHelper
     {
         /// <summary>
         /// Given an object of anonymous type, add each property as a key and associated with its value to a dictionary.
@@ -75,7 +75,7 @@ namespace System.Web.WebPages
             // TODO: The only way to detect anonymous types right now.
             return Attribute.IsDefined(type, typeof(CompilerGeneratedAttribute), false)
                    && type.IsGenericType && type.Name.Contains("AnonymousType")
-                   && (type.Name.StartsWith("<>", StringComparison.OrdinalIgnoreCase) || type.Name.StartsWith("VB$", StringComparison.OrdinalIgnoreCase))
+                   && (type.Name.StartsWith("<>", StringComparison.OrdinalIgnoreCase) || type.Name.StartsWith("VB$", StringComparison.OrdinalIgnoreCase) || type.Name.Contains(".<>"))
                    && (type.Attributes & TypeAttributes.NotPublic) == TypeAttributes.NotPublic;
         }
     }

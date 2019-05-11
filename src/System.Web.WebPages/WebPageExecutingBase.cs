@@ -1,11 +1,11 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
+using System.Threading.Tasks;
 using System.Web.WebPages.Instrumentation;
 using System.Web.WebPages.Resources;
 
@@ -80,7 +80,16 @@ namespace System.Web.WebPages
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public abstract void Execute();
+        public virtual void Execute()
+        {
+            throw new NotImplementedException(WebPageResources.NoSynchronousWebPageImplementationAvailable);
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual Task ExecuteAsync()
+        {
+            return null;
+        }
 
         public virtual string Href(string path, params object[] pathParts)
         {
@@ -145,7 +154,10 @@ namespace System.Web.WebPages
             }
         }
 
-        internal virtual string GetDirectory(string virtualPath)
+        public string DirectorySet(string virtualPath) => GetDirectory(virtualPath);
+
+        // internal 
+        protected virtual string GetDirectory(string virtualPath)
         {
             return VirtualPathUtility.GetDirectory(virtualPath);
         }
@@ -330,6 +342,48 @@ namespace System.Web.WebPages
         protected internal virtual TextWriter GetOutputWriter()
         {
             return TextWriter.Null;
+        }
+
+        protected internal void ExecutePage()
+        {
+            var task = ExecuteAsync();
+            if (task == null)
+            {
+                Execute();
+            }
+            else
+            {
+                if (!task.IsCompletedSynchronously())
+                {
+                    if (task.IsFaulted && task.Exception != null)
+                    {
+                        Exception error = task.Exception.InnerException != null ?
+                              task.Exception.InnerException : task.Exception;
+
+                        string trace = "";
+                        try
+                        {
+                            trace = error.StackTrace;
+                        }
+                        catch {; }
+
+                        error = new Exception(
+                            string.Format("PageError {0} in {1} \n{2}", error.Message
+                                , this.ToString()
+                                , trace
+                                ), error);
+                        throw error;
+                    }
+                    else if (task.Status != TaskStatus.RanToCompletion)
+                    {
+                        throw new NotSupportedException(
+                        String.Format(CultureInfo.InvariantCulture,
+                            WebPageResources.WebPage_SyncAsyncConflict,     // Cannot render asynchronous page &quot;{0}&quot; synchronously..
+                            VirtualPath));
+                    }
+                }
+                task.GetAwaiter().GetResult();
+            }
         }
     }
 }

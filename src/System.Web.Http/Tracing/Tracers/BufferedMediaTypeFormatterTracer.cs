@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Globalization;
 using System.IO;
@@ -129,23 +128,23 @@ namespace System.Web.Http.Tracing.Tracers
             return value;
         }
 
-        public override void WriteToStream(Type type, object value, Stream writeStream, HttpContent content)
+        public override void WriteToStream(Type type, object value, Stream writeStream, HttpContentHeaders content)
         {
             WriteToStreamCore(type, value, writeStream, content);
         }
 
-        public override void WriteToStream(Type type, object value, Stream writeStream, HttpContent content,
+        public override void WriteToStream(Type type, object value, Stream writeStream, HttpContentHeaders content,
             CancellationToken cancellationToken)
         {
             WriteToStreamCore(type, value, writeStream, content, cancellationToken);
         }
 
-        private void WriteToStreamCore(Type type, object value, Stream writeStream, HttpContent content,
+        private void WriteToStreamCore(Type type, object value, Stream writeStream, HttpContentHeaders content,
             CancellationToken? cancellationToken = null)
         {
             BufferedMediaTypeFormatter innerFormatter = InnerFormatter as BufferedMediaTypeFormatter;
 
-            HttpContentHeaders contentHeaders = content == null ? null : content.Headers;
+            HttpContentHeaders contentHeaders = content == null ? null : content; // .Headers;
             MediaTypeHeaderValue contentType = contentHeaders == null
                            ? null
                            : contentHeaders.ContentType;

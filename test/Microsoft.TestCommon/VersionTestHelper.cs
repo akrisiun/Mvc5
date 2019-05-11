@@ -3,6 +3,7 @@
 
 using System;
 using System.Reflection;
+using Assert = Microsoft.TestCommon.Assert1;
 
 namespace Microsoft.TestCommon
 {

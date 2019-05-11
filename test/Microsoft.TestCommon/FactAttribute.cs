@@ -11,12 +11,12 @@ namespace Microsoft.TestCommon
     /// </summary>
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     [XunitTestCaseDiscoverer("Microsoft.TestCommon.FactDiscoverer", "Microsoft.TestCommon")]
-    public class FactAttribute : Xunit.FactAttribute
+    public class FactEx : Xunit.FactAttribute
     {
         /// <summary>
         /// Instantiates a new instance of <see cref="FactAttribute"/>.
         /// </summary>
-        public FactAttribute()
+        public FactEx()
         {
             Platforms = Platform.All;
             PlatformJustification = "Unsupported platform (test runs on {0}, current platform is {1})";

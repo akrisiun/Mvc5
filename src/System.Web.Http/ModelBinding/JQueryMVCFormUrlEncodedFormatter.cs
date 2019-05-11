@@ -1,9 +1,9 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Formatting;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace System.Web.Http.ModelBinding
@@ -32,7 +32,7 @@ namespace System.Web.Http.ModelBinding
             return true;
         }
 
-        public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
+        public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContentHeaders content, IFormatterLogger formatterLogger)
         {
             if (type == null)
             {
@@ -53,7 +53,7 @@ namespace System.Web.Http.ModelBinding
             return ReadFromStreamAsyncCore(type, readStream, content, formatterLogger);
         }
 
-        private async Task<object> ReadFromStreamAsyncCore(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
+        private async Task<object> ReadFromStreamAsyncCore(Type type, Stream readStream, HttpContentHeaders content, IFormatterLogger formatterLogger)
         {
             object obj = await base.ReadFromStreamAsync(typeof(FormDataCollection), readStream, content, formatterLogger);
             FormDataCollection fd = (FormDataCollection)obj;

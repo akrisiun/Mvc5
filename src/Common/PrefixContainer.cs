@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 
@@ -23,8 +22,34 @@ namespace System.Web
             }
 
             _originalValues = values;
-            _sortedValues = _originalValues.ToArrayWithoutNulls();
+            _sortedValues = ToArrayWithoutNulls(_originalValues);
             Array.Sort(_sortedValues, StringComparer.OrdinalIgnoreCase);
+        }
+
+         public static T[] ToArrayWithoutNulls<T>(ICollection<T> collection) where T : class
+        {
+            // Contract.Assert(collection != null);
+
+            T[] result = new T[collection.Count];
+            int count = 0;
+            foreach (T value in collection)
+            {
+                if (value != null)
+                {
+                    result[count] = value;
+                    count++;
+                }
+            }
+            if (count == collection.Count)
+            {
+                return result;
+            }
+            else
+            {
+                T[] trimmedResult = new T[count];
+                Array.Copy(result, trimmedResult, count);
+                return trimmedResult;
+            }
         }
 
         internal bool ContainsPrefix(string prefix)

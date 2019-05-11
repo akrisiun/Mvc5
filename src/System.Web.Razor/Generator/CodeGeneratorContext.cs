@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.CodeDom;
 using System.Collections.Generic;
@@ -74,6 +73,14 @@ namespace System.Web.Razor.Generator
                 },
                 CodeMappings = new Dictionary<int, GeneratedCodeMapping>()
             };
+            
+            var entryPoint = context.TargetMethod;
+            if (entryPoint.Name.EndsWith("Async", StringComparison.Ordinal)
+                && entryPoint.ReturnType.BaseType == "System.Void"
+                && host.NamespaceImports.Contains("System.Threading.Tasks"))
+            {
+                entryPoint.ReturnType = new CodeTypeReference("async global::System.Threading.Tasks.Task");
+            }
             context.CompileUnit.Namespaces.Add(context.Namespace);
             context.Namespace.Types.Add(context.GeneratedClass);
             context.GeneratedClass.Members.Add(context.TargetMethod);

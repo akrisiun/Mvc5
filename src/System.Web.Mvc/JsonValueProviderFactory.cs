@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections;
 using System.Collections.Generic;
@@ -8,7 +7,7 @@ using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.Web.Mvc.Properties;
-using System.Web.Script.Serialization;
+//using System.Web.Script.Serialization;
 
 namespace System.Web.Mvc
 {
@@ -56,8 +55,9 @@ namespace System.Web.Mvc
                 return null;
             }
 
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            object jsonData = serializer.DeserializeObject(bodyText);
+            // JavaScriptSerializer serializer = new JavaScriptSerializer();
+            object jsonData = global::Newtonsoft.Json.JsonConvert.DeserializeObject(bodyText);
+            //object jsonData = serializer.DeserializeObject(bodyText);
             return jsonData;
         }
 

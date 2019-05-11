@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -139,14 +138,13 @@ namespace System.Web.Http.Controllers
                             .Select(binding => binding.Descriptor.Prefix ?? binding.Descriptor.ParameterName).ToArray());
                 }
 
-                _combinedActionNameMapping = 
+                _combinedActionNameMapping =
                     _combinedCandidateActions
                     .Select(c => c.ActionDescriptor)
                     .ToLookup(actionDesc => actionDesc.ActionName, StringComparer.OrdinalIgnoreCase);
             }
 
-            public HttpControllerDescriptor HttpControllerDescriptor
-            {
+            public HttpControllerDescriptor HttpControllerDescriptor {
                 get { return _controllerDescriptor; }
             }
 
@@ -191,7 +189,7 @@ namespace System.Web.Http.Controllers
                     standardActions.StandardCandidateActions = standardCandidateActions.ToArray();
                 }
 
-                standardActions.StandardActionNameMapping = 
+                standardActions.StandardActionNameMapping =
                     standardActions.StandardCandidateActions
                     .Select(c => c.ActionDescriptor)
                     .ToLookup(actionDesc => actionDesc.ActionName, StringComparer.OrdinalIgnoreCase);
@@ -210,8 +208,8 @@ namespace System.Web.Http.Controllers
             public HttpActionDescriptor SelectAction(HttpControllerContext controllerContext)
             {
                 InitializeStandardActions();
-                
-                List<CandidateActionWithParams> selectedCandidates = FindMatchingActions(controllerContext); 
+
+                List<CandidateActionWithParams> selectedCandidates = FindMatchingActions(controllerContext);
 
                 switch (selectedCandidates.Count)
                 {
@@ -232,7 +230,7 @@ namespace System.Web.Http.Controllers
             {
                 controllerContext.RouteData = selectedCandidate.RouteDataSource;
             }
-                        
+
             // Find all actionsByVerb on this controller that match the request. 
             // if ignoreVerbs = true, then don't filter actionsByVerb based on mismatching Http verb. This is useful for detecting 404/405. 
             private List<CandidateActionWithParams> FindMatchingActions(HttpControllerContext controllerContext, bool ignoreVerbs = false)
@@ -240,21 +238,24 @@ namespace System.Web.Http.Controllers
                 // If matched with direct route?
                 IHttpRouteData routeData = controllerContext.RouteData;
                 IEnumerable<IHttpRouteData> subRoutes = routeData.GetSubRoutes();
-                                
-                IEnumerable<CandidateActionWithParams> actionsWithParameters = (subRoutes == null) ? 
+
+                IEnumerable<CandidateActionWithParams> actionsWithParameters = (subRoutes == null) ?
                     GetInitialCandidateWithParameterListForRegularRoutes(controllerContext, ignoreVerbs) :
                     GetInitialCandidateWithParameterListForDirectRoutes(controllerContext, subRoutes, ignoreVerbs);
 
                 // Make sure the action parameter matches the route and query parameters.
                 List<CandidateActionWithParams> actionsFoundByParams = FindActionMatchRequiredRouteAndQueryParameters(actionsWithParameters);
 
-                List<CandidateActionWithParams> orderCandidates = RunOrderFilter(actionsFoundByParams);
-                List<CandidateActionWithParams> precedenceCandidates = RunPrecedenceFilter(orderCandidates);
+                // List<CandidateActionWithParams> 
+                var orderCandidates = RunOrderFilter(actionsFoundByParams);
+                // List<CandidateActionWithParams> 
+                var precedenceCandidates = RunPrecedenceFilter(orderCandidates);
 
                 // Overload resolution logic is applied when needed.
-                List<CandidateActionWithParams> selectedCandidates = FindActionMatchMostRouteAndQueryParameters(precedenceCandidates);
+                // List<CandidateActionWithParams> 
+                var selectedCandidates = FindActionMatchMostRouteAndQueryParameters(precedenceCandidates);
 
-                return selectedCandidates;
+                return selectedCandidates as List<CandidateActionWithParams>;
             }
 
             // Selection error. Caller has already determined the request is an error, and now we need to provide the best error message.
@@ -463,7 +464,7 @@ namespace System.Web.Http.Controllers
                 return matches;
             }
 
-            private List<CandidateActionWithParams> FindActionMatchMostRouteAndQueryParameters(List<CandidateActionWithParams> candidatesFound)
+            private IList<CandidateActionWithParams> FindActionMatchMostRouteAndQueryParameters(IList<CandidateActionWithParams> candidatesFound)
             {
                 if (candidatesFound.Count > 1)
                 {
@@ -505,24 +506,26 @@ namespace System.Web.Http.Controllers
                 return true;
             }
 
-            private static List<CandidateActionWithParams> RunOrderFilter(List<CandidateActionWithParams> candidatesFound)
+            private static IList<CandidateActionWithParams> RunOrderFilter(List<CandidateActionWithParams> candidatesFound)
             {
                 if (candidatesFound.Count == 0)
                 {
                     return candidatesFound;
                 }
                 int minOrder = candidatesFound.Min(c => c.CandidateAction.Order);
-                return candidatesFound.Where(c => c.CandidateAction.Order == minOrder).AsList();
+                return CollectionExtensionsHttp.AsIList(
+                       candidatesFound.Where(c => c.CandidateAction.Order == minOrder));
             }
 
-            private static List<CandidateActionWithParams> RunPrecedenceFilter(List<CandidateActionWithParams> candidatesFound)
+            private static IList<CandidateActionWithParams> RunPrecedenceFilter(IList<CandidateActionWithParams> candidatesFound)
             {
                 if (candidatesFound.Count == 0)
                 {
                     return candidatesFound;
                 }
                 decimal highestPrecedence = candidatesFound.Min(c => c.CandidateAction.Precedence);
-                return candidatesFound.Where(c => c.CandidateAction.Precedence == highestPrecedence).AsList();
+                return CollectionExtensionsHttp.AsIList(
+                       candidatesFound.Where(c => c.CandidateAction.Precedence == highestPrecedence));
             }
 
             // This is called when we don't specify an Action name
@@ -641,10 +644,8 @@ namespace System.Web.Http.Controllers
             // Remember this so that we can apply it for model binding. 
             public IHttpRouteData RouteDataSource { get; private set; }
 
-            public HttpActionDescriptor ActionDescriptor
-            {
-                get
-                {
+            public HttpActionDescriptor ActionDescriptor {
+                get {
                     return CandidateAction.ActionDescriptor;
                 }
             }

@@ -4,6 +4,7 @@
 using System;
 using System.Linq.Expressions;
 using System.Reflection;
+using Xunit;
 
 namespace Microsoft.TestCommon
 {
@@ -51,7 +52,7 @@ namespace Microsoft.TestCommon
             }
             else
             {
-                Assert.ThrowsArgumentNull(() =>
+                Assert1.ThrowsArgumentNull(() =>
                 {
                     setFunc(instance, null);
                 }, "value");
@@ -86,12 +87,12 @@ namespace Microsoft.TestCommon
 
             if (illegalLowerValue.HasValue)
             {
-                Assert.ThrowsArgumentGreaterThanOrEqualTo(() => { setFunc(instance, illegalLowerValue.Value); }, "value", minLegalValue.Value.ToString(), illegalLowerValue.Value);
+                Assert1.ThrowsArgumentGreaterThanOrEqualTo(() => { setFunc(instance, illegalLowerValue.Value); }, "value", minLegalValue.Value.ToString(), illegalLowerValue.Value);
             }
 
             if (illegalUpperValue.HasValue)
             {
-                Assert.ThrowsArgumentLessThanOrEqualTo(() => { setFunc(instance, illegalLowerValue.Value); }, "value", maxLegalValue.Value.ToString(), illegalUpperValue.Value);
+                Assert1.ThrowsArgumentLessThanOrEqualTo(() => { setFunc(instance, illegalLowerValue.Value); }, "value", maxLegalValue.Value.ToString(), illegalUpperValue.Value);
             }
 
             TestPropertyValue(instance, getFunc, setFunc, roundTripTestValue);
@@ -122,12 +123,12 @@ namespace Microsoft.TestCommon
 
             if (illegalLowerValue.HasValue)
             {
-                Assert.ThrowsArgumentGreaterThanOrEqualTo(() => { setFunc(instance, illegalLowerValue.Value); }, "value", minLegalValue.Value.ToString(), illegalLowerValue.Value);
+                Assert1.ThrowsArgumentGreaterThanOrEqualTo(() => { setFunc(instance, illegalLowerValue.Value); }, "value", minLegalValue.Value.ToString(), illegalLowerValue.Value);
             }
 
             if (illegalUpperValue.HasValue)
             {
-                Assert.ThrowsArgumentLessThanOrEqualTo(() => { setFunc(instance, illegalLowerValue.Value); }, "value", maxLegalValue.Value.ToString(), illegalUpperValue.Value);
+                Assert1.ThrowsArgumentLessThanOrEqualTo(() => { setFunc(instance, illegalLowerValue.Value); }, "value", maxLegalValue.Value.ToString(), illegalUpperValue.Value);
             }
 
             TestPropertyValue(instance, getFunc, setFunc, roundTripTestValue);
@@ -152,7 +153,7 @@ namespace Microsoft.TestCommon
 
             Assert.Equal(expectedDefaultValue, getFunc(instance));
 
-            Assert.ThrowsInvalidEnumArgument(() => { setFunc(instance, illegalValue); }, "value", Convert.ToInt32(illegalValue), typeof(TResult));
+            Assert1.ThrowsInvalidEnumArgument(() => { setFunc(instance, illegalValue); }, "value", Convert.ToInt32(illegalValue), typeof(TResult));
 
             TestPropertyValue(instance, getFunc, setFunc, roundTripTestValue);
         }
@@ -187,7 +188,7 @@ namespace Microsoft.TestCommon
             }
             else
             {
-                Assert.ThrowsArgumentNullOrEmpty(
+                Assert1.ThrowsArgumentNullOrEmpty(
                     delegate()
                     {
                         try
@@ -200,7 +201,7 @@ namespace Microsoft.TestCommon
                         }
                     },
                     "value");
-                Assert.ThrowsArgumentNullOrEmpty(
+                Assert1.ThrowsArgumentNullOrEmpty(
                     delegate()
                     {
                         try

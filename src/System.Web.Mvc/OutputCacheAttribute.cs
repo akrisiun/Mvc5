@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -12,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Web.Mvc.Properties;
 using System.Web.UI;
+using System.Web.WebPages;
 
 namespace System.Web.Mvc
 {
@@ -277,7 +277,7 @@ namespace System.Web.Mvc
                 }
 
                 // Swap in a new TextWriter so we can capture the output
-                StringWriter cachingWriter = new StringWriter(CultureInfo.InvariantCulture);
+                var cachingWriter = new StringBlockWriter(CultureInfo.InvariantCulture);
                 TextWriter originalWriter = filterContext.HttpContext.Response.Output;
                 filterContext.HttpContext.Response.Output = cachingWriter;
 

@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Diagnostics.Contracts;
 using System.IO;
@@ -109,7 +108,7 @@ namespace System.Net.Http
         /// <returns>A <see cref="Task"/> instance that is asynchronously serializing the object's content.</returns>
         protected override Task SerializeToStreamAsync(Stream stream, TransportContext context)
         {
-            return _formatter.WriteToStreamAsync(ObjectType, Value, stream, this, context);
+            return _formatter.WriteToStreamAsync(ObjectType, Value, stream, this.Headers, context);
         }
 
         /// <summary>

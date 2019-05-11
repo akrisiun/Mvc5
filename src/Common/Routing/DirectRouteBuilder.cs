@@ -38,7 +38,8 @@ namespace System.Web.Mvc.Routing
 #endif
 {
     /// <summary>Represents a builder that creates direct routes to actions (attribute routes).</summary>
-    internal class DirectRouteBuilder : IDirectRouteBuilder
+    // internal 
+    public class DirectRouteBuilder : IDirectRouteBuilder
     {
         private readonly TActionDescriptor[] _actions;
         private readonly bool _targetIsAction;

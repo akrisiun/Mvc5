@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
@@ -69,7 +68,7 @@ namespace System.Net.Http.Formatting
         /// <param name="content">The <see cref="HttpContent"/> if available. Note that
         /// modifying the headers of the content will have no effect on the generated HTTP message; they should only be used to guide the writing.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests.</param>
-        public virtual void WriteToStream(Type type, object value, Stream writeStream, HttpContent content,
+        public virtual void WriteToStream(Type type, object value, Stream writeStream, HttpContentHeaders content,
             CancellationToken cancellationToken)
         {
             WriteToStream(type, value, writeStream, content);
@@ -86,7 +85,7 @@ namespace System.Net.Http.Formatting
         /// <param name="writeStream">The <see cref="Stream"/> to which to write.</param>
         /// <param name="content">The <see cref="HttpContent"/> if available. Note that
         /// modifying the headers of the content will have no effect on the generated HTTP message; they should only be used to guide the writing.</param>
-        public virtual void WriteToStream(Type type, object value, Stream writeStream, HttpContent content)
+        public virtual void WriteToStream(Type type, object value, Stream writeStream, HttpContentHeaders content)
         {
             throw Error.NotSupported(Properties.Resources.MediaTypeFormatterCannotWriteSync, GetType().Name);
         }
@@ -109,6 +108,12 @@ namespace System.Net.Http.Formatting
             return ReadFromStream(type, readStream, content, formatterLogger);
         }
 
+        public virtual object ReadFromStream(Type type, Stream readStream, HttpContentHeaders content,
+            IFormatterLogger formatterLogger, CancellationToken cancellationToken)
+        {
+            return ReadFromStream(type, readStream, content, formatterLogger);
+        }
+
         /// <summary>
         /// Reads synchronously from the buffered stream.
         /// </summary>
@@ -125,15 +130,20 @@ namespace System.Net.Http.Formatting
             throw Error.NotSupported(Properties.Resources.MediaTypeFormatterCannotReadSync, GetType().Name);
         }
 
+        public virtual object ReadFromStream(Type type, Stream readStream, HttpContentHeaders content, IFormatterLogger formatterLogger)
+        {
+            throw Error.NotSupported(Properties.Resources.MediaTypeFormatterCannotReadSync, GetType().Name);
+        }
+
         // Sealed because derived classes shouldn't override the async version. Override sync version instead.
-        public sealed override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content,
+        public sealed override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContentHeaders content,
             TransportContext transportContext)
         {
             return WriteToStreamAsync(type, value, writeStream, content, transportContext, CancellationToken.None);
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "The caught exception type is reflected into a faulted task.")]
-        public sealed override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content,
+        public sealed override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContentHeaders content,
             TransportContext transportContext, CancellationToken cancellationToken)
         {
             if (type == null)
@@ -157,7 +167,7 @@ namespace System.Net.Http.Formatting
             }
         }
 
-        private void WriteToStreamSync(Type type, object value, Stream writeStream, HttpContent content,
+        private void WriteToStreamSync(Type type, object value, Stream writeStream, HttpContentHeaders content,
             CancellationToken cancellationToken)
         {
             using (Stream bufferedStream = GetBufferStream(writeStream, _bufferSizeInBytes))
@@ -166,14 +176,15 @@ namespace System.Net.Http.Formatting
             }
         }
 
-        public sealed override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content,
+        public sealed override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContentHeaders content,
             IFormatterLogger formatterLogger)
         {
             return ReadFromStreamAsync(type, readStream, content, formatterLogger, CancellationToken.None);
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "The caught exception type is reflected into a faulted task.")]
-        public sealed override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content,
+        public virtual // sealed override 
+            Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContentHeaders content,
             IFormatterLogger formatterLogger, CancellationToken cancellationToken)
         {
             if (type == null)
@@ -196,11 +207,11 @@ namespace System.Net.Http.Formatting
             }
         }
 
-        private object ReadFromStreamSync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger,
-            CancellationToken cancellationToken)
+        object ReadFromStreamSync(Type type, Stream readStream, HttpContentHeaders content, IFormatterLogger formatterLogger,
+               CancellationToken cancellationToken)
         {
             object result;
-            HttpContentHeaders contentHeaders = content == null ? null : content.Headers;
+            HttpContentHeaders contentHeaders = content == null ? null : content; // .Headers;
             if (contentHeaders != null && contentHeaders.ContentLength == 0)
             {
                 result = GetDefaultValueForType(type);

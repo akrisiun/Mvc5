@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.ObjectModel;
 using System.Diagnostics.Contracts;
@@ -10,7 +9,8 @@ namespace System.Collections.Generic
     /// <summary>
     /// Helper extension methods for fast use of collections.
     /// </summary>
-    internal static class CollectionExtensions
+    // internal 
+    public static class CollectionExtensions
     {
         /// <summary>
         /// Return a new array with the value added to the end. Slow and best suited to long lived arrays with few writes relative to reads.

@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.IO;
 using System.Net;
@@ -73,7 +72,7 @@ namespace System.Web.Http.Tracing.Tracers
             return _innerTracer.GetPerRequestFormatterInstance(type, request, mediaType);
         }
 
-        public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content,
+        public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContentHeaders content,
             IFormatterLogger formatterLogger)
         {
             return _innerTracer.ReadFromStreamAsync(type, readStream, content, formatterLogger);
@@ -99,13 +98,13 @@ namespace System.Web.Http.Tracing.Tracers
             return _inner.CreateJsonReader(type, readStream, effectiveEncoding);
         }
 
-        public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content,
+        public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContentHeaders content,
             TransportContext transportContext)
         {
             return _innerTracer.WriteToStreamAsync(type, value, writeStream, content, transportContext);
         }
 
-        public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content,
+        public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContentHeaders content,
             TransportContext transportContext, CancellationToken cancellationToken)
         {
             return _innerTracer.WriteToStreamAsync(type, value, writeStream, content, transportContext, cancellationToken);

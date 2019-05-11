@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Linq;
@@ -74,6 +73,14 @@ namespace System.Web.WebPages
 
         public object CreateInstance(string virtualPath)
         {
+            if (virtualPath.EndsWith(".cshtml"))
+            {
+                // if (Instance != null)
+                //    return WebPageBase.CreateInstanceFromVirtualPath(virtualPath);
+
+                return CreateInstanceOfType<WebPageBase>(virtualPath);
+            }
+
             return CreateInstanceOfType<object>(virtualPath);
         }
 

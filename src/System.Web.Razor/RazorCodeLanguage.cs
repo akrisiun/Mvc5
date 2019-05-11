@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Web.Razor.Generator;
@@ -14,8 +13,8 @@ namespace System.Web.Razor
     {
         private static IDictionary<string, RazorCodeLanguage> _services = new Dictionary<string, RazorCodeLanguage>(StringComparer.OrdinalIgnoreCase)
         {
-            { "cshtml", new CSharpRazorCodeLanguage() },
-            { "vbhtml", new VBRazorCodeLanguage() }
+            { "cshtml", new CSharpRazorCodeLanguage() }
+            //{ "vbhtml", new VBRazorCodeLanguage() }
         };
 
         /// <summary>

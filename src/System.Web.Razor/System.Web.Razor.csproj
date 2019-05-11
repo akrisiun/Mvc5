@@ -1,20 +1,47 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),Runtime.sln))\tools\WebStack.settings.targets" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <ProjectGuid>{8F18041B-9410-4C36-A9C5-067813DF5F31}</ProjectGuid>
+    <TargetFramework>net45</TargetFramework>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    
     <OutputType>Library</OutputType>
     <RootNamespace>System.Web.Razor</RootNamespace>
     <AssemblyName>System.Web.Razor</AssemblyName>
-    <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
-    <RunCodeAnalysis>$(CodeAnalysis)</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>..\Strict.ruleset</CodeAnalysisRuleSet>
+
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <DefineConstants>$(DefineConstants);ASPNETWEBPAGES</DefineConstants>
+    <NoWarn>1591</NoWarn>
+    <PackageId>Beta.Web.Razor</PackageId>
+    <Version>5.5.2</Version>
+    <ProjectGuid>{8F18041B-9410-4C36-A9C5-067813DF5F31}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
     <DefineConstants>$(DefineConstants);ASPNETWEBPAGES</DefineConstants>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
+  
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DefineConstants>$(DefineConstants);EDITOR_TRACING</DefineConstants>
+    <OutputPath>..\..\lib\</OutputPath>
+    <DocumentationFile />
   </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\xmAspNet.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Tokenizer\Symbols\VBKeyword.cs" />
+    <None Remove="Tokenizer\Symbols\VBSymbol.cs" />
+    <None Remove="VBRazorCodeLanguage.cs" />
+  </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
@@ -34,6 +61,7 @@
     <Compile Include="..\GlobalSuppressions.cs">
       <Link>Common\GlobalSuppressions.cs</Link>
     </Compile>
+    <Compile Include="Common\HashCodeCombinerRazor.cs" />
     <Compile Include="DocumentParseCompleteEventArgs.cs" />
     <Compile Include="Editor\AutoCompleteEditHandler.cs" />
     <Compile Include="Editor\BackgroundParser.cs" />
@@ -101,9 +129,6 @@
     <Compile Include="Parser\TextReaderExtensions.cs" />
     <Compile Include="Parser\TokenizerBackedParser.cs" />
     <Compile Include="Parser\TokenizerBackedParser.Helpers.cs" />
-    <Compile Include="Parser\VBCodeParser.cs" />
-    <Compile Include="Parser\VBCodeParser.Directives.cs" />
-    <Compile Include="Parser\VBLanguageCharacteristics.cs" />
     <Compile Include="Parser\WhitespaceRewriter.cs" />
     <Compile Include="PartialParseResult.cs" />
     <Compile Include="RazorDebugHelpers.cs" />
@@ -131,14 +156,10 @@
     <Compile Include="Tokenizer\Symbols\SymbolExtensions.cs" />
     <Compile Include="Tokenizer\Symbols\SymbolTypeSuppressions.cs" />
     <Compile Include="Tokenizer\TokenizerView.cs" />
-    <Compile Include="Tokenizer\VBKeywordDetector.cs" />
-    <Compile Include="Tokenizer\VBHelpers.cs" />
     <Compile Include="Tokenizer\CSharpHelpers.cs" />
     <Compile Include="Tokenizer\CSharpKeywordDetector.cs" />
     <Compile Include="Tokenizer\CSharpTokenizer.cs" />
     <Compile Include="Tokenizer\HtmlTokenizer.cs" />
-    <Compile Include="Tokenizer\Symbols\VBKeyword.cs" />
-    <Compile Include="Tokenizer\Symbols\VBSymbol.cs" />
     <Compile Include="Tokenizer\Symbols\VBSymbolType.cs" />
     <Compile Include="Tokenizer\Symbols\CSharpKeyword.cs" />
     <Compile Include="Tokenizer\Symbols\CSharpSymbol.cs" />
@@ -147,10 +168,8 @@
     <Compile Include="Tokenizer\Symbols\HtmlSymbolType.cs" />
     <Compile Include="Tokenizer\Symbols\SymbolBase.cs" />
     <Compile Include="Tokenizer\Tokenizer.cs" />
-    <Compile Include="Tokenizer\VBTokenizer.cs" />
     <Compile Include="Tokenizer\XmlHelpers.cs" />
     <Compile Include="Utils\CharUtils.cs" />
-    <Compile Include="VBRazorCodeLanguage.cs" />
     <Compile Include="Generator\CSharpRazorCodeGenerator.cs" />
     <Compile Include="Parser\SyntaxTree\BlockType.cs" />
     <Compile Include="Parser\SyntaxTree\Block.cs" />
@@ -193,11 +212,10 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Parser\VBCodeParser.Statements.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <CodeAnalysisDictionary Include="..\CodeAnalysisDictionary.xml" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
+  <Target Name="PostBuildTask" AfterTargets="Build">
+    <Message Condition=" Exists($(LibDir)) "  Importance="High" Text="net*  -&gt; $(TargetDir)$(TargetName).dll" />
+    <Copy Condition=" '$(SolutionDir)' != '*Undefined*' And Exists($(LibDir)) And '$(TargetFramework)' == 'net45'"
+          SourceFiles="$(TargetDir)\$(TargetName).dll" DestinationFiles=" $(LibDir)\$(TargetName).dll" SkipUnchangedFiles="false" />
+  </Target>
 </Project>

@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,7 +7,8 @@ using System.Web.Razor.Parser;
 
 namespace System.Web.Razor.Text
 {
-    internal class LineTrackingStringBuffer
+    // internal 
+    public class LineTrackingStringBuffer
     {
         private TextLine _currentLine;
         private TextLine _endLine;
@@ -113,7 +113,8 @@ namespace System.Web.Razor.Text
             return null;
         }
 
-        internal class CharacterReference
+        // internal 
+        public class CharacterReference
         {
             public CharacterReference(char character, SourceLocation location)
             {

@@ -1,16 +1,29 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.WebPages.Html;
 using System.Web.WebPages.Scope;
 
 namespace System.Web.WebPages
 {
+    public interface IWebPage
+    {
+        HttpContextBase Context { get; }
+        HtmlHelper Html { get; }
+        dynamic Model { get; }
+        ModelStateDictionary ModelState { get; }
+
+        void ExecutePageHierarchy();
+        Task ExecutePageHierarchyAsync();
+
+        HelperResult RenderPage(string path, params object[] data);
+    }
+
     [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "This is a core class which needs to have references to many other classes")]
-    public abstract class WebPage : WebPageBase
+    public abstract class WebPage : WebPageBase, IWebPage
     {
         private static readonly List<IWebPageRequestExecutor> _executors = new List<IWebPageRequestExecutor>();
 
@@ -68,7 +81,7 @@ namespace System.Web.WebPages
 
         public override void ExecutePageHierarchy()
         {
-            using (ScopeStorage.CreateTransientScope(new ScopeStorageDictionary(ScopeStorage.CurrentScope, PageData)))
+            using (CreateScope())
             {
                 ExecutePageHierarchy(_executors);
             }
@@ -86,9 +99,36 @@ namespace System.Web.WebPages
             }
         }
 
-        public override HelperResult RenderPage(string path, params object[] data)
+        public override Task ExecutePageHierarchyAsync()
         {
-            return base.RenderPage(path, data);
+            using (CreateScope())
+            {
+                return ExecutePageHierarchyAsync(_executors);
+            }
+        }
+
+        internal async Task ExecutePageHierarchyAsync(IEnumerable<IWebPageRequestExecutor> executors)
+        {
+            if (TopLevelPage)
+            {
+                // Call all the executors until we find one that wants to handle it. This is used to implement features
+                // such as AJAX Page methods without having to bake them into the framework.
+                // Note that we only do this for 'top level' pages, as these are request-level executors that should not run for each user control/master
+                foreach (var executor in executors)
+                {
+                    if (await executor.ExecuteAsync(this).ConfigureAwait(false))
+                    {
+                        return;
+                    }
+                }
+            }
+            // No executor handled the request, so use normal processing
+            await base.ExecutePageHierarchyAsync().ConfigureAwait(false);
+        }
+
+        private IDisposable CreateScope()
+        {
+            return ScopeStorage.CreateTransientScope(new ScopeStorageDictionary(ScopeStorage.CurrentScope, PageData));
         }
 
         protected override void InitializePage()

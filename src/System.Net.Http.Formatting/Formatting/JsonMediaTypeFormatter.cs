@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 #if !NETFX_CORE
 using System.Collections.Concurrent;
@@ -212,7 +211,10 @@ namespace System.Net.Http.Formatting
             }
         }
 
+#pragma warning disable 809
+
         /// <inheritdoc />
+        [Obsolete]
         public override object ReadFromStream(Type type, Stream readStream, Encoding effectiveEncoding, IFormatterLogger formatterLogger)
         {
             if (type == null)
@@ -245,7 +247,7 @@ namespace System.Net.Http.Formatting
         }
 
         /// <inheritdoc />
-        public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content,
+        public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContentHeaders content,
             TransportContext transportContext, CancellationToken cancellationToken)
         {
             if (type == null)

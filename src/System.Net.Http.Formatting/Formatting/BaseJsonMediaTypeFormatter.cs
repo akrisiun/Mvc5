@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
@@ -172,7 +171,7 @@ namespace System.Net.Http.Formatting
         /// <param name="formatterLogger">The <see cref="IFormatterLogger"/> to log events to.</param>
         /// <returns>A <see cref="Task"/> whose result will be the object instance that has been read.</returns>
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "The caught exception type is reflected into a faulted task.")]
-        public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
+        public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContentHeaders content, IFormatterLogger formatterLogger)
         {
             if (type == null)
             {
@@ -196,12 +195,12 @@ namespace System.Net.Http.Formatting
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes",
             Justification = "Caller's formatterLogger is notified of problem in all cases where Exception is not rethrown.")]
-        private object ReadFromStream(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
+        private object ReadFromStream(Type type, Stream readStream, HttpContentHeaders content, IFormatterLogger formatterLogger)
         {
             Contract.Assert(type != null);
             Contract.Assert(readStream != null);
 
-            HttpContentHeaders contentHeaders = content == null ? null : content.Headers;
+            HttpContentHeaders contentHeaders = content == null ? null : content; // .Headers;
 
             // If content length is 0 then return default value for this type
             if (contentHeaders != null && contentHeaders.ContentLength == 0)
@@ -228,6 +227,8 @@ namespace System.Net.Http.Formatting
                 return GetDefaultValueForType(type);
             }
         }
+
+#pragma warning disable 809  // BSON is obsolete
 
         /// <summary>
         /// Called during deserialization to read an object of the specified <paramref name="type"/>
@@ -360,7 +361,9 @@ namespace System.Net.Http.Formatting
 
         /// <inheritdoc />
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "The caught exception type is reflected into a faulted task.")]
-        public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content,
+        // [Obsolete]
+        public // override 
+            Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content,
             TransportContext transportContext, CancellationToken cancellationToken)
         {
             if (type == null)
@@ -387,6 +390,7 @@ namespace System.Net.Http.Formatting
             }
         }
 
+        // [Obsolete]
         private void WriteToStream(Type type, object value, Stream writeStream, HttpContent content)
         {
             Contract.Assert(type != null);
@@ -408,6 +412,7 @@ namespace System.Net.Http.Formatting
         /// <param name="value">The object to write.</param>
         /// <param name="writeStream">The <see cref="Stream"/> to which to write.</param>
         /// <param name="effectiveEncoding">The <see cref="Encoding"/> to use when writing.</param>
+        // [Obsolete]
         public virtual void WriteToStream(Type type, object value, Stream writeStream, Encoding effectiveEncoding)
         {
             if (type == null)
@@ -435,6 +440,7 @@ namespace System.Net.Http.Formatting
             }
         }
 
+       // [Obsolete]
         private JsonWriter CreateJsonWriterInternal(Type type, Stream writeStream, Encoding effectiveEncoding)
         {
             Contract.Assert(type != null);
@@ -461,6 +467,7 @@ namespace System.Net.Http.Formatting
         /// <param name="writeStream">The <see cref="Stream"/> to which to write.</param>
         /// <param name="effectiveEncoding">The <see cref="Encoding"/> to use when writing.</param>
         /// <returns>The <see cref="JsonWriter"/> used during serialization.</returns>
+       // [Obsolete]
         public abstract JsonWriter CreateJsonWriter(Type type, Stream writeStream, Encoding effectiveEncoding);
     }
 }

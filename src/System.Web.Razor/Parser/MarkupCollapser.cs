@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Linq;
 using System.Web.Razor.Generator;
@@ -8,7 +7,8 @@ using System.Web.Razor.Text;
 
 namespace System.Web.Razor.Parser
 {
-    internal class MarkupCollapser : MarkupRewriter
+    // internal 
+    public class MarkupCollapser : MarkupRewriter
     {
         public MarkupCollapser(Action<SpanBuilder, SourceLocation, string> markupSpanFactory) : base(markupSpanFactory)
         {

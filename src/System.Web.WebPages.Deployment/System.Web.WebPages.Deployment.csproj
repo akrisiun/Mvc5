@@ -2,15 +2,46 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),Runtime.sln))\tools\WebStack.settings.targets" />
   <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <CodeAnalysis Condition=" '$(CodeAnalysis)' == '' ">false</CodeAnalysis>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{22BABB60-8F02-4027-AFFC-ACF069954536}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>System.Web.WebPages.Deployment</RootNamespace>
     <AssemblyName>System.Web.WebPages.Deployment</AssemblyName>
-    <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
-    <RunCodeAnalysis>$(CodeAnalysis)</RunCodeAnalysis>
+    <FileAlignment>512</FileAlignment>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ASPNETWEBPAGES</DefineConstants>
     <CodeAnalysisRuleSet>..\Strict.ruleset</CodeAnalysisRuleSet>
-    <DefineConstants>$(DefineConstants);ASPNETWEBPAGES</DefineConstants>
+    <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
     <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE;ASPNETWEBPAGES</DefineConstants>
+    <CodeAnalysisRuleSet>..\Strict.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>$(CodeAnalysis)</RunCodeAnalysis>
+    <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
+    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CodeCoverage|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\bin\CodeCoverage\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_COVERAGE;ASPNETWEBPAGES</DefineConstants>
+    <DebugType>full</DebugType>
+    <CodeAnalysisRuleSet>..\Strict.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -30,8 +61,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CommonResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="..\ExceptionHelper.cs">
+      <Link>Common\ExceptionHelper.cs</Link>
+    </Compile>
     <Compile Include="..\GlobalSuppressions.cs">
       <Link>Common\GlobalSuppressions.cs</Link>
+    </Compile>
+    <Compile Include="..\TransparentCommonAssemblyInfo.cs">
+      <Link>Properties\TransparentCommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AppDomainHelper.cs" />
     <Compile Include="AssemblyUtils.cs" />

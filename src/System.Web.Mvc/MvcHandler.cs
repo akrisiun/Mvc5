@@ -1,9 +1,7 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Web.Mvc.Async;
@@ -11,14 +9,29 @@ using System.Web.Mvc.Properties;
 using System.Web.Routing;
 using System.Web.SessionState;
 using Microsoft.Web.Infrastructure.DynamicValidationHelper;
+using System.IO;
 
 namespace System.Web.Mvc
 {
     public class MvcHandler : IHttpAsyncHandler, IHttpHandler, IRequiresSessionState
     {
         private static readonly object _processRequestTag = new object();
-
+        internal static Exception LoadError { get; set; }
         internal static readonly string MvcVersion = GetMvcVersionString();
+
+        static MvcHandler()
+        {
+            // System.Net.Http.Formatting, Version = 5.5.0.0
+            var baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            try
+            {
+                if (File.Exists(Path.Combine(baseDir, @"bin\Microsoft.Web.Infrastructure.dll")))
+                    Assembly.LoadFrom(Path.Combine(baseDir, @"bin\Microsoft.Web.Infrastructure.dll"));
+            }
+            catch (Exception ex) { LoadError = ex; }
+            // { "Could not load file or assembly 'Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2f9147bba06de483'
+        }
+            
         public static readonly string MvcVersionHeaderName = "X-AspNetMvc-Version";
         private ControllerBuilder _controllerBuilder;
 
@@ -54,7 +67,8 @@ namespace System.Web.Mvc
 
         public RequestContext RequestContext { get; private set; }
 
-        protected internal virtual void AddVersionHeader(HttpContextBase httpContext)
+        protected // internal 
+            virtual void AddVersionHeader(HttpContextBase httpContext)
         {
             if (!DisableMvcResponseHeader)
             {

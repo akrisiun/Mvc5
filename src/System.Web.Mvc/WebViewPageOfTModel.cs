@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Diagnostics.CodeAnalysis;
 
@@ -25,7 +24,11 @@ namespace System.Web.Mvc
             {
                 if (_viewData == null)
                 {
-                    SetViewData(new ViewDataDictionary<TModel>());
+                    var viewData = new ViewDataDictionary<TModel>();
+                    SetViewData(viewData);
+
+                    if (_viewData == null)  // test unit bug
+                       _viewData = new ViewDataDictionary<TModel>(viewData);
                 }
                 return _viewData;
             }

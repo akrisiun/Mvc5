@@ -612,6 +612,9 @@ namespace System.Web.Helpers
             return GetPath(queryString, SelectionFieldName);
         }
 
+        internal static string Argument_Must_Be_GreaterThanOrEqualTo => CommonResources.Argument_Must_Be_GreaterThanOrEqualTo;
+        // return System.Resources.ResourceManager.GetString("Argument_Must_Be_GreaterThanOrEqualTo"); //, CultureInfo.CurrentCulture);
+
         [SuppressMessage("Microsoft.Design", "CA1055:UriReturnValuesShouldNotBeStrings", Justification = "Strings are easier for Plan9 developer to work with")]
         public string GetSortUrl(string column)
         {
@@ -706,12 +709,13 @@ namespace System.Web.Helpers
             if (numericLinksCount < 0)
             {
                 throw new ArgumentOutOfRangeException("numericLinksCount",
-                                                      String.Format(CultureInfo.CurrentCulture, CommonResources.Argument_Must_Be_GreaterThanOrEqualTo, 0));
+                                                      String.Format(CultureInfo.CurrentCulture, Argument_Must_Be_GreaterThanOrEqualTo, 0));
             }
 
             return WebGridRenderer.Pager(this, HttpContext, mode: mode, firstText: firstText, previousText: previousText, nextText: nextText, lastText: lastText,
                                          numericLinksCount: numericLinksCount, renderAjaxContainer: explicitlyCalled);
         }
+         
 
         /// <summary>
         /// Gets the HTML for a table with a pager.

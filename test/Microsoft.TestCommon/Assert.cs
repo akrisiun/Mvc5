@@ -8,7 +8,7 @@ namespace Microsoft.TestCommon
     // all into this single file).
     //
     // See files named XxxAssertions for root extensions to Assert.
-    public partial class Assert : Xunit.Assert
+    public partial class Assert1 : Xunit.Assert
     {
         public static readonly ReflectionAssert Reflection = new ReflectionAssert();
 

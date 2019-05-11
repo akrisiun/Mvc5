@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +6,8 @@ using System.IO;
 namespace System.Web.WebPages.ApplicationParts
 {
     // For unit testing purpose since Assembly is not Moqable
-    internal interface IResourceAssembly
+    // internal 
+    public interface IResourceAssembly
     {
         string Name { get; }
         Stream GetManifestResourceStream(string name);

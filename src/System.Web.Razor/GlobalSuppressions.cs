@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 // This file is used by Code Analysis to maintain SuppressMessage 
 // attributes that are applied to this project. 
@@ -13,6 +12,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 
+#if !NETSTANDARD
 [assembly: SuppressMessage("Microsoft.Naming", "CA1703:ResourceStringsShouldBeSpelledCorrectly", MessageId = "br", Scope = "resource", Target = "System.Web.Razor.Resources.RazorResources.resources", Justification = "Resource is referencing html tag")]
 [assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "System.Web.Razor.Tokenizer.Symbols", Justification = "These namespaces are design to group classes by function. They will be reviewed to ensure they remain relevant.")]
 [assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "System.Web.Razor.Tokenizer", Justification = "These namespaces are design to group classes by function. They will be reviewed to ensure they remain relevant.")]
@@ -21,3 +21,5 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "System.Web.Razor.Editor", Justification = "These namespaces are design to group classes by function. They will be reviewed to ensure they remain relevant.")]
 [assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "System.Web.Razor", Justification = "These namespaces are design to group classes by function. They will be reviewed to ensure they remain relevant.")]
 [assembly: SuppressMessage("Microsoft.Web.FxCop", "MW1000:UnusedResourceUsageRule", Justification = "There are numerous unused resources due to VB being disabled. This rule will be re-run after VB is restored")]
+
+#endif

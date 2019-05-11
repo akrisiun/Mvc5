@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +9,8 @@ namespace System.Web.Helpers.Claims
 {
     // Represents a ClaimsIdentity; serves as an abstraction around the WIF SDK and 4.5
     // ClaimIdentity types since we can't compile directly against them.
-    internal abstract class ClaimsIdentity
+    // internal 
+    public abstract class ClaimsIdentity
     {
         public abstract IEnumerable<Claim> GetClaims();
 

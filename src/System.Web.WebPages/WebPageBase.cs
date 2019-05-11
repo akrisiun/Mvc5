@@ -1,11 +1,11 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web.WebPages.Resources;
 using Microsoft.Internal.Web.Utils;
 
@@ -21,7 +21,7 @@ namespace System.Web.WebPages
         // Action for rendering the body within a layout page
         private Action<TextWriter> _body;
 
-        private StringWriter _tempWriter;
+        private StringBlockWriter _tempWriter;
         private TextWriter _currentWriter;
 
         private DynamicPageDataDictionary<dynamic> _dynamicPageData;
@@ -149,7 +149,8 @@ namespace System.Web.WebPages
                 BuildManagerExceptionUtil.ThrowIfCodeDomDefinedExtension(virtualPath, e);
 
                 // Rethrow any errors
-                throw;
+                if (!e.Message.Contains("_cshtml"))
+                    throw;
             }
             // The page is missing, could not be compiled or is of an invalid type.
             throw new HttpException(String.Format(CultureInfo.CurrentCulture, WebPageResources.WebPage_InvalidPageType, virtualPath));
@@ -190,30 +191,101 @@ namespace System.Web.WebPages
             ExecutePageHierarchy(pageContext, writer, startPage: null);
         }
 
+        public Task ExecutePageHierarchyAsync(WebPageContext pageContext, TextWriter writer)
+        {
+            return ExecutePageHierarchyAsync(pageContext, writer, startPage: null);
+        }
+
         // This method is only used by WebPageBase to allow passing in the view context and writer.
         public void ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
         {
+            _currentWriter = null;
             PushContext(pageContext, writer);
 
-            if (startPage != null)
+            if (PrepareStartPage(pageContext, startPage))
             {
-                if (startPage != this)
-                {
-                    var startPageContext = WebPageContext.CreateNestedPageContext<object>(parentContext: pageContext, pageData: null, model: null, isLayoutPage: false);
-                    startPageContext.Page = startPage;
-                    startPage.PageContext = startPageContext;
-                }
                 startPage.ExecutePageHierarchy();
             }
             else
             {
                 ExecutePageHierarchy();
             }
-            PopContext();
+
+            if (_currentWriter != null)
+                PopContext();
+        }
+
+        public async Task ExecutePageHierarchyAsync(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+        {
+            PushContext(pageContext, writer);
+
+            if (PrepareStartPage(pageContext, startPage))
+            {
+                await startPage.ExecutePageHierarchyAsync().ConfigureAwait(false);
+            }
+            else
+            {
+                await ExecutePageHierarchyAsync().ConfigureAwait(false);
+            }
+            await PopContextAsync().ConfigureAwait(false);
+        }
+
+        private bool PrepareStartPage(WebPageContext pageContext, WebPageRenderingBase startPage)
+        {
+            if (startPage != null && startPage != this)
+            {
+                var startPageContext = WebPageContext.CreateNestedPageContext<object>(parentContext: pageContext, pageData: null, model: null, isLayoutPage: false);
+                startPageContext.Page = startPage;
+                startPage.PageContext = startPageContext;
+                return true;
+            }
+            return false;
+        }
+
+        public override void ExecutePageHierarchy()
+        {
+            PreparePageHierarchy();
+
+            TemplateStack.Push(Context, this);
+            try
+            {
+                // Execute the developer-written code of the WebPage
+                ExecutePage();
+            }
+            finally
+            {
+                var context = Context;
+                if (context.Items.Count > 0)
+                    TemplateStack.Pop(context);
+            }
+        }
+
+        public async override Task ExecutePageHierarchyAsync()
+        {
+            PreparePageHierarchy();
+
+            TemplateStack.Push(Context, this);
+            try
+            {
+                // Execute the developer-written code of the WebPage
+                var task = ExecuteAsync();
+                if (task != null)
+                {
+                    await task.ConfigureAwait(false);
+                }
+                else
+                {
+                    Execute();
+                }
+            }
+            finally
+            {
+                TemplateStack.Pop(Context);
+            }
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "We really don't care if SourceHeader fails, and we don't want it to fail any real requests ever")]
-        public override void ExecutePageHierarchy()
+        private void PreparePageHierarchy()
         {
             // Unlike InitPages, for a WebPage there is no hierarchy - it is always
             // the last file to execute in the chain. There can still be layout pages
@@ -240,17 +312,6 @@ namespace System.Web.WebPages
                 {
                     // we really don't care if this ever fails, so we swallow all exceptions
                 }
-            }
-
-            TemplateStack.Push(Context, this);
-            try
-            {
-                // Execute the developer-written code of the WebPage
-                Execute();
-            }
-            finally
-            {
-                TemplateStack.Pop(Context);
             }
         }
 
@@ -284,6 +345,48 @@ namespace System.Web.WebPages
             else
             {
                 // Otherwise, just render the page.
+                // if (_currentWriter == null)
+                //    throw new ArgumentNullException("_currentWriter");
+                try
+                {
+                    _tempWriter.CopyTo(_currentWriter);
+                }
+                catch (Exception ex)
+                {
+                    if (ex.Message.Contains("Object reference not set to an instance of an object."))
+                    {
+                        if (HttpContext.Current != null)
+                            _tempWriter.CopyTo(HttpContext.Current.Response.Output);
+                    }
+                    else if (!ex.StackTrace.Contains("StringUtil.UnsafeStringCopy("))
+                        throw ex;
+                }
+            }
+
+            VerifyRenderedBodyOrSections();
+            SectionWritersStack.Pop();
+        }
+
+        public async Task PopContextAsync()
+        {
+            // Using the CopyTo extension method on the _tempWriter instead of .ToString()
+            // to avoid allocating large strings that then end up on the Large object heap.
+            OutputStack.Pop();
+
+            if (!String.IsNullOrEmpty(Layout))
+            {
+                string layoutPagePath = NormalizeLayoutPagePath(Layout);
+
+                // If a layout file was specified, render it passing our page content.
+                OutputStack.Push(_currentWriter);
+                await RenderSurroundingAsync(
+                    layoutPagePath,
+                    _tempWriter.CopyTo).ConfigureAwait(false);
+                OutputStack.Pop();
+            }
+            else
+            {
+                // Otherwise, just render the page.
                 _tempWriter.CopyTo(_currentWriter);
             }
 
@@ -300,7 +403,7 @@ namespace System.Web.WebPages
             InitializePage();
 
             // Create a temporary writer
-            _tempWriter = new StringWriter(CultureInfo.InvariantCulture);
+            _tempWriter = new StringBlockWriter(CultureInfo.InvariantCulture);
 
             // Render the page into it
             OutputStack.Push(_tempWriter);
@@ -315,7 +418,7 @@ namespace System.Web.WebPages
             }
         }
 
-        public HelperResult RenderBody()
+        public virtual HelperResult RenderBody()
         {
             EnsurePageCanBeRequestedDirectly("RenderBody");
 
@@ -342,6 +445,20 @@ namespace System.Web.WebPages
             return RenderPageCore(path, isLayoutPage: false, data: data);
         }
 
+        public override Task<HelperResult> RenderPageAsync(string path, params object[] data)
+        {
+            return RenderPageCoreAsync(path, isLayoutPage: false, data: data);
+        }
+
+        private WebPageBase PrepareRenderPage(string path, bool isLayoutPage, object[] data, out WebPageContext pageContext)
+        {
+            path = NormalizePath(path);
+            var subPage = CreatePageFromVirtualPath(path, Context, VirtualPathFactory.Exists, DisplayModeProvider, DisplayMode);
+            pageContext = CreatePageContextFromParameters(isLayoutPage, data);
+            subPage.ConfigurePage(this);
+            return subPage;
+        }
+
         private HelperResult RenderPageCore(string path, bool isLayoutPage, object[] data)
         {
             if (String.IsNullOrEmpty(path))
@@ -351,13 +468,33 @@ namespace System.Web.WebPages
 
             return new HelperResult(writer =>
             {
-                path = NormalizePath(path);
-                WebPageBase subPage = CreatePageFromVirtualPath(path, Context, VirtualPathFactory.Exists, DisplayModeProvider, DisplayMode);
-                var pageContext = CreatePageContextFromParameters(isLayoutPage, data);
-
-                subPage.ConfigurePage(this);
-                subPage.ExecutePageHierarchy(pageContext, writer);
+                WebPageContext pageContext;
+                WebPageBase subPage;
+                try
+                {
+                    subPage = PrepareRenderPage(path, isLayoutPage, data, out pageContext);
+                    if (subPage != null)
+                        subPage.ExecutePageHierarchy(pageContext, writer);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(
+                        String.Format("Error {0} with {1}", ex.Message, path), ex);
+                }
             });
+        }
+
+        private async Task<HelperResult> RenderPageCoreAsync(string path, bool isLayoutPage, object[] data)
+        {
+            if (String.IsNullOrEmpty(path))
+            {
+                throw new ArgumentException(CommonResources.Argument_Cannot_Be_Null_Or_Empty, "path");
+            }
+            WebPageContext pageContext;
+            var subPage = PrepareRenderPage(path, isLayoutPage, data, out pageContext);
+            var writer = new StringBlockWriter(_currentWriter.FormatProvider);
+            await subPage.ExecutePageHierarchyAsync(pageContext, writer).ConfigureAwait(false);
+            return new HelperResult(writer.CopyTo);
         }
 
         public HelperResult RenderSection(string name)
@@ -427,6 +564,21 @@ namespace System.Web.WebPages
 
             // Render the layout file
             Write(RenderPageCore(partialViewName, isLayoutPage: true, data: new object[0]));
+
+            // Restore the state
+            PageContext.BodyAction = priorValue;
+        }
+
+        private async Task RenderSurroundingAsync(string partialViewName, Action<TextWriter> body)
+        {
+            // Save the previous body action and set ours instead.
+            // This value will be retrieved by the sub-page being rendered when it runs
+            // Render(ViewData, TextWriter).
+            var priorValue = PageContext.BodyAction;
+            PageContext.BodyAction = body;
+
+            // Render the layout file
+            Write(await RenderPageCoreAsync(partialViewName, isLayoutPage: true, data: new object[0]).ConfigureAwait(false));
 
             // Restore the state
             PageContext.BodyAction = priorValue;

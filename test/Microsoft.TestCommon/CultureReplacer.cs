@@ -4,6 +4,7 @@
 using System;
 using System.Globalization;
 using System.Threading;
+using Assert = Microsoft.TestCommon.Assert1;
 
 namespace Microsoft.TestCommon
 {

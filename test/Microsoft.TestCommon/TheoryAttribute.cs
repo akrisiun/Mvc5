@@ -11,12 +11,12 @@ namespace Microsoft.TestCommon
     /// </summary>
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     [XunitTestCaseDiscoverer("Microsoft.TestCommon.TheoryDiscoverer", "Microsoft.TestCommon")]
-    public class TheoryAttribute : Xunit.TheoryAttribute
+    public class TheoryAttributeEx : Xunit.TheoryAttribute
     {
         /// <summary>
         /// Instantiates a new instance of <see cref="TheoryAttribute"/>.
         /// </summary>
-        public TheoryAttribute()
+        public TheoryAttributeEx()
         {
             Platforms = Platform.All;
             PlatformJustification = "Unsupported platform (test runs on {0}, current platform is {1})";

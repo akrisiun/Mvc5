@@ -1,9 +1,8 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Text;
 using System.Web.Mvc.Properties;
-using System.Web.Script.Serialization;
+//using System.Web.Script.Serialization;
 
 namespace System.Web.Mvc
 {
@@ -60,16 +59,18 @@ namespace System.Web.Mvc
             }
             if (Data != null)
             {
-                JavaScriptSerializer serializer = new JavaScriptSerializer();
-                if (MaxJsonLength.HasValue)
-                {
-                    serializer.MaxJsonLength = MaxJsonLength.Value;
-                }
-                if (RecursionLimit.HasValue)
-                {
-                    serializer.RecursionLimit = RecursionLimit.Value;
-                }
-                response.Write(serializer.Serialize(Data));
+                //if (MaxJsonLength.HasValue)
+                //{
+                //    serializer.MaxJsonLength = MaxJsonLength.Value;
+                //}
+                //if (RecursionLimit.HasValue)
+                //{
+                //    serializer.RecursionLimit = RecursionLimit.Value;
+                //}
+                
+                //JavaScriptSerializer serializer = new JavaScriptSerializer();
+                response.Write(
+                    global::Newtonsoft.Json.JsonConvert.SerializeObject(Data));
             }
         }
     }

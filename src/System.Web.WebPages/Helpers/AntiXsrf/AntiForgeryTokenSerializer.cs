@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
@@ -8,12 +7,14 @@ using System.Web.Mvc;
 
 namespace System.Web.Helpers.AntiXsrf
 {
-    internal sealed class AntiForgeryTokenSerializer : IAntiForgeryTokenSerializer
+    // internal 
+    public sealed class AntiForgeryTokenSerializer : IAntiForgeryTokenSerializer
     {
         private const byte TokenVersion = 0x01;
         private readonly ICryptoSystem _cryptoSystem;
 
-        internal AntiForgeryTokenSerializer(ICryptoSystem cryptoSystem)
+        // internal 
+        public AntiForgeryTokenSerializer(ICryptoSystem cryptoSystem)
         {
             _cryptoSystem = cryptoSystem;
         }

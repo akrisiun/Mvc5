@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +9,8 @@ namespace System.ComponentModel
     /// <summary>
     /// Wrapper for AttributeCollection to provide generic collection implementation.
     /// </summary>
-    internal sealed class AttributeList : IList<Attribute>
+    // internal 
+    public sealed class AttributeList : IList<Attribute>
     {
         private readonly AttributeCollection _attributes;
 

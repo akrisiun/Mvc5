@@ -1,10 +1,10 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 namespace System.Web.Helpers.AntiXsrf
 {
     // Provides configuration information about the anti-forgery system.
-    internal interface IAntiForgeryConfig
+    // internal 
+    public interface IAntiForgeryConfig
     {
         // Provides additional data to go into the tokens.
         IAntiForgeryAdditionalDataProvider AdditionalDataProvider { get; }

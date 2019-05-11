@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -29,7 +28,8 @@ namespace System.Web.WebPages
         {
         }
 
-        internal ApplicationPart(IResourceAssembly assembly, string rootVirtualPath)
+        // internal 
+        public ApplicationPart(IResourceAssembly assembly, string rootVirtualPath)
         {
             if (String.IsNullOrEmpty(rootVirtualPath))
             {
@@ -48,16 +48,20 @@ namespace System.Web.WebPages
             _applicationPartName = new Lazy<string>(() => Assembly.Name);
         }
 
-        internal IResourceAssembly Assembly { get; private set; }
+        // internal 
+        public IResourceAssembly Assembly { get; private set; }
 
-        internal string RootVirtualPath { get; private set; }
+        // internal 
+        public string RootVirtualPath { get; private set; }
 
-        internal string Name
+        // internal 
+        public string Name
         {
             get { return _applicationPartName.Value; }
         }
 
-        internal IDictionary<string, string> ApplicationPartResources
+        // internal 
+        public IDictionary<string, string> ApplicationPartResources
         {
             get { return _applicationPartResources.Value; }
         }
@@ -161,7 +165,8 @@ namespace System.Web.WebPages
             return GetResourceNameFromVirtualPath(Name, virtualPath);
         }
 
-        internal static string GetResourceNameFromVirtualPath(string moduleName, string virtualPath)
+        // internal
+        public static string GetResourceNameFromVirtualPath(string moduleName, string virtualPath)
         {
             // Make sure path starts with ~/
             if (!virtualPath.StartsWith("~/", StringComparison.Ordinal))

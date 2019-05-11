@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Diagnostics.Contracts;
 using System.Net.Http;
@@ -25,7 +24,7 @@ namespace System.Web.Http.Hosting
             () => new ClaimsPrincipal(new ClaimsIdentity()), isThreadSafe: true);
 
         /// <inheritdoc />
-        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
             CancellationToken cancellationToken)
         {
             if (request == null)
@@ -33,31 +32,23 @@ namespace System.Web.Http.Hosting
                 throw new ArgumentNullException("request");
             }
 
-            var previousPrincipal = SetCurrentPrincipal(request, _anonymousPrincipal.Value);
-            try
-            {
-                return await base.SendAsync(request, cancellationToken);
-            }
-            finally
-            {
-                SetCurrentPrincipal(request, previousPrincipal);
-            }
+            SetCurrentPrincipalToAnonymous(request);
+
+            return base.SendAsync(request, cancellationToken);
         }
 
-        private static IPrincipal SetCurrentPrincipal(HttpRequestMessage request, IPrincipal principal)
+        private static void SetCurrentPrincipalToAnonymous(HttpRequestMessage request)
         {
             Contract.Assert(request != null);
 
             HttpRequestContext requestContext = request.GetRequestContext();
+
             if (requestContext == null)
             {
                 throw new ArgumentException(SRResources.Request_RequestContextMustNotBeNull, "request");
             }
 
-            var previousPrincipal = requestContext.Principal;
-            requestContext.Principal = principal;
-
-            return previousPrincipal;
+            requestContext.Principal = _anonymousPrincipal.Value;
         }
     }
 }

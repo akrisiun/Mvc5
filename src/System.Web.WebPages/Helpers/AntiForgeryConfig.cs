@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.ComponentModel;
 using System.Text;
@@ -124,7 +123,8 @@ namespace System.Web.Helpers
         // If the app path is provided, we're generating a cookie name rather than a field name, and the cookie names should
         // be unique so that a development server cookie and an IIS cookie - both running on localhost - don't stomp on
         // each other.
-        internal static string GetAntiForgeryCookieName(string appPath)
+        // internal
+        public static string GetAntiForgeryCookieName(string appPath)
         {
             if (String.IsNullOrEmpty(appPath) || appPath == "/")
             {

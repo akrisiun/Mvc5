@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -275,9 +274,9 @@ namespace System.Net.Http.Formatting.Parsers
             /// <param name="nameValuePairs">The collection to copy into.</param>
             public void CopyTo(ICollection<KeyValuePair<string, string>> nameValuePairs)
             {
-                string unescapedName = UriQueryUtility.UrlDecode(_name.ToString());
+                string unescapedName = UriQueryUtility1.UrlDecode(_name.ToString());
                 string escapedValue = _value.ToString();
-                string value = UriQueryUtility.UrlDecode(escapedValue);
+                string value = UriQueryUtility1.UrlDecode(escapedValue);
 
                 nameValuePairs.Add(new KeyValuePair<string, string>(unescapedName, value));
 
@@ -290,7 +289,7 @@ namespace System.Net.Http.Formatting.Parsers
             /// <param name="nameValuePairs">The collection to copy into.</param>
             public void CopyNameOnlyTo(ICollection<KeyValuePair<string, string>> nameValuePairs)
             {
-                string unescapedName = UriQueryUtility.UrlDecode(_name.ToString());
+                string unescapedName = UriQueryUtility1.UrlDecode(_name.ToString());
                 string value = String.Empty;
                 nameValuePairs.Add(new KeyValuePair<string, string>(unescapedName, value));
                 Clear();

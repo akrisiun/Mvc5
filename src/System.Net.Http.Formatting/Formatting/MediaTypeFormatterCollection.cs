@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -59,6 +58,7 @@ namespace System.Net.Http.Formatting
             get { return Items.OfType<JsonMediaTypeFormatter>().FirstOrDefault(); }
         }
 
+#if !NETFX_CORE // FormUrlEncodedMediaTypeFormatter is not supported in portable library.
         /// <summary>
         /// Gets the <see cref="MediaTypeFormatter"/> to use for <c>application/x-www-form-urlencoded</c> data.
         /// </summary>
@@ -66,6 +66,7 @@ namespace System.Net.Http.Formatting
         {
             get { return Items.OfType<FormUrlEncodedMediaTypeFormatter>().FirstOrDefault(); }
         }
+#endif
 
         internal MediaTypeFormatter[] WritingFormatters
         {
@@ -200,8 +201,8 @@ namespace System.Net.Http.Formatting
             return
 #if !NETFX_CORE
                 typeof(XmlNode).IsAssignableFrom(type) ||
-#endif
                 typeof(FormDataCollection).IsAssignableFrom(type) ||
+#endif
                 FormattingUtilities.IsJTokenType(type) ||
                 typeof(XObject).IsAssignableFrom(type) ||
                 typeof(Type).IsAssignableFrom(type) ||
@@ -258,7 +259,9 @@ namespace System.Net.Http.Formatting
             {
                 new JsonMediaTypeFormatter(),
                 new XmlMediaTypeFormatter(),
+#if !NETFX_CORE
                 new FormUrlEncodedMediaTypeFormatter()
+#endif
             };
         }
 

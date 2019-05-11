@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +21,8 @@ namespace System.Web.WebPages
             new DefaultDisplayMode()
         };
 
-        internal DisplayModeProvider()
+        // internal 
+        public DisplayModeProvider()
         {
             // The type is a psuedo-singleton. A user would gain nothing from constructing it since we won't use anything but DisplayModeProvider.Instance internally.
         }
@@ -108,12 +108,14 @@ namespace System.Web.WebPages
             return null;
         }
 
-        internal static IDisplayMode GetDisplayMode(HttpContextBase context)
+        // internal 
+        public static IDisplayMode GetDisplayMode(HttpContextBase context)
         {
             return context != null ? context.Items[_displayModeKey] as IDisplayMode : null;
         }
 
-        internal static void SetDisplayMode(HttpContextBase context, IDisplayMode displayMode)
+        // internal 
+        public static void SetDisplayMode(HttpContextBase context, IDisplayMode displayMode)
         {
             if (context != null)
             {

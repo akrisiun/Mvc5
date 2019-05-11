@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
 using Microsoft.TestCommon;
+using Assert = Microsoft.TestCommon.Assert1;
 
 namespace System.Web.TestUtil
 {
@@ -116,13 +117,13 @@ namespace System.Web.TestUtil
 
             if (attributeValue == null)
             {
-                Assert.True(attrs.Length == 0, "Member should not have an attribute of type " + typeof(TAttribute));
+                Assert1.True(attrs.Length == 0, "Member should not have an attribute of type " + typeof(TAttribute));
             }
             else
             {
-                Assert.True(attrs != null && attrs.Length > 0,
+                Assert1.True(attrs != null && attrs.Length > 0,
                             "Member does not have an attribute of type " + typeof(TAttribute));
-                Assert.Equal(attributeValue, attrs[0]);
+                Assert1.Equal(attributeValue, attrs[0]);
             }
         }
 
@@ -169,13 +170,13 @@ namespace System.Web.TestUtil
             });
             eventInfo.AddEventHandler(instance, handler);
             methodInfo.Invoke(instance, new object[] { eventArgs });
-            Assert.Equal(new[] { instance, eventArgs }, eventHandlerArgs.ToArray());
+            Assert1.Equal(new[] { instance, eventArgs }, eventHandlerArgs.ToArray());
 
             // Detach handler, call method, assert not fired
             eventHandlerArgs = new List<object>();
             eventInfo.RemoveEventHandler(instance, handler);
             methodInfo.Invoke(instance, new object[] { eventArgs });
-            Assert.Empty(eventHandlerArgs);
+            Assert1.Empty(eventHandlerArgs);
         }
 
         public static void TestGetPropertyValue(object instance, string propertyName, object valueToCheck)

@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Diagnostics.Contracts;
 using System.Globalization;
@@ -194,22 +193,23 @@ namespace System.Web.Http.Tracing.Tracers
             return InnerFormatter.ToString();
         }
 
-        public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content,
+        public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContentHeaders content,
             IFormatterLogger formatterLogger)
         {
             return ReadFromStreamAsyncCore(type, readStream, content, formatterLogger, cancellationToken: null);
         }
 
-        public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content,
+        public // override 
+            virtual Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContentHeaders content,
             IFormatterLogger formatterLogger, CancellationToken cancellationToken)
         {
             return ReadFromStreamAsyncCore(type, readStream, content, formatterLogger, cancellationToken);
         }
 
-        private Task<object> ReadFromStreamAsyncCore(Type type, Stream readStream, HttpContent content,
+        private Task<object> ReadFromStreamAsyncCore(Type type, Stream readStream, HttpContentHeaders content,
             IFormatterLogger formatterLogger, CancellationToken? cancellationToken)
         {
-            HttpContentHeaders contentHeaders = content == null ? null : content.Headers;
+            HttpContentHeaders contentHeaders = content == null ? null : content;
             MediaTypeHeaderValue contentType = contentHeaders == null ? null : contentHeaders.ContentType;
 
             IFormatterLogger formatterLoggerTraceWrapper =
@@ -235,11 +235,11 @@ namespace System.Web.Http.Tracing.Tracers
 
                 execute: () =>
                 {
-                    if (cancellationToken.HasValue)
-                    {
-                        return InnerFormatter.ReadFromStreamAsync(type, readStream, content, formatterLoggerTraceWrapper, cancellationToken.Value);
-                    }
-                    else
+                    //if (cancellationToken.HasValue)
+                    //{
+                    //    return InnerFormatter.ReadFromStreamAsync(type, readStream, content, formatterLoggerTraceWrapper, cancellationToken.Value);
+                    //}
+                    //else
                     {
                         return InnerFormatter.ReadFromStreamAsync(type, readStream, content, formatterLoggerTraceWrapper);
                     }
@@ -254,22 +254,22 @@ namespace System.Web.Http.Tracing.Tracers
                 errorTrace: null);
         }
 
-        public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content,
+        public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContentHeaders content,
             TransportContext transportContext)
         {
             return WriteToStreamAsyncCore(type, value, writeStream, content, transportContext);
         }
 
-        public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content,
+        public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContentHeaders content,
             TransportContext transportContext, CancellationToken cancellationToken)
         {
             return WriteToStreamAsyncCore(type, value, writeStream, content, transportContext, cancellationToken);
         }
 
-        private Task WriteToStreamAsyncCore(Type type, object value, Stream writeStream, HttpContent content,
+        private Task WriteToStreamAsyncCore(Type type, object value, Stream writeStream, HttpContentHeaders content,
             TransportContext transportContext, CancellationToken? cancellationToken = null)
         {
-            HttpContentHeaders contentHeaders = content == null ? null : content.Headers;
+            HttpContentHeaders contentHeaders = content == null ? null : content; // .Headers;
             MediaTypeHeaderValue contentType = contentHeaders == null
                                        ? null
                                        : contentHeaders.ContentType;

@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -9,17 +8,20 @@ using System.Reflection;
 
 namespace System.Web.WebPages.Instrumentation
 {
-    internal partial class PageInstrumentationServiceAdapter
+    // internal 
+    public partial class PageInstrumentationServiceAdapter
     {
         private static readonly Type _targetType = typeof(HttpContext).Assembly.GetType("System.Web.Instrumentation.PageInstrumentationService");
         private IReadOnlyList<PageExecutionListenerAdapter> _listenerAdapters;
 
-        internal PageInstrumentationServiceAdapter()
+        // internal 
+        public PageInstrumentationServiceAdapter()
         {
             Adaptee = _CallSite_ctor_2.Site();
         }
 
-        internal PageInstrumentationServiceAdapter(object existing)
+        // internal
+            public PageInstrumentationServiceAdapter(object existing)
         {
             Adaptee = existing;
         }

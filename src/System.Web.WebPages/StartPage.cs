@@ -1,10 +1,10 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
+using System.Threading.Tasks;
 using Microsoft.Internal.Web.Utils;
 
 namespace System.Web.WebPages
@@ -59,13 +59,43 @@ namespace System.Web.WebPages
             try
             {
                 // Execute the developer-written code of the InitPage
-                Execute();
+                ExecutePage();
 
                 // If the child page wasn't explicitly run by the developer of the InitPage, then run it now.
                 // The child page is either the next InitPage, or the final WebPage.
                 if (!RunPageCalled)
                 {
                     RunPage();
+                }
+            }
+            finally
+            {
+                TemplateStack.Pop(Context);
+            }
+        }
+
+        public async override Task ExecutePageHierarchyAsync()
+        {
+            // Push the current pagestart on the stack. 
+            TemplateStack.Push(Context, this);
+            try
+            {
+                // Execute the developer-written code of the InitPage
+                var task = ExecuteAsync();
+                if (task != null)
+                {
+                    await task.ConfigureAwait(false);
+                }
+                else
+                {
+                    Execute();
+                }
+
+                // If the child page wasn't explicitly run by the developer of the InitPage, then run it now.
+                // The child page is either the next InitPage, or the final WebPage.
+                if (!RunPageCalled)
+                {
+                    await RunPageAsync().ConfigureAwait(false);
                 }
             }
             finally
@@ -132,7 +162,7 @@ namespace System.Web.WebPages
                     }
                 }
 
-                pageDirectory = currentPage.GetDirectory(pageDirectory);
+                pageDirectory = currentPage.DirectorySet(pageDirectory);
             }
 
             // At this point 'currentPage' is the root-most StartPage (if there were
@@ -145,11 +175,23 @@ namespace System.Web.WebPages
             return ChildPage.RenderPage(NormalizePath(path), data);
         }
 
+        public override Task<HelperResult> RenderPageAsync(string path, params object[] data)
+        {
+            return ChildPage.RenderPageAsync(NormalizePath(path), data);
+        }
+
         public void RunPage()
         {
             RunPageCalled = true;
             //ChildPage.PageContext = PageContext;
             ChildPage.ExecutePageHierarchy();
+        }
+
+        public Task RunPageAsync()
+        {
+            RunPageCalled = true;
+            //ChildPage.PageContext = PageContext;
+            return ChildPage.ExecutePageHierarchyAsync();
         }
 
         public override void Write(HelperResult result)

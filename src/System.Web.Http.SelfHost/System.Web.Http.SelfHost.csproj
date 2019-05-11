@@ -7,11 +7,18 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>System.Web.Http.SelfHost</RootNamespace>
     <AssemblyName>System.Web.Http.SelfHost</AssemblyName>
-    <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
-    <RunCodeAnalysis>$(CodeAnalysis)</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>..\Strict.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
     <DefineConstants>$(DefineConstants);ASPNETMVC</DefineConstants>
     <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>xmAspNet.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;ASPNETMVC</DefineConstants>
+    <DocumentationFile />
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <OutputPath>..\..\lib\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -19,8 +26,17 @@
     <Reference Include="System.Core" />
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.Net.Http" />
+    <!--, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL-->
+    <Reference Include="System.Net.Http.Formatting">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\System.Web.Http.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -115,9 +131,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <CodeAnalysisDictionary Include="..\CodeAnalysisDictionary.xml">
-      <Link>CodeAnalysisDictionary.xml</Link>
-    </CodeAnalysisDictionary>
+    <None Include="xmAspNet.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

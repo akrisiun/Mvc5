@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Globalization;
@@ -35,7 +34,6 @@ namespace System.Web.Mvc
 
                     if (!IsSingleArgumentIndexer(methodExpression))
                     {
-                        // Unsupported
                         break;
                     }
 
@@ -60,18 +58,7 @@ namespace System.Web.Mvc
                 else if (part.NodeType == ExpressionType.MemberAccess)
                 {
                     MemberExpression memberExpressionPart = (MemberExpression)part;
-                    var name = memberExpressionPart.Member.Name;
-
-                    // If identifier contains "__", it is "reserved for use by the implementation" and likely compiler-
-                    // or Razor-generated e.g. the name of a field in a delegate's generated class.
-                    if (name.Contains("__"))
-                    {
-                        // Exit loop. Should have the entire name because previous MemberAccess has same name as the
-                        // leftmost expression node (a variable).
-                        break;
-                    }
-
-                    nameParts.Push("." + name);
+                    nameParts.Push("." + memberExpressionPart.Member.Name);
                     part = memberExpressionPart.Expression;
                 }
                 else if (part.NodeType == ExpressionType.Parameter)
@@ -81,19 +68,15 @@ namespace System.Web.Mvc
                     // string onto the stack and stop evaluating. The extra empty string makes sure that
                     // we don't accidentally cut off too much of m => m.Model.
                     nameParts.Push(String.Empty);
-
-                    // Exit loop. Have the entire name because the parameter cannot be used as an indexer; always the
-                    // leftmost expression node.
-                    break;
+                    part = null;
                 }
                 else
                 {
-                    // Unsupported
                     break;
                 }
             }
 
-            // If parts start with "model", then strip that part away.
+            // If it starts with "model", then strip that away
             if (nameParts.Count > 0 && String.Equals(nameParts.Peek(), ".model", StringComparison.OrdinalIgnoreCase))
             {
                 nameParts.Pop();

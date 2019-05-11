@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.ComponentModel;
 using System.Web.WebPages.Razor;
@@ -21,7 +20,7 @@ namespace Microsoft.Web.WebPages.OAuth
             WebPageRazorHost.AddGlobalImport("Microsoft.Web.WebPages.OAuth");
 
             // Disable the "calls home" feature of DNOA
-            DotNetOpenAuth.Reporting.Enabled = false;
+            //DotNetOpenAuth.Reporting.Enabled = false;
         }
     }
 }

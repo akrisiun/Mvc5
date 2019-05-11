@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections;
 using System.Collections.Generic;
@@ -50,7 +49,7 @@ namespace System.Web.Helpers
             {
                 if (String.IsNullOrEmpty(name))
                 {
-                    throw new ArgumentException(CommonResources.Argument_Cannot_Be_Null_Or_Empty, "name");
+                    throw new ArgumentException("Argument_Cannot_Be_Null_Or_Empty {nameof(name)}");
                 }
                 object value = null;
                 if (!TryGetMember(name, out value))

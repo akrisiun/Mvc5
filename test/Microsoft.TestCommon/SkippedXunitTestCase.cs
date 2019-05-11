@@ -7,6 +7,9 @@ using Xunit.Sdk;
 
 namespace Microsoft.TestCommon
 {
+
+#pragma warning disable  618 
+
     /// <summary>
     /// An <see cref="XunitTestCase"/> which is unconditionally skipped.
     /// </summary>
@@ -17,6 +20,9 @@ namespace Microsoft.TestCommon
     public class SkippedXunitTestCase : XunitTestCase
     {
         private readonly String _skipReason;
+
+        public SkippedXunitTestCase()
+        { }
 
         /// <summary>
         /// Instantiates a new <see cref="SkippedXunitTestCase"/> instance.

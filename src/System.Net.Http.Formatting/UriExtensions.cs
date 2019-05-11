@@ -1,11 +1,13 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http.Formatting;
+#if !NETFX_CORE
+using System.Net.Http.Formatting.Internal;
+#endif
 using System.Web.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;

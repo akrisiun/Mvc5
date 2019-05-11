@@ -33,7 +33,7 @@ namespace System.Collections.Generic
         [Fact]
         public void IsCorrectType()
         {
-            Assert.Type.HasProperties(typeof(DictionaryExtensions), TypeAssert.TypeProperties.IsStatic | TypeAssert.TypeProperties.IsClass);
+            Assert1.Type.HasProperties(typeof(DictionaryExtensions), TypeAssert.TypeProperties.IsStatic | TypeAssert.TypeProperties.IsClass);
         }
 
         [Fact]
@@ -97,7 +97,7 @@ namespace System.Collections.Generic
         {
             IDictionary<string, object> dict = new Dictionary<string, object>();
             string value;
-            Assert.ThrowsArgumentNull(() => dict.TryGetValue<string>(null, out value), "key");
+            Assert1.ThrowsArgumentNull(() => dict.TryGetValue<string>(null, out value), "key");
         }
 
         [Fact]

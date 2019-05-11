@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -23,8 +22,6 @@ namespace System.Web.Http.Routing
 
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Not changing original algorithm")]
         [SuppressMessage("Microsoft.Maintainability", "CA1505:AvoidUnmaintainableCode", Justification = "Not changing original algorithm")]
-        [SuppressMessage("Microsoft.Performance", "CA1809:AvoidExcessiveLocals",
-            Justification = "Not changing original algorithm. Also fine unless building Debug configuration.")]
         public BoundRouteTemplate Bind(IDictionary<string, object> currentValues, IDictionary<string, object> values, HttpRouteValueDictionary defaultValues, HttpRouteValueDictionary constraints)
         {
             if (currentValues == null)

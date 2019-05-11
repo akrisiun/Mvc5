@@ -1,5 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
@@ -8,12 +7,14 @@ using System.Web.Mvc;
 namespace System.Web.Helpers.AntiXsrf
 {
     // Saves anti-XSRF tokens split between HttpRequest.Cookies and HttpRequest.Form
-    internal sealed class AntiForgeryTokenStore : ITokenStore
+    // internal
+    public sealed class AntiForgeryTokenStore : ITokenStore
     {
         private readonly IAntiForgeryConfig _config;
         private readonly IAntiForgeryTokenSerializer _serializer;
 
-        internal AntiForgeryTokenStore(IAntiForgeryConfig config, IAntiForgeryTokenSerializer serializer)
+        // internal
+        public AntiForgeryTokenStore(IAntiForgeryConfig config, IAntiForgeryTokenSerializer serializer)
         {
             _config = config;
             _serializer = serializer;
