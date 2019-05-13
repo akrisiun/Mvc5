@@ -14,6 +14,12 @@ using Newtonsoft.Json.Bson;
 
 namespace System.Net.Http.Formatting
 {
+    [Obsolete]
+    public class BsonMediaTypeFormatter
+    { }
+
+
+/*
     /// <summary>
     /// <see cref="MediaTypeFormatter"/> class to handle Bson.
     /// </summary>
@@ -194,7 +200,7 @@ namespace System.Net.Http.Formatting
                 throw Error.ArgumentNull("effectiveEncoding");
             }
 
-            BsonReader reader = new BsonReader(new BinaryReader(readStream, effectiveEncoding));
+            var reader = new BsonReader(new BinaryReader(readStream, effectiveEncoding));
 
             try
             {
@@ -314,4 +320,6 @@ namespace System.Net.Http.Formatting
             return isSimpleType;
         }
     }
+*/
+
 }

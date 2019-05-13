@@ -1,0 +1,9 @@
+<Project>
+  <Import Project="..\Directory.Build.props" />
+
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <TargetFrameworkVersion Condition="'$(MSBuildProjectName)' != 'System.Net.Http.Formatting.NetStandard.Test'">v4.5.2</TargetFrameworkVersion>
+  </PropertyGroup>
+</Project>

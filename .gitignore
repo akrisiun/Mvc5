@@ -26,3 +26,5 @@ lib/ConfigurationModel.pdb
 *.lock.json
 .vs*/
 *.nuget.targets
+lib/*.xml
+vendor/

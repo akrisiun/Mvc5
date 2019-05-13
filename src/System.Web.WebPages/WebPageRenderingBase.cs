@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Caching;
 using System.Web.Profile;
+using System.Web.Razor.Common;
 using Microsoft.Internal.Web.Utils;
 
 namespace System.Web.WebPages

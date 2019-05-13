@@ -1,4 +1,5 @@
-﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) .NET Foundation. All rights reserved.
+// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -611,6 +612,9 @@ namespace System.Web.Helpers
             return GetPath(queryString, SelectionFieldName);
         }
 
+        internal static string Argument_Must_Be_GreaterThanOrEqualTo => CommonResources.Argument_Must_Be_GreaterThanOrEqualTo;
+        // return System.Resources.ResourceManager.GetString("Argument_Must_Be_GreaterThanOrEqualTo"); //, CultureInfo.CurrentCulture);
+
         [SuppressMessage("Microsoft.Design", "CA1055:UriReturnValuesShouldNotBeStrings", Justification = "Strings are easier for Plan9 developer to work with")]
         public string GetSortUrl(string column)
         {
@@ -711,6 +715,7 @@ namespace System.Web.Helpers
             return WebGridRenderer.Pager(this, HttpContext, mode: mode, firstText: firstText, previousText: previousText, nextText: nextText, lastText: lastText,
                                          numericLinksCount: numericLinksCount, renderAjaxContainer: explicitlyCalled);
         }
+         
 
         /// <summary>
         /// Gets the HTML for a table with a pager.

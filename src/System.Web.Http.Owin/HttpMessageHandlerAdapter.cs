@@ -1,4 +1,5 @@
-﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
+﻿// Copyright (c) .NET Foundation. All rights reserved.
+// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -535,7 +536,7 @@ namespace System.Web.Http.Owin
             IDictionary<string, string[]> responseHeaders = owinResponse.Headers;
             foreach (KeyValuePair<string, IEnumerable<string>> header in response.Headers)
             {
-                responseHeaders[header.Key] = CollectionExtensions.AsArray(header.Value);
+                responseHeaders[header.Key] = AsArray(header.Value);
             }
 
             HttpContent responseContent = response.Content;
@@ -549,13 +550,26 @@ namespace System.Web.Http.Owin
                 // Copy content headers
                 foreach (KeyValuePair<string, IEnumerable<string>> contentHeader in responseContent.Headers)
                 {
-                    responseHeaders[contentHeader.Key] = CollectionExtensions.AsArray(contentHeader.Value);
+                    responseHeaders[contentHeader.Key] = AsArray(contentHeader.Value);
                 }
 
                 // Copy body
                 return SendResponseContentAsync(request, response, owinResponse, cancellationToken);
             }
         }
+
+        static T[] AsArray<T>(IEnumerable<T> values)
+        {
+            Contract.Assert(values != null);
+
+            T[] array = values as T[];
+            if (array == null)
+            {
+                array = System.Linq.Enumerable.ToArray(values);
+            }
+            return array;
+        }
+
 
         private static void SetHeadersForEmptyResponse(IDictionary<string, string[]> headers)
         {

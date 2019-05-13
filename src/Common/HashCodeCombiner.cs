@@ -1,10 +1,11 @@
-﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) .NET Foundation. All rights reserved.
+// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System.Collections;
 
 namespace Microsoft.Internal.Web.Utils
 {
-    internal class HashCodeCombiner
+    internal class HashCodeCombinerMvc
     {
         private long _combinedHash64 = 0x1505L;
 
@@ -13,7 +14,7 @@ namespace Microsoft.Internal.Web.Utils
             get { return _combinedHash64.GetHashCode(); }
         }
 
-        public HashCodeCombiner Add(IEnumerable e)
+        public HashCodeCombinerMvc Add(IEnumerable e)
         {
             if (e == null)
             {
@@ -32,22 +33,22 @@ namespace Microsoft.Internal.Web.Utils
             return this;
         }
 
-        public HashCodeCombiner Add(int i)
+        public HashCodeCombinerMvc Add(int i)
         {
             _combinedHash64 = ((_combinedHash64 << 5) + _combinedHash64) ^ i;
             return this;
         }
 
-        public HashCodeCombiner Add(object o)
+        public HashCodeCombinerMvc Add(object o)
         {
             int hashCode = (o != null) ? o.GetHashCode() : 0;
             Add(hashCode);
             return this;
         }
 
-        public static HashCodeCombiner Start()
+        public static HashCodeCombinerMvc Start()
         {
-            return new HashCodeCombiner();
+            return new HashCodeCombinerMvc();
         }
     }
 }

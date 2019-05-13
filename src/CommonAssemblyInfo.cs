@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Reflection;
@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 
 #if !BUILD_GENERATED_VERSION
 [assembly: AssemblyCompany("Microsoft Open Technologies, Inc.")]
-[assembly: AssemblyCopyright("© Microsoft Open Technologies, Inc. All rights reserved.")]
+[assembly: AssemblyCopyright("� Microsoft Open Technologies, Inc. All rights reserved.")]
 #endif
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyTrademark("")]
@@ -27,16 +27,21 @@ using System.Runtime.InteropServices;
 #error Runtime projects cannot define both ASPNETMVC and ASPNETWEBPAGES
 #elif ASPNETMVC
 #if !BUILD_GENERATED_VERSION
-[assembly: AssemblyVersion("5.5.0.0")] // ASPNETMVC
-[assembly: AssemblyFileVersion("5.5.0.0")] // ASPNETMVC
+[assembly: AssemblyFileVersion("5.5.1.0")] // ASPNETMVC
 #endif
 [assembly: AssemblyProduct("Microsoft ASP.NET MVC")]
 #elif ASPNETWEBPAGES
 #if !BUILD_GENERATED_VERSION
-[assembly: AssemblyVersion("3.3.0.0")] // ASPNETWEBPAGES
-[assembly: AssemblyFileVersion("3.3.0.0")] // ASPNETWEBPAGES
+
+// [assembly: AssemblyVersion("3.3.0.0")] // ASPNETWEBPAGES
+// [assembly: AssemblyFileVersion("3.3.0.0")] // ASPNETWEBPAGES
+
+[assembly: AssemblyVersion("3.3.2.0")] // ASPNETWEBPAGES
+[assembly: AssemblyFileVersion("3.3.2.0")] // ASPNETWEBPAGES
+
 #endif
 [assembly: AssemblyProduct("Microsoft ASP.NET Web Pages")]
+
 #elif ASPNETFACEBOOK
 #if !BUILD_GENERATED_VERSION
 [assembly: AssemblyVersion("1.4.0.0")] // ASPNETFACEBOOK
