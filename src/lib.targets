@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <TargetFrameworks>net45</TargetFrameworks>
+	<LibDir>d:\Beta\dotnet\Mvc5.27\lib</LibDir>
+	<!-- <LibDir>..\..\lib\</LibDir> -->
+  </PropertyGroup>
+  
+  <!--
+  <Import Project="..\lib.targets" /> 
+  -->
+  <Target Name="PostBuildTask" AfterTargets="Build">
+    <Message Importance="High" Text="net45 $(SolutionDir) -&gt; $(LibDir)\$(TargetName).dll" />
+	<Message Importance="High" Text="copy  $(TargetDir)$(TargetName).dll" />
+    <Copy Condition="'$(SolutionDir)' != '*Undefined*' And Exists(@(LibDir))" 
+		  SourceFiles="$(TargetDir)$(TargetName).dll" DestinationFiles=" $(LibDir)\$(TargetName).dll" SkipUnchangedFiles="false" />
+    <Copy Condition="Exists(@(LibDir))" 
+		  SourceFiles="$(TargetDir)$(TargetName).pdb" DestinationFiles="$(LibDir)\$(TargetName).pdb" SkipUnchangedFiles="false" />
+  </Target>
+</Project>

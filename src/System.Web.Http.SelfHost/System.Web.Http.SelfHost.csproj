@@ -120,4 +120,6 @@
     </CodeAnalysisDictionary>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  
+  <Import Project="..\lib.targets" />
 </Project>

@@ -1,5 +1,5 @@
 
-nuget restore Runtime.sln
+nuget restore RuntimePortable.sln
 
 nuget restore test\System.Web.Razor.Test\System.Web.Razor.Test.csproj
 

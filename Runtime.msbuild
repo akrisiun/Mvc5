@@ -4,6 +4,7 @@
 
   <PropertyGroup>
     <!-- build.cmd sets /p:Desktop=true. The CI server does not; instead, it does an additional step with /p:Configuration=CodeAnalysis. -->
+	<BuildPortable>true</BuildPortable>
     <Configuration Condition=" '$(Configuration)' == '' and '$(Desktop)' == 'true' ">CodeAnalysis</Configuration>
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <CodeAnalysis Condition=" '$(CodeAnalysis)' == '' and '$(Configuration)' != 'Release' ">true</CodeAnalysis>
@@ -15,7 +16,7 @@
     <TestResultsDirectory>$(MSBuildThisFileDirectory)bin\$(Configuration)\test\TestResults\</TestResultsDirectory>
     <SkipStrongNamesExe>$(MSBuildThisFileDirectory)packages\Microsoft.Web.SkipStrongNames.1.0.0\tools\SkipStrongNames.exe</SkipStrongNamesExe>
     <SkipStrongNamesXml>$(MSBuildThisFileDirectory)tools\SkipStrongNames.xml</SkipStrongNamesXml>
-    <NuGetExe>.nuget\NuGet.exe</NuGetExe>
+    <NuGetExe>NuGet.exe</NuGetExe>
   </PropertyGroup>
 
   <ItemGroup>
@@ -56,20 +57,25 @@
   </Target>
 
   <Target Name="DownloadNuGet">
+    <!--
     <DownloadNuGet OutputFileName="$(NuGetExe)" MinimumVersion="2.12.0" />
+	-->
   </Target>
 
   <Target Name="RestoreSkipStrongNames" DependsOnTargets="DownloadNuGet">
+    <!--
     <Exec Command='"$(NuGetExe)" restore .nuget\packages.config -PackagesDirectory packages -NonInteractive -Verbosity quiet -ConfigFile .nuget\NuGet.Config' />
+	-->
   </Target>
 
   <Target Name="RestorePackages" DependsOnTargets="DownloadNuGet">
     <Message Text="Restoring NuGet packages..." Importance="High" />
 
-    <!-- NuGet.exe attempts to read src\System.Net.Http.Formatting.NetCore\System.Net.Http.Formatting.NetCore.csproj and imports fails without packages. -->
+    <!-- NuGet.exe attempts to read src\System.Net.Http.Formatting.NetCore\System.Net.Http.Formatting.NetCore.csproj and imports fails without packages. 
     <Exec Command='"$(NuGetExe)" restore "src\System.Net.Http.Formatting.NetCore\packages.config" -PackagesDirectory packages -NonInteractive -Verbosity quiet -ConfigFile "$(MsBuildThisFileDirectory)\.nuget\NuGet.Config"' />
-
     <Exec Command='"$(NuGetExe)" restore "%(SolutionsToBuild.Identity)" -PackagesDirectory packages -NonInteractive -Verbosity quiet -ConfigFile "$(MsBuildThisFileDirectory)\.nuget\NuGet.Config"' />
+    -->
+    <Exec Command='dotnet restore RuntimePortable.sln' />	
   </Target>
 
   <!-- Pick the right Microsoft.Web.FxCop package to use and copy it to a standard location. -->
