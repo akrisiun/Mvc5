@@ -77,6 +77,15 @@ namespace System.Web.Mvc
                 return new EmptyResult();
             }
 
+            if (actionReturnValue as ActionResult == null)
+            {
+                var wrapper = actionReturnValue as System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult<System.Web.Mvc.ActionResult>;
+                if (wrapper.Result as ActionResult != null)
+                {
+                    return wrapper.Result as ActionResult;
+                }
+            }
+
             ActionResult actionResult = (actionReturnValue as ActionResult) ??
                                         new ContentResult { Content = Convert.ToString(actionReturnValue, CultureInfo.InvariantCulture) };
             return actionResult;

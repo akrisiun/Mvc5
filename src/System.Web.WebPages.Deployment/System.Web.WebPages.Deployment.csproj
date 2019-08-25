@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project>
-  <Sdk Name="Microsoft.NET.Sdk" ToolsVersion="15.0"/>
+  <Sdk Name="Microsoft.NET.Sdk" ToolsVersion="15.0" />
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),Runtime.sln))\tools\WebStack.settings.targets" />
   <Import Project="..\VersionPages.props" />
   <PropertyGroup>
@@ -45,12 +45,8 @@
     <Compile Include="AppDomainHelper.cs" />
     <Compile Include="AssemblyUtils.cs" />
     <Compile Include="BuildManagerWrapper.cs" />
-    <Compile Include="Common\IFileSystem.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Common\PhysicalFileSystem.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Common\IFileSystem.cs" />
+    <Compile Include="Common\PhysicalFileSystem.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IBuildManager.cs" />
     <Compile Include="Resources\ConfigurationResources.Designer.cs">

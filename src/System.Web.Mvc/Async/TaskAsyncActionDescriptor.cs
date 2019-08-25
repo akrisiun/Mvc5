@@ -215,7 +215,56 @@ namespace System.Web.Mvc.Async
             string errorMessage = String.Format(CultureInfo.CurrentCulture, MvcResources.TaskAsyncActionDescriptor_CannotExecuteSynchronously,
                                                 ActionName);
 
-            throw new InvalidOperationException(errorMessage);
+            BeginInvokeDelegate beginDelegate = delegate (AsyncCallback asyncCallback, object asyncState)
+            {
+                return BeginExecute(controllerContext, parameters, asyncCallback, asyncState);
+            };
+
+            EndInvokeDelegate<ActionResult> endDelegate = delegate (IAsyncResult asyncResult)
+            {
+                object returnValue = EndExecute(asyncResult);
+                ActionResult result = null;
+                result = returnValue as ActionResult;
+                return result;
+            };
+
+            AsyncCallback callback = EndCallback;
+            object state = this;
+            object obj = AsyncResultWrapper.Begin(callback, state, beginDelegate, endDelegate, this._uniqueId.Value);
+
+            var resultWrap = obj as System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult<System.Web.Mvc.ActionResult>;
+            if (resultWrap != null)
+            {
+                // 30 sec.
+                if (!resultWrap.CompletedSynchronously)
+                {
+                    resultWrap.Begin(callback, state, timeout: 30);
+                    obj = resultWrap.AsyncState as ActionResult ?? obj;
+                }
+            }
+            return obj;
+            // throw new InvalidOperationException(errorMessage);
+        }
+
+        public virtual void EndCallback(IAsyncResult asyncResult)
+        {
+            TaskWrapperAsyncResult wrapperResult = asyncResult as TaskWrapperAsyncResult;
+            Task task = null;
+            if (wrapperResult == null)
+            {
+                var taskAction = asyncResult as System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult<System.Web.Mvc.ActionResult>;
+                var result = taskAction.End() as ActionResult;
+                taskAction.Result = result ?? taskAction.Result;
+                return;
+            }
+            else {
+                task = wrapperResult == null ? null : wrapperResult.Task;
+            }
+
+            if (task as Task<ActionResult> != null) {
+                var result = (task as Task<ActionResult>).GetAwaiter().GetResult();
+                var state = task.AsyncState;
+            }
         }
 
         public override object EndExecute(IAsyncResult asyncResult)

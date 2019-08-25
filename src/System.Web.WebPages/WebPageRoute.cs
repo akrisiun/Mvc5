@@ -3,14 +3,14 @@
 
 using System.Collections.Generic;
 using System.IO;
-using System.Web.WebPages.Deployment;
+// using System.Web.WebPages.Deployment;
 using System.Web.WebPages.Resources;
 
 namespace System.Web.WebPages
 {
     internal sealed class WebPageRoute
     {
-        private static readonly Lazy<bool> _isRootExplicitlyDisabled = new Lazy<bool>(() => WebPagesDeployment.IsExplicitlyDisabled("~/"));
+        private static readonly Lazy<bool> _isRootExplicitlyDisabled = new Lazy<bool>(() => false); // WebPagesDeployment.IsExplicitlyDisabled("~/"));
         private bool? _isExplicitlyDisabled;
 
         internal bool IsExplicitlyDisabled
@@ -41,7 +41,7 @@ namespace System.Web.WebPages
                 string virtualPath = "~/" + webpageRouteMatch.MatchedPath;
 
                 // Verify that this path is enabled before remapping
-                if (!WebPagesDeployment.IsExplicitlyDisabled(virtualPath))
+                if (true) // !WebPagesDeployment.IsExplicitlyDisabled(virtualPath))
                 {
                     IHttpHandler handler = WebPageHttpHandler.CreateFromVirtualPath(virtualPath);
                     if (handler != null)

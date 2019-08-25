@@ -1,4 +1,7 @@
 
+mkdir bin
+dotnet build System.Web.Mvc -f net461 -o $PWD\bin\
+
 dotnet pack System.Web.Mvc  -o . 
 dotnet pack System.Web.Razor   -o . 
 dotnet pack System.Web.WebPages   -o . 

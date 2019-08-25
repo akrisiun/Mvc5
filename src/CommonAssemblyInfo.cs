@@ -34,8 +34,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProduct("Microsoft ASP.NET MVC")]
 #elif ASPNETWEBPAGES
 #if !BUILD_GENERATED_VERSION
-[assembly: AssemblyVersion("3.0.0.0")] // ASPNETWEBPAGES
-[assembly: AssemblyFileVersion("3.0.0.0")] // ASPNETWEBPAGES
+[assembly: AssemblyVersion("3.2.7.0")]     // ASPNETWEBPAGES
+[assembly: AssemblyFileVersion("3.2.7.0")] // ASPNETWEBPAGES
 #endif
 [assembly: AssemblyProduct("Microsoft ASP.NET Web Pages")]
 #elif ASPNETFACEBOOK

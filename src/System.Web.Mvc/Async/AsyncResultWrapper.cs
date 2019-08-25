@@ -105,7 +105,7 @@ namespace System.Web.Mvc.Async
 
         [DebuggerNonUserCode]
         [SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable", Justification = "The Timer will be disposed of either when it fires or when the operation completes successfully.")]
-        private abstract class WrappedAsyncResultBase<TResult> : IAsyncResult
+        internal abstract class WrappedAsyncResultBase<TResult> : IAsyncResult
         {
             private const int AsyncStateNone = 0;
             private const int AsyncStateBeginUnwound = 1;
@@ -139,6 +139,8 @@ namespace System.Web.Mvc.Async
             }
 
             public bool CompletedSynchronously { get; private set; }
+
+            public ActionResult Result { get; set; }
 
             public bool IsCompleted
             {
@@ -287,7 +289,8 @@ namespace System.Web.Mvc.Async
             }
         }
 
-        private sealed class WrappedAsyncResult<TResult> : WrappedAsyncResultBase<TResult>
+        // private 
+        internal sealed class WrappedAsyncResult<TResult> : WrappedAsyncResultBase<TResult>
         {
             private readonly BeginInvokeDelegate _beginDelegate;
             private readonly EndInvokeDelegate<TResult> _endDelegate;

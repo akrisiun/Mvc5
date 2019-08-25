@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project>
-  <Sdk Name="Microsoft.NET.Sdk" ToolsVersion="15.0"/>
+  <Sdk Name="Microsoft.NET.Sdk" ToolsVersion="15.0" />
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),Runtime.sln))\tools\WebStack.settings.targets" />
   <Import Project="..\VersionPages.props" />
   <PropertyGroup>
@@ -33,6 +33,8 @@
     <Reference Include="System.Web" />
     <Reference Include="System.XML" />
     <Reference Include="System.Xml.Linq" />
+
+    <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.0.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\CommonAssemblyInfo.cs">
@@ -236,18 +238,6 @@
       <LastGenOutput>WebPageResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\System.Web.Razor\System.Web.Razor.csproj">
-      <Project>{8F18041B-9410-4C36-A9C5-067813DF5F31}</Project>
-      <Name>System.Web.Razor</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\System.Web.WebPages.Deployment\System.Web.WebPages.Deployment.csproj">
-      <Project>{22BABB60-8F02-4027-AFFC-ACF069954536}</Project>
-      <Name>System.Web.WebPages.Deployment</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Instrumentation\HttpContextAdapter.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>HttpContextAdapter.generated.cs</LastGenOutput>
@@ -261,8 +251,14 @@
       <LastGenOutput>PageExecutionListenerAdapter.generated.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <CodeAnalysisDictionary Include="..\CodeAnalysisDictionary.xml" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\System.Web.Razor\System.Web.Razor.csproj">
+      <Project>{8F18041B-9410-4C36-A9C5-067813DF5F31}</Project>
+      <Name>System.Web.Razor</Name>
+    </ProjectReference>
+  </ItemGroup>
+
 </Project>
