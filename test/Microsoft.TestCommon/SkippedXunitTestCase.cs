@@ -32,7 +32,13 @@ namespace Microsoft.TestCommon
             String skipReason,
             ITestMethod testMethod,
             object[] testMethodArguments = null)
-            : base(diagnosticMessageSink, defaultMethodDisplay, testMethod, testMethodArguments)
+            : base(diagnosticMessageSink, defaultMethodDisplay, 
+                  defaultMethodDisplayOptions: TestMethodDisplayOptions.All,
+                  testMethod:testMethod, testMethodArguments: testMethodArguments)
+        // Initializes a new instance of the Xunit.Sdk.XunitTestCase class.
+        // public XunitTestCase(IMessageSink diagnosticMessageSink, TestMethodDisplay defaultMethodDisplay
+        //    , TestMethodDisplayOptions defaultMethodDisplayOptions, ITestMethod testMethod, 
+        //    object[] testMethodArguments = null);
         {
             _skipReason = skipReason;
         }

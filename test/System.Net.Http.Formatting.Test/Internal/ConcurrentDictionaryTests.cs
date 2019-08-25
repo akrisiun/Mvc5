@@ -10,6 +10,20 @@ namespace System.Net.Http.Internal
 namespace System.Collections.Concurrent
 #endif
 {
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    [Test.TestClass]
+    public class Test1 
+    {
+
+        [Test.TestMethod]
+        public void ContainsKey_ReturnsFalseWhenKeyIsNotPresent()
+        {
+            new ConcurrentDictionaryTests().ContainsKey_ReturnsFalseWhenKeyIsNotPresent();
+        }
+    }
+
+
     public class ConcurrentDictionaryTests
     {
 #if NETFX_CORE // This doesn't exist on the ConcurrentDictionary in the full framework

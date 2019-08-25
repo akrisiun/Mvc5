@@ -22,13 +22,13 @@ namespace System.Web.WebPages
         // Get the VirtualPathFactoryManager singleton instance
         internal static VirtualPathFactoryManager Instance
         {
-            get => _instance.Value;
+            get { return _instance.Value; }
         }
         
         protected static VirtualPathFactoryManager test;
         public static VirtualPathFactoryManager InstanceTest
         {
-            get => test ?? _instance.Value;
+            get { return test ?? _instance.Value; }
             set { test = value; }
         }
 

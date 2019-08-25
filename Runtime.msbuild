@@ -6,9 +6,9 @@
     <!-- build.cmd sets /p:Desktop=true. The CI server does not; instead, it does an additional step with /p:Configuration=CodeAnalysis. -->
 	<BuildPortable>true</BuildPortable>
     <Configuration Condition=" '$(Configuration)' == '' and '$(Desktop)' == 'true' ">CodeAnalysis</Configuration>
-    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
-    <CodeAnalysis Condition=" '$(CodeAnalysis)' == '' and '$(Configuration)' != 'Release' ">true</CodeAnalysis>
-    <StyleCopEnabled Condition=" '$(StyleCopEnabled)' == '' ">true</StyleCopEnabled>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debig</Configuration>
+    <CodeAnalysis Condition=" '$(CodeAnalysis)' == '' and '$(Configuration)' != 'Release' ">false</CodeAnalysis>
+    <StyleCopEnabled>false</StyleCopEnabled>
     <BuildPortable Condition=" '$(BuildPortable)' == '' ">true</BuildPortable>
     <BuildInParallel Condition=" '$(BuildInParallel)' == '' And $(MSBuildNodeCount) &gt; 1 ">true</BuildInParallel>
     <BuildInParallel Condition=" '$(BuildInParallel)' == '' ">false</BuildInParallel>
@@ -20,9 +20,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <SolutionsToBuild Include="Runtime.sln">
-      <BuildInParallel>$(BuildInParallel)</BuildInParallel>
-    </SolutionsToBuild>
     <SolutionsToBuild Include="RuntimePortable.sln">
       <BuildInParallel>$(BuildInParallel)</BuildInParallel>
       <Portable>true</Portable>
@@ -92,7 +89,8 @@
 
   <Target Name="Build" DependsOnTargets="RestorePackages;BuildTools">
     <!-- we need to batch the solution files since they both build Microsoft.TestCommon -->
-    <Error Condition=" '$(CodeAnalysis)' == 'true' and '$(Configuration)' == 'Release' " Text="Unable to run code analysis in Release configuration. Release assemblies do not include SuppressMessage attributes (so code analysis would always fail with the errors that are normally suppressed)." />
+    <Error Condition=" '$(CodeAnalysis)' == 'true'
+		 and '$(Configuration)' == 'Release' " Text="Unable to run code analysis in Release configuration. Release assemblies do not include SuppressMessage attributes (so code analysis would always fail with the errors that are normally suppressed)." />
     <MakeDir Directories="bin\$(Configuration)" />
     <MSBuild
           Projects="@(SolutionsToBuild)"
