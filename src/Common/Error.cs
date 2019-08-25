@@ -5,7 +5,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+
+#if HTTP
 using System.Web.Http.Properties;
+using CommonWebApiResources2 = System.Web.Http.WebHost.Properties.CommonWebApiResources2;
+#else
+using CommonWebApiResources2 = System.Web.Http.WebHost.Properties.CommonWebApiResources;
+#endif
 
 namespace System.Web.Http
 {
@@ -59,7 +65,7 @@ namespace System.Web.Http
         /// <returns>The logged <see cref="Exception"/>.</returns>
         internal static ArgumentException ArgumentUriNotHttpOrHttpsScheme(string parameterName, Uri actualValue)
         {
-            return new ArgumentException(Error.Format(CommonWebApiResources.ArgumentInvalidHttpUriScheme, actualValue, HttpScheme, HttpsScheme), parameterName);
+            return new ArgumentException(Error.Format(CommonWebApiResources2.ArgumentInvalidHttpUriScheme, actualValue, HttpScheme, HttpsScheme), parameterName);
         }
 
         /// <summary>
@@ -70,7 +76,7 @@ namespace System.Web.Http
         /// <returns>The logged <see cref="Exception"/>.</returns>
         internal static ArgumentException ArgumentUriNotAbsolute(string parameterName, Uri actualValue)
         {
-            return new ArgumentException(Error.Format(CommonWebApiResources.ArgumentInvalidAbsoluteUri, actualValue), parameterName);
+            return new ArgumentException(Error.Format(CommonWebApiResources2.ArgumentInvalidAbsoluteUri, actualValue), parameterName);
         }
 
         /// <summary>
@@ -82,7 +88,7 @@ namespace System.Web.Http
         /// <returns>The logged <see cref="Exception"/>.</returns>
         internal static ArgumentException ArgumentUriHasQueryOrFragment(string parameterName, Uri actualValue)
         {
-            return new ArgumentException(Error.Format(CommonWebApiResources.ArgumentUriHasQueryOrFragment, actualValue), parameterName);
+            return new ArgumentException(Error.Format(CommonWebApiResources2.ArgumentUriHasQueryOrFragment, actualValue), parameterName);
         }
 
         /// <summary>
@@ -124,7 +130,7 @@ namespace System.Web.Http
         /// <returns>The logged <see cref="Exception"/>.</returns>
         internal static ArgumentException ArgumentNullOrEmpty(string parameterName)
         {
-            return Error.Argument(parameterName, CommonWebApiResources.ArgumentNullOrEmpty, parameterName);
+            return Error.Argument(parameterName, CommonWebApiResources2.ArgumentNullOrEmpty, parameterName);
         }
 
         /// <summary>
@@ -149,7 +155,7 @@ namespace System.Web.Http
         /// <returns>The logged <see cref="Exception"/>.</returns>
         internal static ArgumentOutOfRangeException ArgumentMustBeGreaterThanOrEqualTo(string parameterName, object actualValue, object minValue)
         {
-            return new ArgumentOutOfRangeException(parameterName, actualValue, Error.Format(CommonWebApiResources.ArgumentMustBeGreaterThanOrEqualTo, minValue));
+            return new ArgumentOutOfRangeException(parameterName, actualValue, Error.Format(CommonWebApiResources2.ArgumentMustBeGreaterThanOrEqualTo, minValue));
         }
 
         /// <summary>
@@ -161,7 +167,7 @@ namespace System.Web.Http
         /// <returns>The logged <see cref="Exception"/>.</returns>
         internal static ArgumentOutOfRangeException ArgumentMustBeLessThanOrEqualTo(string parameterName, object actualValue, object maxValue)
         {
-            return new ArgumentOutOfRangeException(parameterName, actualValue, Error.Format(CommonWebApiResources.ArgumentMustBeLessThanOrEqualTo, maxValue));
+            return new ArgumentOutOfRangeException(parameterName, actualValue, Error.Format(CommonWebApiResources2.ArgumentMustBeLessThanOrEqualTo, maxValue));
         }
 
         /// <summary>

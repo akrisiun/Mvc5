@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace System.Web.Http.Properties {
+namespace System.Web.Http.WebHost.Properties {
     using System;
-    using System.Linq;
-    using System.Reflection;
+
+#if HTTP
 
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
@@ -20,40 +20,40 @@ namespace System.Web.Http.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    internal class CommonWebApiResources : CommonWebApiResources2
+    {
+    }
+
+    public class CommonWebApiResources2 {
+
+        public CommonWebApiResources2() {
+        }
+
+#else
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    /// 
     internal class CommonWebApiResources {
-        
+#endif
+
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
-        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal CommonWebApiResources() {
-        }
-        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-#if NETFX_CORE
-                    var assembly = typeof(CommonWebApiResources).GetTypeInfo().Assembly;
-#else
-                    var assembly = typeof(CommonWebApiResources).Assembly;
-#endif
-
-                    // Find the CommonResources.resources file's full resource name in this assembly
-                    string commonResourcesName = assembly.GetManifestResourceNames().Where(s => s.EndsWith("CommonWebApiResources.resources", StringComparison.OrdinalIgnoreCase)).Single();
-
-                    // Trim off the ".resources"
-                    commonResourcesName = commonResourcesName.Substring(0, commonResourcesName.Length - 10);
-
-                    // Load the resource manager
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager(commonResourcesName, assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("System.Web.Http.WebHost.Properties.CommonWebApiResources", typeof(CommonWebApiResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -65,7 +65,7 @@ namespace System.Web.Http.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -77,7 +77,7 @@ namespace System.Web.Http.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Relative URI values are not supported: &apos;{0}&apos;. The URI must be absolute..
         /// </summary>
-        internal static string ArgumentInvalidAbsoluteUri {
+        public static string ArgumentInvalidAbsoluteUri {
             get {
                 return ResourceManager.GetString("ArgumentInvalidAbsoluteUri", resourceCulture);
             }
@@ -86,7 +86,7 @@ namespace System.Web.Http.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Unsupported URI scheme: &apos;{0}&apos;. The URI scheme must be either &apos;{1}&apos; or &apos;{2}&apos;..
         /// </summary>
-        internal static string ArgumentInvalidHttpUriScheme {
+        public static string ArgumentInvalidHttpUriScheme {
             get {
                 return ResourceManager.GetString("ArgumentInvalidHttpUriScheme", resourceCulture);
             }
@@ -95,7 +95,7 @@ namespace System.Web.Http.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Value must be greater than or equal to {0}..
         /// </summary>
-        internal static string ArgumentMustBeGreaterThanOrEqualTo {
+        public static string ArgumentMustBeGreaterThanOrEqualTo {
             get {
                 return ResourceManager.GetString("ArgumentMustBeGreaterThanOrEqualTo", resourceCulture);
             }
@@ -104,7 +104,7 @@ namespace System.Web.Http.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Value must be less than or equal to {0}..
         /// </summary>
-        internal static string ArgumentMustBeLessThanOrEqualTo {
+        public static string ArgumentMustBeLessThanOrEqualTo {
             get {
                 return ResourceManager.GetString("ArgumentMustBeLessThanOrEqualTo", resourceCulture);
             }
@@ -122,7 +122,7 @@ namespace System.Web.Http.Properties {
         /// <summary>
         ///   Looks up a localized string similar to URI must not contain a query component or a fragment identifier..
         /// </summary>
-        internal static string ArgumentUriHasQueryOrFragment {
+        public static string ArgumentUriHasQueryOrFragment {
             get {
                 return ResourceManager.GetString("ArgumentUriHasQueryOrFragment", resourceCulture);
             }
@@ -131,7 +131,7 @@ namespace System.Web.Http.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The value of argument &apos;{0}&apos; ({1}) is invalid for Enum type &apos;{2}&apos;..
         /// </summary>
-        internal static string InvalidEnumArgument {
+        public static string InvalidEnumArgument {
             get {
                 return ResourceManager.GetString("InvalidEnumArgument", resourceCulture);
             }

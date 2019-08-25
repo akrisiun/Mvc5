@@ -1,6 +1,8 @@
 ﻿// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
+#if BSON
+
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,6 +16,7 @@ using Newtonsoft.Json.Linq;
 
 namespace System.Net.Http.Formatting
 {
+
     public class BsonMediaTypeFormatterTests : MediaTypeFormatterTestBase<BsonMediaTypeFormatter>
     {
         // Exclude IEnumerable<T> and IQueryable<T> to avoid attempts to round trip values that are known to cause
@@ -570,3 +573,5 @@ namespace System.Net.Http.Formatting
         }
     }
 }
+
+#endif
