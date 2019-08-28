@@ -62,7 +62,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ConfigurationResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ConfigurationResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

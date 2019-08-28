@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27016.1
 MinimumVisualStudioVersion = 15.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Web.FxCop", "tools\src\Microsoft.Web.FxCop\Microsoft.Web.FxCop.csproj", "{F439D4E6-3FAC-4C30-9585-6D258133A2BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Web.FxCop", "src\Microsoft.Web.FxCop\Microsoft.Web.FxCop.csproj", "{F439D4E6-3FAC-4C30-9585-6D258133A2BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

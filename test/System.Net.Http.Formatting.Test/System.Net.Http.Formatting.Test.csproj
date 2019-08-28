@@ -18,7 +18,7 @@
     <OutputPath>..\..\bin\$(Configuration)\Test\</OutputPath>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
@@ -204,7 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\System.Net.Http.Formatting\System.Net.Http.Formatting.csproj">
-      <Project>{668E9021-CE84-49D9-98FB-DF125A9FCDB0}</Project>
+      <Project>{668e9021-ce84-49d9-98fb-df125a9fcdb0}</Project>
       <Name>System.Net.Http.Formatting</Name>
     </ProjectReference>
     <ProjectReference Include="..\Microsoft.TestCommon\Microsoft.TestCommon.csproj">

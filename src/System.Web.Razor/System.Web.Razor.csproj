@@ -189,7 +189,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\RazorResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>RazorResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
