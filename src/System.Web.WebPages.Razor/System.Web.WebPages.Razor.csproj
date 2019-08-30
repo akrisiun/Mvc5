@@ -69,6 +69,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\RazorWebResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RazorWebResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

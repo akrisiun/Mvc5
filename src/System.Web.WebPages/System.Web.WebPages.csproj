@@ -234,6 +234,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\WebPageResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>WebPageResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

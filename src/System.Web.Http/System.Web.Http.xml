@@ -6672,49 +6672,50 @@
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
             </summary>
+            
         </member>
-        <member name="P:System.Web.Http.WebHost.Properties.CommonWebApiResources2.ResourceManager">
+        <member name="P:System.Web.Http.WebHost.Properties.CommonWebApiResources.ResourceManager">
             <summary>
               Returns the cached ResourceManager instance used by this class.
             </summary>
         </member>
-        <member name="P:System.Web.Http.WebHost.Properties.CommonWebApiResources2.Culture">
+        <member name="P:System.Web.Http.WebHost.Properties.CommonWebApiResources.Culture">
             <summary>
               Overrides the current thread's CurrentUICulture property for all
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
-        <member name="P:System.Web.Http.WebHost.Properties.CommonWebApiResources2.ArgumentInvalidAbsoluteUri">
+        <member name="P:System.Web.Http.WebHost.Properties.CommonWebApiResources.ArgumentInvalidAbsoluteUri">
             <summary>
               Looks up a localized string similar to Relative URI values are not supported: &apos;{0}&apos;. The URI must be absolute..
             </summary>
         </member>
-        <member name="P:System.Web.Http.WebHost.Properties.CommonWebApiResources2.ArgumentInvalidHttpUriScheme">
+        <member name="P:System.Web.Http.WebHost.Properties.CommonWebApiResources.ArgumentInvalidHttpUriScheme">
             <summary>
               Looks up a localized string similar to Unsupported URI scheme: &apos;{0}&apos;. The URI scheme must be either &apos;{1}&apos; or &apos;{2}&apos;..
             </summary>
         </member>
-        <member name="P:System.Web.Http.WebHost.Properties.CommonWebApiResources2.ArgumentMustBeGreaterThanOrEqualTo">
+        <member name="P:System.Web.Http.WebHost.Properties.CommonWebApiResources.ArgumentMustBeGreaterThanOrEqualTo">
             <summary>
               Looks up a localized string similar to Value must be greater than or equal to {0}..
             </summary>
         </member>
-        <member name="P:System.Web.Http.WebHost.Properties.CommonWebApiResources2.ArgumentMustBeLessThanOrEqualTo">
+        <member name="P:System.Web.Http.WebHost.Properties.CommonWebApiResources.ArgumentMustBeLessThanOrEqualTo">
             <summary>
               Looks up a localized string similar to Value must be less than or equal to {0}..
             </summary>
         </member>
-        <member name="P:System.Web.Http.WebHost.Properties.CommonWebApiResources2.ArgumentNullOrEmpty">
+        <member name="P:System.Web.Http.WebHost.Properties.CommonWebApiResources.ArgumentNullOrEmpty">
             <summary>
               Looks up a localized string similar to The argument &apos;{0}&apos; is null or empty..
             </summary>
         </member>
-        <member name="P:System.Web.Http.WebHost.Properties.CommonWebApiResources2.ArgumentUriHasQueryOrFragment">
+        <member name="P:System.Web.Http.WebHost.Properties.CommonWebApiResources.ArgumentUriHasQueryOrFragment">
             <summary>
               Looks up a localized string similar to URI must not contain a query component or a fragment identifier..
             </summary>
         </member>
-        <member name="P:System.Web.Http.WebHost.Properties.CommonWebApiResources2.InvalidEnumArgument">
+        <member name="P:System.Web.Http.WebHost.Properties.CommonWebApiResources.InvalidEnumArgument">
             <summary>
               Looks up a localized string similar to The value of argument &apos;{0}&apos; ({1}) is invalid for Enum type &apos;{2}&apos;..
             </summary>
