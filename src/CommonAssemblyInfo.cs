@@ -28,14 +28,22 @@ using System.Runtime.InteropServices;
 #error Runtime projects cannot define more than one of ASPNETMVC, ASPNETWEBPAGES or ASPNETFACEBOOK
 #elif ASPNETMVC
 #if !BUILD_GENERATED_VERSION
+
 [assembly: AssemblyVersion("5.2.7.0")] // ASPNETMVC
-[assembly: AssemblyFileVersion("5.2.7.0")] // ASPNETMVC
+[assembly: AssemblyFileVersion("5.2.7.3")] // ASPNETMVC
+
 #endif
 [assembly: AssemblyProduct("Microsoft ASP.NET MVC")]
 #elif ASPNETWEBPAGES
 #if !BUILD_GENERATED_VERSION
-[assembly: AssemblyVersion("3.0.0.0")] // ASPNETWEBPAGES
-[assembly: AssemblyFileVersion("3.0.0.0")] // ASPNETWEBPAGES
+
+// no, not 3.0.0 - debugging problems
+// [assembly: AssemblyVersion("3.0.0.0")] // ASPNETWEBPAGES
+// [assembly: AssemblyFileVersion("3.0.0.0")] // ASPNETWEBPAGES
+// 3.2.7 - much better 
+[assembly: AssemblyVersion("3.2.7.0")] // ASPNETWEBPAGES
+[assembly: AssemblyFileVersion("3.2.7.0")] // ASPNETWEBPAGES
+
 #endif
 [assembly: AssemblyProduct("Microsoft ASP.NET Web Pages")]
 #elif ASPNETFACEBOOK

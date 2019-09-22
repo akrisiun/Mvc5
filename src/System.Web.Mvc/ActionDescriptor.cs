@@ -190,8 +190,10 @@ namespace System.Web.Mvc
             // we can't call methods with open generic type parameters
             if (methodInfo.ContainsGenericParameters)
             {
-                return String.Format(CultureInfo.CurrentCulture, MvcResources.ReflectedActionDescriptor_CannotCallOpenGenericMethods,
-                                     methodInfo, methodInfo.ReflectedType.FullName);
+                // we can call this method
+                return null;
+                //return String.Format(CultureInfo.CurrentCulture, MvcResources.ReflectedActionDescriptor_CannotCallOpenGenericMethods,
+                //                     methodInfo, methodInfo.ReflectedType.FullName);
             }
 
             // we can't call methods with ref/out parameters

@@ -38,7 +38,7 @@ namespace System.Web.Mvc
             if (validateMethod)
             {
                 string failedMessage = VerifyActionMethodIsCallable(methodInfo);
-                if (failedMessage != null)
+                if (failedMessage != null && !methodInfo.IsGenericMethodDefinition)
                 {
                     throw new ArgumentException(failedMessage, "methodInfo");
                 }

@@ -4,7 +4,13 @@
   <PropertyGroup>
     <TargetFrameworks>net45;net471</TargetFrameworks>
 	  <LibDir>d:\Beta\dotnet\Mvc5.27\lib\</LibDir>
-	  <!-- <LibDir>..\..\lib\</LibDir> -->
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    
+    <RuntimeIdentifiers  Condition="'$(MSBuildRuntimeType)' == 'Core'">win-x64</RuntimeIdentifiers>
+    <DebugType  Condition="'$(MSBuildRuntimeType)' == 'Core'">portable</DebugType>
+    <!--<DebugType  Condition="'$(MSBuildRuntimeType)' == 'Full'">full</DebugType>-->
+    <!-- <LibDir>..\..\lib\</LibDir> -->
   </PropertyGroup>
   
   <!--
@@ -12,7 +18,7 @@
   -->
   <Target Name="PostBuildTask" AfterTargets="Build">
     <Message Importance="High" Text="net4* $(TargetFramework): $(SolutionDir) -&gt; $(LibDir)$(AssemblyName).dll" />
-    <Message Importance="High" Text="copy  $(TargetDir)$(AssemblyName).dll AssemblyVersion=$(AssemblyVersion)" />
+    <Message Importance="High" Text="copy  $(TargetDir)$(AssemblyName).dll AssemblyVersion=$(AssemblyFileVersion)" />
 	
     <Copy Condition="'$(SolutionDir)' != '*Undefined*' And Exists(@(LibDir)) And '$(TargetFramework)' == 'net471' And '$(AssemblyName)' != '' " 
 		  SourceFiles="$(TargetDir)$(AssemblyName).dll" DestinationFiles=" $(LibDir)$(AssemblyName).dll" SkipUnchangedFiles="false" />

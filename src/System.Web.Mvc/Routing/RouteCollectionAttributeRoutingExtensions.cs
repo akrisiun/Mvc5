@@ -1,6 +1,7 @@
 ﻿// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
+using System.Diagnostics;
 using System.Web.Mvc.Routing;
 using System.Web.Routing;
 
@@ -9,6 +10,15 @@ namespace System.Web.Mvc
     // Corresponds to the Web API implementation of attribute routing in System.Web.Http.HttpConfigurationExtensions.
     public static class RouteCollectionAttributeRoutingExtensions
     {
+
+        /// <summary>
+        /// System.Web.Mvc.RouteCollectionAttributeRoutingExtensions.DebugPrepare()
+        /// </summary>
+        public static void DebugPrepare()
+        {
+            Debugger.Break();
+        }
+
         /// <summary>
         /// Maps the attribute-defined routes for the application.
         /// </summary>

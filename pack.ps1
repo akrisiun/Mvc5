@@ -10,9 +10,8 @@ dotnet build src\System.Net.Http.Formatting\System.Net.Http.Formatting.csproj  -
 dotnet build src\System.Web.Http.WebHost\System.Web.Http.WebHost.csproj        -o $PWD/lib/ -f net471
 dotnet build src\System.Web.Http\System.Web.Http.csproj                        -o $PWD/lib/ -f net471
 
+nuget pack src\System.Web.Mvc\Microsoft.AspNet.Mvc.nuspec
 exit;
-
-nuget pack src\System.Web.Mvc\System.Web.Mvc.csproj
 
 nuget pack src\System.Web.Helpers\System.Web.Helpers.csproj
 nuget pack src\System.Web.Razor\System.Web.Razor.csproj
