@@ -14,9 +14,11 @@ namespace System.Web.Razor.Parser
 {
     public partial class CSharpCodeParser : TokenizerBackedParser<CSharpTokenizer, CSharpSymbol, CSharpSymbolType>
     {
-        internal static readonly int UsingKeywordLength = 5; // using
+        // internal 
+        public static readonly int UsingKeywordLength = 5; // using
 
-        internal static ISet<string> DefaultKeywords = new HashSet<string>()
+        // internal 
+           public static ISet<string> DefaultKeywords = new HashSet<string>()
         {
             "if",
             "do",

@@ -10,7 +10,8 @@ using System.Web.Razor.Tokenizer;
 
 namespace System.Web.Razor.Parser
 {
-    internal class ConditionalAttributeCollapser : MarkupRewriter
+    // internal 
+    public class ConditionalAttributeCollapser : MarkupRewriter
     {
         public ConditionalAttributeCollapser(Action<SpanBuilder, SourceLocation, string> markupSpanFactory) : base(markupSpanFactory)
         {

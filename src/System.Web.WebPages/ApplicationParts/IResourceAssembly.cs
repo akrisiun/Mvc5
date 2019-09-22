@@ -6,7 +6,8 @@ using System.IO;
 namespace System.Web.WebPages.ApplicationParts
 {
     // For unit testing purpose since Assembly is not Moqable
-    internal interface IResourceAssembly
+    // internal 
+    public interface IResourceAssembly
     {
         string Name { get; }
         Stream GetManifestResourceStream(string name);

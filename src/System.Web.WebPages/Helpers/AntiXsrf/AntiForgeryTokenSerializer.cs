@@ -7,12 +7,14 @@ using System.Web.Mvc;
 
 namespace System.Web.Helpers.AntiXsrf
 {
-    internal sealed class AntiForgeryTokenSerializer : IAntiForgeryTokenSerializer
+    // internal 
+    public sealed class AntiForgeryTokenSerializer : IAntiForgeryTokenSerializer
     {
         private const byte TokenVersion = 0x01;
         private readonly ICryptoSystem _cryptoSystem;
 
-        internal AntiForgeryTokenSerializer(ICryptoSystem cryptoSystem)
+        // internal 
+        public AntiForgeryTokenSerializer(ICryptoSystem cryptoSystem)
         {
             _cryptoSystem = cryptoSystem;
         }

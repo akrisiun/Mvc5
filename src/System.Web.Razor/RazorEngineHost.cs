@@ -25,8 +25,10 @@ namespace System.Web.Razor
     /// </remarks>
     public class RazorEngineHost
     {
-        internal const string InternalDefaultClassName = "__CompiledTemplate";
-        internal const string InternalDefaultNamespace = "Razor";
+        // internal 
+        public const string InternalDefaultClassName = "__CompiledTemplate";
+        // internal 
+        public const string InternalDefaultNamespace = "Razor";
 
         private bool _instrumentationActive = false;
         private Func<ParserBase> _markupParserFactory;

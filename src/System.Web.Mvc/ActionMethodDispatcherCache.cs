@@ -4,7 +4,8 @@ using System.Reflection;
 
 namespace System.Web.Mvc
 {
-    internal sealed class ActionMethodDispatcherCache : ReaderWriterCache<MethodInfo, ActionMethodDispatcher>
+    // internal 
+    public sealed class ActionMethodDispatcherCache : ReaderWriterCache<MethodInfo, ActionMethodDispatcher>
     {
         public ActionMethodDispatcherCache()
         {

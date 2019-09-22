@@ -29,9 +29,15 @@ namespace System.Web.Razor.Text
             UpdateCurrentCharacter();
         }
 
-        internal StringBuilder Buffer { get; set; }
+        // internal 
+        protected StringBuilder Buffer { get; set; }
+        public StringBuilder BufferGet => Buffer;
+
         internal bool Buffering { get; set; }
         internal TextReader InnerReader { get; private set; }
+
+        public bool BufferingGet => Buffering;
+        public TextReader InnerReaderGet => InnerReader;
 
         public override SourceLocation CurrentLocation
         {

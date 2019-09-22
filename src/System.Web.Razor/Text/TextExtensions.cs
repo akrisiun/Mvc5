@@ -5,7 +5,8 @@ using System.Text;
 
 namespace System.Web.Razor.Text
 {
-    internal static class TextExtensions
+    // internal 
+    public static class TextExtensions
     {
         public static void Seek(this ITextBuffer self, int characters)
         {
@@ -23,6 +24,7 @@ namespace System.Web.Razor.Text
             return ret;
         }
 
+        public static LookaheadToken BeginLookaheadGet(this ITextBuffer self) => BeginLookahead(self);
         public static LookaheadToken BeginLookahead(this ITextBuffer self)
         {
             int start = self.Position;

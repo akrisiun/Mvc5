@@ -7,7 +7,8 @@ using System.Web.Razor.Text;
 
 namespace System.Web.Razor.Parser
 {
-    internal class MarkupCollapser : MarkupRewriter
+    // internal 
+    public class MarkupCollapser : MarkupRewriter
     {
         public MarkupCollapser(Action<SpanBuilder, SourceLocation, string> markupSpanFactory) : base(markupSpanFactory)
         {

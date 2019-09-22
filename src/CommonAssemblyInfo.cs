@@ -12,9 +12,11 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyTrademark("")]
 [assembly: ComVisible(false)]
+
 #if !NOT_CLS_COMPLIANT
 [assembly: CLSCompliant(true)]
 #endif
+
 [assembly: NeutralResourcesLanguage("en-US")]
 [assembly: AssemblyMetadata("Serviceable", "True")]
 
@@ -27,7 +29,8 @@ using System.Runtime.InteropServices;
 #error Runtime projects cannot define both ASPNETMVC and ASPNETWEBPAGES
 #elif ASPNETMVC
 #if !BUILD_GENERATED_VERSION
-[assembly: AssemblyFileVersion("5.5.1.0")] // ASPNETMVC
+[assembly: AssemblyFileVersion("5.5.2.0")] // ASPNETMVC
+
 #endif
 [assembly: AssemblyProduct("Microsoft ASP.NET MVC")]
 #elif ASPNETWEBPAGES

@@ -1,7 +1,15 @@
 ﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.CodeDom;
+using System.Web.Helpers.Common;
+using System.Web.Razor.Common;
 using Microsoft.Internal.Web.Utils;
+
+namespace System.Web.Helpers.Common
+{ }
+
+namespace System.Web
+{ }
 
 namespace System.Web.Razor.Generator
 {

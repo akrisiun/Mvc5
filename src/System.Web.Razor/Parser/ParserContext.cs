@@ -80,7 +80,8 @@ namespace System.Web.Razor.Parser
             }
         }
 
-        internal Stack<BlockBuilder> BlockStack
+        // internal 
+        public Stack<BlockBuilder> BlockStack
         {
             get { return _blockStack; }
         }

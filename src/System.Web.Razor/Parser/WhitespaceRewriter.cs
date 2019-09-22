@@ -7,7 +7,8 @@ using System.Web.Razor.Text;
 
 namespace System.Web.Razor.Parser
 {
-    internal class WhiteSpaceRewriter : MarkupRewriter
+    // internal 
+    public class WhiteSpaceRewriter : MarkupRewriter
     {
         public WhiteSpaceRewriter(Action<SpanBuilder, SourceLocation, string> markupSpanFactory) : base(markupSpanFactory)
         {

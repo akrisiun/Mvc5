@@ -2,7 +2,8 @@
 
 namespace System.Web.Razor.Utils
 {
-    internal class DisposableAction : IDisposable
+    // internal 
+    public class DisposableAction : IDisposable
     {
         private Action _action;
 

@@ -1,15 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),Runtime.sln))\tools\WebStack.settings.targets" />
   <PropertyGroup>
-    <ProjectGuid>{8F18041B-9410-4C36-A9C5-067813DF5F31}</ProjectGuid>
-    <OutputType>Library</OutputType>
     <RootNamespace>System.Web.Razor</RootNamespace>
     <AssemblyName>System.Web.Razor</AssemblyName>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <DefineConstants>$(DefineConstants);ASPNETWEBPAGES</DefineConstants>
     <NoWarn>1591</NoWarn>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <PackageId>Beta.Web.Razor</PackageId>
+    <Version>3.3.2</Version>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <ProjectGuid>{8F18041B-9410-4C36-A9C5-067813DF5F31}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <DefineConstants>$(DefineConstants);ASPNETWEBPAGES</DefineConstants>
+    <NoWarn>1591</NoWarn>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -18,9 +24,7 @@
     <DocumentationFile />
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>..\Key.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\xmAspNet.snk</AssemblyOriginatorKeyFile>  
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
@@ -42,6 +46,7 @@
     <Compile Include="..\GlobalSuppressions.cs">
       <Link>Common\GlobalSuppressions.cs</Link>
     </Compile>
+    <Compile Include="Common\HashCodeCombinerRazor.cs" />
     <Compile Include="DocumentParseCompleteEventArgs.cs" />
     <Compile Include="Editor\AutoCompleteEditHandler.cs" />
     <Compile Include="Editor\BackgroundParser.cs" />

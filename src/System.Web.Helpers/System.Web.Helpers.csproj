@@ -15,6 +15,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <OutputPath>..\..\lib\</OutputPath>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>xmAspNet.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -38,6 +44,8 @@
     <Compile Include="..\CommonResources.Designer.cs">
       <Link>Common\CommonResources.Designer.cs</Link>
       <DependentUpon>CommonResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="..\GlobalSuppressions.cs">
       <Link>Common\GlobalSuppressions.cs</Link>
@@ -99,6 +107,9 @@
       <LastGenOutput>_WebGridRenderer.generated.cs</LastGenOutput>
       <CustomToolNamespace>System.Web.Helpers</CustomToolNamespace>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="xmAspNet.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

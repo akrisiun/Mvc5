@@ -8,7 +8,8 @@ using System.Web.Razor.Parser.SyntaxTree;
 
 namespace System.Web.Razor.Generator
 {
-    internal static class CodeGeneratorPaddingHelper
+    // internal 
+    public static class CodeGeneratorPaddingHelper
     {
         private static readonly char[] _newLineChars = { '\r', '\n' };
 
@@ -81,7 +82,8 @@ namespace System.Web.Razor.Generator
         }
 
         // internal for unit testing only, not intended to be used directly in code
-        internal static int CalculatePadding(RazorEngineHost host, Span target, int generatedStart)
+        // internal 
+        public static int CalculatePadding(RazorEngineHost host, Span target, int generatedStart)
         {
             if (host == null)
             {

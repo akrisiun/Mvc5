@@ -1,13 +1,15 @@
 ﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
 using System.Globalization;
+using System.Web.Razor.Common;
 using System.Web.WebPages.Resources;
 using Microsoft.Internal.Web.Utils;
 
 namespace System.Web.WebPages.ApplicationParts
 {
     // Used to serve static resource files (e.g. .jpg, .css, .js) that live inside appliaction modules
-    internal class ResourceHandler : IHttpHandler
+    // internal 
+    public class ResourceHandler : IHttpHandler
     {
         private readonly string _path;
         private readonly ApplicationPart _applicationPart;
@@ -38,7 +40,8 @@ namespace System.Web.WebPages.ApplicationParts
             ProcessRequest(new HttpResponseWrapper(context.Response));
         }
 
-        internal void ProcessRequest(HttpResponseBase response)
+        // internal 
+        public void ProcessRequest(HttpResponseBase response)
         {
             string virtualPath = _path;
 

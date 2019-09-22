@@ -12,7 +12,8 @@ namespace System.Web.Helpers.AntiXsrf
     // Represents a binary blob (token) that contains random data.
     // Useful for binary data inside a serialized stream.
     [DebuggerDisplay("{DebuggerString}")]
-    internal sealed class BinaryBlob : IEquatable<BinaryBlob>
+    // internal 
+    public sealed class BinaryBlob : IEquatable<BinaryBlob>
     {
         private static readonly RNGCryptoServiceProvider _prng = new RNGCryptoServiceProvider();
 

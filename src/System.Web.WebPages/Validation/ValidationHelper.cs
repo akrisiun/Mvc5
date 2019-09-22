@@ -8,6 +8,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
+using System.Web.Razor.Common;
 using System.Web.WebPages.Html;
 using System.Web.WebPages.Scope;
 using Microsoft.Internal.Web.Utils;

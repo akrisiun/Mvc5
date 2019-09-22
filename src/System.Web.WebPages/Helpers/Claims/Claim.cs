@@ -6,7 +6,8 @@ namespace System.Web.Helpers.Claims
 {
     // Represents a Claim; serves as an abstraction around the WIF SDK and 4.5 Claim types since
     // we can't compile directly against them.
-    internal sealed class Claim
+    // internal 
+    public sealed class Claim
     {
         public Claim(string claimType, string value)
         {
@@ -25,7 +26,9 @@ namespace System.Web.Helpers.Claims
         //   string ClaimType { get; } // or just 'Type'
         //   string Value { get; }
         // }
-        internal static Claim Create<TClaim>(TClaim claim)
+        
+        // internal 
+        public static Claim Create<TClaim>(TClaim claim)
         {
             return ClaimFactory<TClaim>.Create(claim);
         }

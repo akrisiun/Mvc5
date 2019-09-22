@@ -9,17 +9,22 @@
     <AssemblyName>System.Web.Http</AssemblyName>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <DefineConstants>$(DefineConstants);ASPNETMVC;ASPNETWEBAPI</DefineConstants>
-    <ContinueOnError>true</ContinueOnError>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>xmAspNet.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>35MSSharedLib1024.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;ASPNETMVC;ASPNETWEBAPI</DefineConstants>
     <DocumentationFile />
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <OutputPath>..\..\lib\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>true</DelaySign>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -277,9 +282,7 @@
     <Compile Include="Tracing\Tracers\FormatterLoggerTraceWrapper.cs" />
     <Compile Include="Tracing\Tracers\DefaultHttpControllerTypeResolverTracer.cs" />
     <Compile Include="Tracing\Tracers\OverrideFilterTracer.cs" />
-    <Compile Include="Validation\BodyModelValidatorContext.cs" />
     <Compile Include="Validation\IModelValidatorCache.cs" />
-    <Compile Include="Validation\IBodyModelValidatorKeyBuilder.cs" />
     <Compile Include="Validation\ModelValidatorCache.cs" />
     <Compile Include="Controllers\ResponseMessageResultConverter.cs" />
     <Compile Include="Controllers\ValueResultConverter.cs" />
@@ -568,6 +571,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="35MSSharedLib1024.snk" />
     <None Include="packages.config" />
     <None Include="xmAspNet.snk" />
   </ItemGroup>

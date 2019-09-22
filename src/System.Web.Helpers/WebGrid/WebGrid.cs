@@ -612,8 +612,9 @@ namespace System.Web.Helpers
             return GetPath(queryString, SelectionFieldName);
         }
 
-        internal static string Argument_Must_Be_GreaterThanOrEqualTo => CommonResources.Argument_Must_Be_GreaterThanOrEqualTo;
-        // return System.Resources.ResourceManager.GetString("Argument_Must_Be_GreaterThanOrEqualTo"); //, CultureInfo.CurrentCulture);
+        internal static string Argument_Must_Be_GreaterThanOrEqualTo 
+            => "Argument_Must_Be_GreaterThanOrEqualTo"; // System.Web.CommonResources.Argument_Must_Be_GreaterThanOrEqualTo;
+            // System.Resources.ResourceManager.GetString("Argument_Must_Be_GreaterThanOrEqualTo"); //, CultureInfo.CurrentCulture);
 
         [SuppressMessage("Microsoft.Design", "CA1055:UriReturnValuesShouldNotBeStrings", Justification = "Strings are easier for Plan9 developer to work with")]
         public string GetSortUrl(string column)

@@ -6,7 +6,8 @@ using System.Text;
 
 namespace System.Web.Razor.Parser
 {
-    internal static class TextReaderExtensions
+    // internal 
+    public static class TextReaderExtensions
     {
         public static string ReadUntil(this TextReader reader, char terminator)
         {

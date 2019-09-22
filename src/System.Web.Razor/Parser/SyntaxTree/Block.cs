@@ -7,11 +7,14 @@ using System.Linq;
 using System.Web.Razor.Generator;
 using System.Web.Razor.Resources;
 using System.Web.Razor.Text;
+using System.Diagnostics;
 
 namespace System.Web.Razor.Parser.SyntaxTree
 {
     public class Block : SyntaxTreeNode
     {
+        // static Block() { if (Debugger.IsAttached) Debugger.Break(); }
+
         public Block(BlockBuilder source)
         {
             if (source.Type == null)
@@ -30,7 +33,10 @@ namespace System.Web.Razor.Parser.SyntaxTree
             }
         }
 
-        internal Block(BlockType type, IEnumerable<SyntaxTreeNode> contents, IBlockCodeGenerator generator)
+        protected Block(IEnumerable<SyntaxTreeNode> contents) : this(BlockType.Template, contents, null) { }
+
+        internal
+        protected Block(BlockType type, IEnumerable<SyntaxTreeNode> contents, IBlockCodeGenerator generator)
         {
             Type = type;
             CodeGenerator = generator;

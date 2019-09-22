@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using System.Data.Linq;
 using System.Diagnostics.CodeAnalysis;
 using System.Web.Mvc;
+using System.Web.Razor.Common;
 using Microsoft.Internal.Web.Utils;
 
 namespace System.Web.WebPages.Html
 {
     public partial class HtmlHelper
     {
+        private const string ParamName = "name";
+
         private enum InputType
         {
             Text,
@@ -42,7 +45,7 @@ namespace System.Web.WebPages.Html
         {
             if (String.IsNullOrEmpty(name))
             {
-                throw new ArgumentException(CommonResources.Argument_Cannot_Be_Null_Or_Empty, "name");
+                throw new ArgumentException(CommonResources.Argument_Cannot_Be_Null_Or_Empty, ParamName);
             }
 
             return BuildInputField(name, InputType.Text, value, isExplicitValue: true, attributes: htmlAttributes);

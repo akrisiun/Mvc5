@@ -123,7 +123,8 @@ namespace System.Web.Helpers
         // If the app path is provided, we're generating a cookie name rather than a field name, and the cookie names should
         // be unique so that a development server cookie and an IIS cookie - both running on localhost - don't stomp on
         // each other.
-        internal static string GetAntiForgeryCookieName(string appPath)
+        // internal
+        public static string GetAntiForgeryCookieName(string appPath)
         {
             if (String.IsNullOrEmpty(appPath) || appPath == "/")
             {

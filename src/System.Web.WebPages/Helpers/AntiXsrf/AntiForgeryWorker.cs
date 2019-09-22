@@ -8,14 +8,16 @@ using System.Web.WebPages.Resources;
 
 namespace System.Web.Helpers.AntiXsrf
 {
-    internal sealed class AntiForgeryWorker
+    // internal
+    public sealed class AntiForgeryWorker
     {
         private readonly IAntiForgeryConfig _config;
         private readonly IAntiForgeryTokenSerializer _serializer;
         private readonly ITokenStore _tokenStore;
         private readonly ITokenValidator _validator;
 
-        internal AntiForgeryWorker(IAntiForgeryTokenSerializer serializer, IAntiForgeryConfig config, ITokenStore tokenStore, ITokenValidator validator)
+        // internal
+        public AntiForgeryWorker(IAntiForgeryTokenSerializer serializer, IAntiForgeryConfig config, ITokenStore tokenStore, ITokenValidator validator)
         {
             _serializer = serializer;
             _config = config;
@@ -103,11 +105,7 @@ namespace System.Web.Helpers.AntiXsrf
                 // Adding X-Frame-Options header to prevent ClickJacking. See
                 // http://tools.ietf.org/html/draft-ietf-websec-x-frame-options-10
                 // for more information.
-                const string FrameHeaderName = "X-Frame-Options";
-                if (httpContext.Response.Headers[FrameHeaderName] == null)
-                {
-                    httpContext.Response.AddHeader(FrameHeaderName, "SAMEORIGIN");
-                }
+                httpContext.Response.AddHeader("X-Frame-Options", "SAMEORIGIN");
             }
 
             // <input type="hidden" name="__AntiForgeryToken" value="..." />

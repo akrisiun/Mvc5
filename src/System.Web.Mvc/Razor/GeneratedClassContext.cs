@@ -2,16 +2,13 @@
 
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using Microsoft.Internal.Web.Utils;
+//using Microsoft.Internal.Web.Utils;
+//using System.Web.Razor.Common;
 using System.Web;
-using System.Web.Razor.Common;
 
-namespace System.Web.Razor.Common { 
-    // dotnet build problems :(    
-}
 namespace System.Web.Razor.Generator
 {
-    public struct GeneratedClassContext
+    public struct GeneratedClassContext2
     {
         public static readonly string DefaultWriteMethodName = "Write";
         public static readonly string DefaultWriteLiteralMethodName = "WriteLiteral";
@@ -20,31 +17,32 @@ namespace System.Web.Razor.Generator
         public static readonly string DefaultWriteAttributeMethodName = "WriteAttribute";
         public static readonly string DefaultWriteAttributeToMethodName = "WriteAttributeTo";
 
-        public static readonly GeneratedClassContext Default = new GeneratedClassContext(DefaultExecuteMethodName,
+        public static readonly GeneratedClassContext2 Default = new GeneratedClassContext2(DefaultExecuteMethodName,
                                                                                          DefaultWriteMethodName,
                                                                                          DefaultWriteLiteralMethodName);
 
-        public GeneratedClassContext(string executeMethodName, string writeMethodName, string writeLiteralMethodName)
+        public GeneratedClassContext2(string executeMethodName, string writeMethodName, string writeLiteralMethodName)
             : this()
         {
             if (String.IsNullOrEmpty(executeMethodName))
             {
                 throw new ArgumentException(String.Format(CultureInfo.CurrentCulture,
-                                                          CommonResources.Argument_Cannot_Be_Null_Or_Empty,
+                                                          "Argument_Cannot_Be_Null_Or_Empty",
                                                           "executeMethodName"),
                                             "executeMethodName");
             }
             if (String.IsNullOrEmpty(writeMethodName))
             {
                 throw new ArgumentException(String.Format(CultureInfo.CurrentCulture,
-                                                          CommonResources.Argument_Cannot_Be_Null_Or_Empty,
+                                                          "Argument_Cannot_Be_Null_Or_Empty {0}",
                                                           "writeMethodName"),
                                             "writeMethodName");
             }
             if (String.IsNullOrEmpty(writeLiteralMethodName))
             {
                 throw new ArgumentException(String.Format(CultureInfo.CurrentCulture,
-                                                          CommonResources.Argument_Cannot_Be_Null_Or_Empty,
+                                                          // CommonResources.Argument_Cannot_Be_Null_Or_Empty
+                                                          "Argument_Cannot_Be_Null_Or_Empty {0}",
                                                           "writeLiteralMethodName"),
                                             "writeLiteralMethodName");
             }
@@ -63,7 +61,7 @@ namespace System.Web.Razor.Generator
             WriteAttributeToMethodName = DefaultWriteAttributeToMethodName;
         }
 
-        public GeneratedClassContext(string executeMethodName,
+        public GeneratedClassContext2(string executeMethodName,
                                      string writeMethodName,
                                      string writeLiteralMethodName,
                                      string writeToMethodName,
@@ -76,7 +74,7 @@ namespace System.Web.Razor.Generator
             TemplateTypeName = templateTypeName;
         }
 
-        public GeneratedClassContext(string executeMethodName,
+        public GeneratedClassContext2(string executeMethodName,
                                      string writeMethodName,
                                      string writeLiteralMethodName,
                                      string writeToMethodName,
@@ -88,7 +86,7 @@ namespace System.Web.Razor.Generator
             DefineSectionMethodName = defineSectionMethodName;
         }
 
-        public GeneratedClassContext(string executeMethodName,
+        public GeneratedClassContext2(string executeMethodName,
                                      string writeMethodName,
                                      string writeLiteralMethodName,
                                      string writeToMethodName,
@@ -168,12 +166,12 @@ namespace System.Web.Razor.Generator
                    EndContextMethodName.GetHashCode();
         }
 
-        public static bool operator ==(GeneratedClassContext left, GeneratedClassContext right)
+        public static bool operator ==(GeneratedClassContext2 left, GeneratedClassContext2 right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(GeneratedClassContext left, GeneratedClassContext right)
+        public static bool operator !=(GeneratedClassContext2 left, GeneratedClassContext2 right)
         {
             return !left.Equals(right);
         }

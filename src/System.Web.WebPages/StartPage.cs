@@ -5,6 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
+using System.Web.Razor.Common;
 using Microsoft.Internal.Web.Utils;
 
 namespace System.Web.WebPages
@@ -65,6 +66,11 @@ namespace System.Web.WebPages
                 // The child page is either the next InitPage, or the final WebPage.
                 if (!RunPageCalled)
                 {
+                    if (WebPageContext.Current == null) {
+                        var ctx = this.PageContext.HttpContext;
+                        TemplateStack.GetCurrentTemplate(ctx);
+                    }
+
                     RunPage();
                 }
             }
@@ -162,7 +168,7 @@ namespace System.Web.WebPages
                     }
                 }
 
-                pageDirectory = currentPage.GetDirectory(pageDirectory);
+                pageDirectory = currentPage.DirectorySet(pageDirectory);
             }
 
             // At this point 'currentPage' is the root-most StartPage (if there were
@@ -183,7 +189,9 @@ namespace System.Web.WebPages
         public void RunPage()
         {
             RunPageCalled = true;
-            //ChildPage.PageContext = PageContext;
+
+            ChildPage.PageContext = PageContext; /// $$$$ ?
+
             ChildPage.ExecutePageHierarchy();
         }
 

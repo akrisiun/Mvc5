@@ -17,7 +17,9 @@ namespace System.Web.Razor.Text
         /// <summary>
         /// Constructor for changes where the position hasn't moved (primarily for tests)
         /// </summary>
-        internal TextChange(int position, int oldLength, ITextBuffer oldBuffer, int newLength, ITextBuffer newBuffer)
+
+        // internal 
+        public TextChange(int position, int oldLength, ITextBuffer oldBuffer, int newLength, ITextBuffer newBuffer)
             : this(position, oldLength, oldBuffer, position, newLength, newBuffer)
         {
         }

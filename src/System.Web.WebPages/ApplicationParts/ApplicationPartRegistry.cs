@@ -9,7 +9,8 @@ using System.Web.WebPages.Resources;
 
 namespace System.Web.WebPages.ApplicationParts
 {
-    internal class ApplicationPartRegistry
+    // internal 
+    public class ApplicationPartRegistry
     {
         // Page types that we could serve
         private static readonly Type _webPageType = typeof(WebPageRenderingBase);
@@ -56,7 +57,8 @@ namespace System.Web.WebPages.ApplicationParts
 
         // Register an assembly as an application module, which makes its compiled web pages
         // and embedded resources available
-        internal void Register(ApplicationPart applicationPart, Func<object> registerPageAction)
+        // internal 
+        public void Register(ApplicationPart applicationPart, Func<object> registerPageAction)
         {
             // Throw if this assembly has been registered
             if (_applicationParts.ContainsKey(applicationPart.Assembly))
@@ -116,12 +118,13 @@ namespace System.Web.WebPages.ApplicationParts
             _virtualPathFactory.RegisterPath(virtualPath, pageFactory);
         }
 
-        private static Func<object> NewTypeInstance(Type type)
+        static Func<object> NewTypeInstance(Type type)
         {
             return Expression.Lambda<Func<object>>(Expression.New(type)).Compile();
         }
 
-        internal static string GetRootRelativeVirtualPath(string rootVirtualPath, string pageVirtualPath)
+        // internal 
+        public static string GetRootRelativeVirtualPath(string rootVirtualPath, string pageVirtualPath)
         {
             string virtualPath = pageVirtualPath;
 

@@ -17,7 +17,8 @@ using System.Web.Razor.Utils;
 
 namespace System.Web.Razor.Editor
 {
-    internal class BackgroundParser : IDisposable
+    // internal 
+    public class BackgroundParser : IDisposable
     {
         private MainThreadState _main;
         private BackgroundThread _bg;
@@ -75,12 +76,14 @@ namespace System.Web.Razor.Editor
             }
         }
 
-        internal static bool TreesAreDifferent(Block leftTree, Block rightTree, IEnumerable<TextChange> changes)
+        // internal 
+        public static bool TreesAreDifferent(Block leftTree, Block rightTree, IEnumerable<TextChange> changes)
         {
             return TreesAreDifferent(leftTree, rightTree, changes, CancellationToken.None);
         }
 
-        internal static bool TreesAreDifferent(Block leftTree, Block rightTree, IEnumerable<TextChange> changes, CancellationToken cancelToken)
+        // internal
+        public static bool TreesAreDifferent(Block leftTree, Block rightTree, IEnumerable<TextChange> changes, CancellationToken cancelToken)
         {
             // Apply all the pending changes to the original tree
             // PERF: If this becomes a bottleneck, we can probably do it the other way around,

@@ -6,7 +6,8 @@ using System.Diagnostics;
 namespace System.Web.WebPages.ApplicationParts
 {
     // IVirtualPathFactory that keeps track of a mapping from virtual paths to handler factories
-    internal class DictionaryBasedVirtualPathFactory : IVirtualPathFactory
+    // internal 
+    public class DictionaryBasedVirtualPathFactory : IVirtualPathFactory
     {
         private Dictionary<string, Func<object>> _factories = new Dictionary<string, Func<object>>(StringComparer.OrdinalIgnoreCase);
 

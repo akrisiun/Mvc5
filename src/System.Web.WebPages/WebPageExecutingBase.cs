@@ -346,7 +346,31 @@ namespace System.Web.WebPages
 
         protected internal void ExecutePage()
         {
-            var task = ExecuteAsync();
+            Task task = null;
+            HttpContext ctx = HttpContext.Current;
+            if (System.Web.HttpContext.Current == null) {
+
+                var req = Context.Request;
+                ctx = new HttpContext(new System.Web.Hosting.SimpleWorkerRequest(req.Path, req.Url.Query, this.GetOutputWriter()));
+                HttpContext.Current = ctx;
+                HttpContext.Current.User = Context.User;
+                HttpContext.Current.ApplicationInstance = Context.ApplicationInstance;
+
+                TemplateStack.GetCurrentTemplate(Context);
+                foreach (var item in Context.Items.Keys) {
+                    ctx.Items.Add(item, Context.Items[item]);
+                }
+
+                // nameof(WebPageBase.EnsurePageCanBeRequestedDirectly);
+                // WebPageBase.PreviousSectionWriters
+                WebPageContext pageCtx = WebPageContext.Current;
+                var page2 = pageCtx.Page as WebPage;
+                page2?.PreviousSectionWritersFix();
+
+            }
+                
+            task = ExecuteAsync();
+            
             if (task == null)
             {
                 Execute();

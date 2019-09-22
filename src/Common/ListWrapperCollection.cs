@@ -9,8 +9,6 @@ namespace System.Collections.ObjectModel
     /// </summary>
     internal sealed class ListWrapperCollection<T> : Collection<T>
     {
-        private readonly List<T> _items;
-
         internal ListWrapperCollection()
             : this(new List<T>())
         {
@@ -19,12 +17,9 @@ namespace System.Collections.ObjectModel
         internal ListWrapperCollection(List<T> list)
             : base(list)
         {
-            _items = list;
+            ItemsList = list;
         }
 
-        internal List<T> ItemsList
-        {
-            get { return _items; }
-        }
+        internal List<T> ItemsList { get; private set; }
     }
 }

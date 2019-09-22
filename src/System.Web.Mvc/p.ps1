@@ -1,0 +1,1 @@
+nuget pack Microsoft.AspNet.Mvc.nuspec

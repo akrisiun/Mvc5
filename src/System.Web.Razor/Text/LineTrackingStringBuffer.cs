@@ -7,7 +7,8 @@ using System.Web.Razor.Parser;
 
 namespace System.Web.Razor.Text
 {
-    internal class LineTrackingStringBuffer
+    // internal 
+    public class LineTrackingStringBuffer
     {
         private TextLine _currentLine;
         private TextLine _endLine;
@@ -112,7 +113,8 @@ namespace System.Web.Razor.Text
             return null;
         }
 
-        internal class CharacterReference
+        // internal 
+        public class CharacterReference
         {
             public CharacterReference(char character, SourceLocation location)
             {

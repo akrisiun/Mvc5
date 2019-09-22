@@ -6,6 +6,7 @@ using System.Web.Razor.Parser;
 using System.Web.Razor.Parser.SyntaxTree;
 using Microsoft.Internal.Web.Utils;
 using System.Web.Razor.Common;
+using System.Web;
 
 namespace System.Web.Razor.Generator
 {

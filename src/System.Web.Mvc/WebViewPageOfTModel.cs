@@ -24,7 +24,11 @@ namespace System.Web.Mvc
             {
                 if (_viewData == null)
                 {
-                    SetViewData(new ViewDataDictionary<TModel>());
+                    var viewData = new ViewDataDictionary<TModel>();
+                    SetViewData(viewData);
+
+                    if (_viewData == null)  // test unit bug
+                       _viewData = new ViewDataDictionary<TModel>(viewData);
                 }
                 return _viewData;
             }

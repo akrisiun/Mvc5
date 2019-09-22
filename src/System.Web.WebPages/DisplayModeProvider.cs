@@ -21,7 +21,8 @@ namespace System.Web.WebPages
             new DefaultDisplayMode()
         };
 
-        internal DisplayModeProvider()
+        // internal 
+        public DisplayModeProvider()
         {
             // The type is a psuedo-singleton. A user would gain nothing from constructing it since we won't use anything but DisplayModeProvider.Instance internally.
         }

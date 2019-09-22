@@ -10,10 +10,15 @@ using System.Web.Configuration;
 using System.Web.Hosting;
 using System.Web.WebPages.Razor.Configuration;
 using System.Web.WebPages.Razor.Resources;
-using Microsoft.Internal.Web.Utils;
+// using Microsoft.Internal.Web.Utils;
 
 namespace System.Web.WebPages.Razor
 {
+
+    class CommonResources
+    {
+        public static string Argument_Cannot_Be_Null_Or_Empty => "Argument cannot be null or empty";
+    }
 
     [CLSCompliant(false)]
     public class WebRazorHostFactory
@@ -46,7 +51,13 @@ namespace System.Web.WebPages.Razor
                 throw new ArgumentException(String.Format(CultureInfo.CurrentCulture, CommonResources.Argument_Cannot_Be_Null_Or_Empty, "virtualPath"), "virtualPath");
             }
 
-            return CreateHostFromConfigCore(GetRazorSection(virtualPath), virtualPath, physicalPath);
+            WebPageRazorHost host = null;
+            try
+            {
+                host = CreateHostFromConfigCore(GetRazorSection(virtualPath), virtualPath, physicalPath);
+            }
+            catch { }  // no fatal error
+            return host;
         }
 
         public static WebPageRazorHost CreateHostFromConfig(RazorWebSectionGroup config, string virtualPath)

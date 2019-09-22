@@ -26,21 +26,31 @@ namespace System.Web.Mvc
         {
             // grab chunks of data and write to the output stream
             Stream outputStream = response.OutputStream;
+
+            var stream = FileStream;
+            var context = HttpContext.Current;
+            if (stream == null && context != null)
+                throw new ArgumentNullException($"Filestream null : {context.Request.RawUrl}");
+
             using (FileStream)
             {
                 byte[] buffer = new byte[BufferSize];
-
-                while (true)
+                try
                 {
-                    int bytesRead = FileStream.Read(buffer, 0, BufferSize);
-                    if (bytesRead == 0)
-                    {
-                        // no more data
-                        break;
-                    }
 
-                    outputStream.Write(buffer, 0, bytesRead);
-                }
+                    while (true)
+                    {
+                        int bytesRead = FileStream.Read(buffer, 0, BufferSize);
+                        if (bytesRead == 0)
+                        {
+                            // no more data
+                            break;
+                        }
+
+                        outputStream.Write(buffer, 0, bytesRead);
+                    }
+                } catch (NullReferenceException ex)   // ignore Object reference not set to an instance of an object.: 
+                { if (context == null || context.Request.IsLocal) throw ex; }
             }
         }
     }
