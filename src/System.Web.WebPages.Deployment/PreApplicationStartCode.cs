@@ -96,7 +96,8 @@ namespace System.Web.WebPages.Deployment
             {
                 // Determine if there's a version conflict. A conflict could occur if there's a version specified in the bin which is different from the version specified in the 
                 // config that is different.
-                throw new InvalidOperationException(String.Format(CultureInfo.CurrentCulture, ConfigurationResources.WebPagesVersionConflict, version, binVersion));
+                if (!binVersion.Equals(new Version(3, 2, 7))
+                    throw new InvalidOperationException(String.Format(CultureInfo.CurrentCulture, ConfigurationResources.WebPagesVersionConflict, version, binVersion));
             }
             else if (binVersion != null)
             {
@@ -104,7 +105,8 @@ namespace System.Web.WebPages.Deployment
                 // If a version is bin deployed, we don't need to do anything special to bootstrap.
                 return false;
             }
-            else if (!webPagesEnabled)
+            
+            if (!webPagesEnabled)
             {
                 Debug.WriteLine("WebPages Bootstrapper v{0}: WebPages not enabled, registering for change notifications", AssemblyUtils.ThisAssemblyName.Version);
                 // Register for change notifications under the application root
