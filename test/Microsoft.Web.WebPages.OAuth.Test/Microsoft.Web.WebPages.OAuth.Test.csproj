@@ -77,10 +77,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Microsoft.Web.WebPages.OAuth\Microsoft.Web.WebPages.OAuth.csproj">
-      <Project>{4CBFC7D3-1600-4CE5-BC6B-AC7BC2D6F853}</Project>
-      <Name>Microsoft.Web.WebPages.OAuth</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Microsoft.TestCommon\Microsoft.TestCommon.csproj">
       <Project>{FCCC4CB7-BAF7-4A57-9F89-E5766FE536C0}</Project>
       <Name>Microsoft.TestCommon</Name>

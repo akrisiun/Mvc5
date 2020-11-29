@@ -6,7 +6,8 @@
     <OutputType>Library</OutputType>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
-    <TargetFrameworks>net45;net452;net461</TargetFrameworks>
+    <TargetFrameworks>net45</TargetFrameworks>
+    <!--;net452;net461-->
 
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo> 
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
